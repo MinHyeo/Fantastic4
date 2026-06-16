@@ -1,0 +1,80 @@
+[
+  {
+    "Id": "tower_01",
+    "AttackDamage": 5,
+    "AttackRange": 1.5,
+    "AttackSpeed": 3,
+    "ProjectileSpeed": 0,
+    "MoveType": "Ground",
+    "BuildPrice": 50,
+    "SellPrice": 25,
+    "UpgradeId": "ddd",
+    "UpgradePrice": 45,
+    "PrefabPath": "Prefab/Tower/tower_01"
+  },
+  {
+    "Id": "tower_02",
+    "AttackDamage": 10,
+    "AttackRange": 1.5,
+    "AttackSpeed": 2,
+    "ProjectileSpeed": 0,
+    "MoveType": "Ground",
+    "BuildPrice": 75,
+    "SellPrice": 50,
+    "UpgradeId": "ddd",
+    "UpgradePrice": 60,
+    "PrefabPath": "Prefab/Tower/tower_02"
+  },
+  {
+    "Id": "tower_03",
+    "AttackDamage": 6,
+    "AttackRange": 3,
+    "AttackSpeed": 3,
+    "ProjectileSpeed": 5,
+    "MoveType": "Ground,Sky",
+    "BuildPrice": 50,
+    "SellPrice": 50,
+    "UpgradeId": "ddd",
+    "UpgradePrice": 45,
+    "PrefabPath": "Prefab/Tower/tower_03"
+  },
+  {
+    "Id": "tower_04",
+    "AttackDamage": 10,
+    "AttackRange": 4,
+    "AttackSpeed": 3,
+    "ProjectileSpeed": 7,
+    "MoveType": "Ground,Sky",
+    "BuildPrice": 100,
+    "SellPrice": 75,
+    "UpgradeId": "ddd",
+    "UpgradePrice": 45,
+    "PrefabPath": "Prefab/Tower/tower_04"
+  },
+  {
+    "Id": "tower_05",
+    "AttackDamage": 5,
+    "AttackRange": 4,
+    "AttackSpeed": 1,
+    "ProjectileSpeed": 7,
+    "MoveType": "Ground,Sky",
+    "BuildPrice": 100,
+    "SellPrice": 75,
+    "UpgradeId": "ddd",
+    "UpgradePrice": 46,
+    "PrefabPath": "Prefab/Tower/tower_05"
+  },
+  {
+    "Id": "tower_06",
+    "AttackDamage": 3,
+    "AttackRange": 4,
+    "AttackSpeed": 1,
+    "ProjectileSpeed": 7,
+    "MoveType": "Ground,Sky",
+    "BuildPrice": 100,
+    "SellPrice": 75,
+    "UpgradeId": "ddd",
+    "UpgradePrice": 47,
+    "PrefabPath": "Prefab/Tower/tower_06"
+  }
+]

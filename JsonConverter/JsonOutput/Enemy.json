@@ -1,0 +1,52 @@
+[
+  {
+    "Id": "enemy_01",
+    "MaxHp": 50,
+    "MoveSpeed": 2.5,
+    "Defense": 2,
+    "RewardGold": 50,
+    "PenaltyLife": 1,
+    "MoveType": "Ground",
+    "PrefabPath": "Prefab/Enemy/enemy_01"
+  },
+  {
+    "Id": "enemy_02",
+    "MaxHp": 100,
+    "MoveSpeed": 2,
+    "Defense": 5,
+    "RewardGold": 75,
+    "PenaltyLife": 1,
+    "MoveType": "Ground",
+    "PrefabPath": "Prefab/Enemy/enemy_02"
+  },
+  {
+    "Id": "enemy_03",
+    "MaxHp": 75,
+    "MoveSpeed": 2.5,
+    "Defense": 6,
+    "RewardGold": 75,
+    "PenaltyLife": 1,
+    "MoveType": "Sky",
+    "PrefabPath": "Prefab/Enemy/enemy_03"
+  },
+  {
+    "Id": "enemy_04",
+    "MaxHp": 75,
+    "MoveSpeed": 3,
+    "Defense": 6,
+    "RewardGold": 75,
+    "PenaltyLife": 1,
+    "MoveType": "Sky",
+    "PrefabPath": "Prefab/Enemy/enemy_04"
+  },
+  {
+    "Id": "enemy_05",
+    "MaxHp": 300,
+    "MoveSpeed": 1.5,
+    "Defense": 8,
+    "RewardGold": 150,
+    "PenaltyLife": 2,
+    "MoveType": "Ground",
+    "PrefabPath": "Prefab/Enemy/enemy_05"
+  }
+]

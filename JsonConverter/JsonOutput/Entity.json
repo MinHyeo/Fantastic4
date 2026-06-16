@@ -1,0 +1,79 @@
+[
+  {
+    "Id": "tower_01",
+    "Name": "창 원시인",
+    "Description": "창을 이용해 적을 찌르는 원시인<br>날아다니는 유닛을 공격할 수 없습니다.",
+    "EntityType": "Tower",
+    "IconPath": "Sprite/Icon/tower_01_icon"
+  },
+  {
+    "Id": "tower_02",
+    "Name": "도끼 원시인",
+    "Description": "도끼를 이용해 적을 공격하는 원시인<br>날아다니는 유닛을 공격할 수 없습니다.",
+    "EntityType": "Tower",
+    "IconPath": "Sprite/Icon/tower_02_icon"
+  },
+  {
+    "Id": "tower_03",
+    "Name": "돌 원시인",
+    "Description": "돌을 던져 먼 거리에서 공격할 수 있는 원시인<br>지상과 공중 유닛을 공격할 수 있습니다.",
+    "EntityType": "Tower",
+    "IconPath": "Sprite/Icon/tower_03_icon"
+  },
+  {
+    "Id": "tower_04",
+    "Name": "화살 원시인",
+    "Description": "화살을 이용해 먼 거리를 강력하게 공격할 수 있는 원시인<br>지상과 공중 유닛을 공격할 수 있습니다.",
+    "EntityType": "Tower",
+    "IconPath": "Sprite/Icon/tower_04_icon"
+  },
+  {
+    "Id": "tower_05",
+    "Name": "독침 원시인",
+    "Description": "독침을 이용해 적의 방어력을 감소시키는 원시인<br>지상과 공중 유닛을 공격할 수 있습니다.",
+    "EntityType": "Tower",
+    "IconPath": "Sprite/Icon/tower_05_icon"
+  },
+  {
+    "Id": "tower_06",
+    "Name": "밧줄 원시인",
+    "Description": "밧줄을 던져 적의 이동속도를 감소시키는 원시인<br>지상과 공중 유닛을 공격할 수 있습니다.",
+    "EntityType": "Tower",
+    "IconPath": "Sprite/Icon/tower_06_icon"
+  },
+  {
+    "Id": "enemy_01",
+    "Name": "닭",
+    "Description": "기본 적",
+    "EntityType": "Enemy",
+    "IconPath": "Assets/Sprite/Icon/ChickenIcon"
+  },
+  {
+    "Id": "enemy_02",
+    "Name": "돼지",
+    "Description": "체력이 많은 적 ",
+    "EntityType": "Enemy",
+    "IconPath": "Assets/Sprite/Icon/Pig"
+  },
+  {
+    "Id": "enemy_03",
+    "Name": "케찰코아틀루스",
+    "Description": "하늘을 날아다니는 몬스터. 특정 기물들만 공격을 할 수 있습니다.",
+    "EntityType": "Enemy",
+    "IconPath": "Assets/Sprite/Icon/ChickenIcon"
+  },
+  {
+    "Id": "enemy_04",
+    "Name": "검치호",
+    "Description": "ddd",
+    "EntityType": "Enemy",
+    "IconPath": "Assets/Sprite/Icon/ChickenIcon"
+  },
+  {
+    "Id": "enemy_05",
+    "Name": "매머드",
+    "Description": "dddas",
+    "EntityType": "Enemy",
+    "IconPath": "Assets/Sprite/Icon/ChickenIcon"
+  }
+]
