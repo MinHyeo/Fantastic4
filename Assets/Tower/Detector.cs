@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
+[Serializable]
 public class Detector
 {
-    private Transform _ownerTransform;
-    private float _detectionRange;
-    private LayerMask _enemyLayer;
+    [SerializeField] protected Transform _ownerTransform;
+    [SerializeField] protected float _detectionRange;
+    [SerializeField] protected LayerMask _enemyLayer;
 
     public Detector(Transform ownerTransform, float detectionRange, LayerMask enemyLayer)
     {
