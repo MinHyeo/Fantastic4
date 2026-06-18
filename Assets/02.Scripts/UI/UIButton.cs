@@ -1,11 +1,12 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class DaniTechUIButton : MonoBehaviour
 {
     [SerializeField] private Button Button_Base;
-    [SerializeField] private Text Text_Base;
+    [SerializeField] private TextMeshProUGUI Text_Base;
     [SerializeField] private Image Image_Base;
     [SerializeField] private Image Image_Select;
 
