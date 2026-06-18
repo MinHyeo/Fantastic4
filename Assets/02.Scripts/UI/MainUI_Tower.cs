@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 
-public class MainUI_Tower : MonoBehaviour
+public class MainUI_Tower : UIBase
 {
     [SerializeField] private DaniTechUIButton Button_Pause;
     [SerializeField] private TextMeshProUGUI Text_Wave;
