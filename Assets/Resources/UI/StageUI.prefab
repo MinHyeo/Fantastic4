@@ -424,6 +424,7 @@ GameObject:
   - component: {fileID: 720414734576613713}
   - component: {fileID: 6599076235381895832}
   - component: {fileID: 1535190303111334779}
+  - component: {fileID: 9059079247340497676}
   m_Layer: 5
   m_Name: Button_Stage3
   m_TagString: Untagged
@@ -549,6 +550,18 @@ MonoBehaviour:
   Text_Base: {fileID: 2516628335591138015}
   Image_Base: {fileID: 720414734576613713}
   Image_Select: {fileID: 720414734576613713}
+--- !u!114 &9059079247340497676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680760464214433149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25774def54019744bb1ee9f5c084172d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageButton
 --- !u!1 &1837342265222332555
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,6 +752,7 @@ GameObject:
   - component: {fileID: 3539174595313173911}
   - component: {fileID: 3115829013685326004}
   - component: {fileID: 1852181734006848997}
+  - component: {fileID: 2050784510698855040}
   m_Layer: 5
   m_Name: Button_Stage1
   m_TagString: Untagged
@@ -864,6 +878,18 @@ MonoBehaviour:
   Text_Base: {fileID: 213520904253431715}
   Image_Base: {fileID: 3539174595313173911}
   Image_Select: {fileID: 3539174595313173911}
+--- !u!114 &2050784510698855040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3758103579852073743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25774def54019744bb1ee9f5c084172d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageButton
 --- !u!1 &3790591803612375241
 GameObject:
   m_ObjectHideFlags: 0
@@ -1014,6 +1040,7 @@ GameObject:
   - component: {fileID: 4720910093380316375}
   - component: {fileID: 380229806237470664}
   - component: {fileID: 7240869510043955192}
+  - component: {fileID: 8294207720163959079}
   m_Layer: 5
   m_Name: Button_Stage2
   m_TagString: Untagged
@@ -1139,6 +1166,18 @@ MonoBehaviour:
   Text_Base: {fileID: 2425013071915462715}
   Image_Base: {fileID: 4720910093380316375}
   Image_Select: {fileID: 4720910093380316375}
+--- !u!114 &8294207720163959079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5111440081999395007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25774def54019744bb1ee9f5c084172d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageButton
 --- !u!1 &5778613086353742939
 GameObject:
   m_ObjectHideFlags: 0
@@ -1152,6 +1191,7 @@ GameObject:
   - component: {fileID: 5140329108429057180}
   - component: {fileID: 1830684177226701446}
   - component: {fileID: 4059884901607225108}
+  - component: {fileID: 4103221420735189354}
   m_Layer: 5
   m_Name: Button_Stgae5
   m_TagString: Untagged
@@ -1277,6 +1317,18 @@ MonoBehaviour:
   Text_Base: {fileID: 3690481123690053924}
   Image_Base: {fileID: 5140329108429057180}
   Image_Select: {fileID: 5140329108429057180}
+--- !u!114 &4103221420735189354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5778613086353742939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25774def54019744bb1ee9f5c084172d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageButton
 --- !u!1 &5808074245738814932
 GameObject:
   m_ObjectHideFlags: 0
@@ -1290,6 +1342,7 @@ GameObject:
   - component: {fileID: 4642635833206629052}
   - component: {fileID: 4603162002409645876}
   - component: {fileID: 8238289191343134379}
+  - component: {fileID: 6574159998950022703}
   m_Layer: 5
   m_Name: Button_Stage4
   m_TagString: Untagged
@@ -1415,6 +1468,18 @@ MonoBehaviour:
   Text_Base: {fileID: 3657811414670655580}
   Image_Base: {fileID: 4642635833206629052}
   Image_Select: {fileID: 4642635833206629052}
+--- !u!114 &6574159998950022703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5808074245738814932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25774def54019744bb1ee9f5c084172d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageButton
 --- !u!1 &7099146437883345565
 GameObject:
   m_ObjectHideFlags: 0
@@ -1714,9 +1779,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3682994197f6bc4dbf06d9c7c454801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StageUI
-  Button_Stage1: {fileID: 1852181734006848997}
-  Button_Stage2: {fileID: 7240869510043955192}
-  Button_Stage3: {fileID: 1535190303111334779}
-  Button_Stage4: {fileID: 8238289191343134379}
-  Button_Stage5: {fileID: 4059884901607225108}
+  Button_Stage:
+  - {fileID: 1852181734006848997}
+  - {fileID: 7240869510043955192}
+  - {fileID: 1535190303111334779}
+  - {fileID: 8238289191343134379}
+  - {fileID: 4059884901607225108}
   Button_Back: {fileID: 5953398750799064208}
+  LockColor: {r: 0.3, g: 0.3, b: 0.3, a: 1}
+  UnLockColor: {r: 1, g: 1, b: 1, a: 1}
