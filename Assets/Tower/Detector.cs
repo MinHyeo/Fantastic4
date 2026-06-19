@@ -8,12 +8,7 @@ public class Detector
     [SerializeField] protected float _detectionRange;
     [SerializeField] protected LayerMask _enemyLayer;
 
-    public Detector(Transform ownerTransform, float detectionRange, LayerMask enemyLayer)
-    {
-        _ownerTransform = ownerTransform;
-        _detectionRange = detectionRange;
-        _enemyLayer = enemyLayer;
-    }
+    public Detector() { }
 
     public Collider[] FindEnemiesInRange()
     {
