@@ -1,51 +1,53 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerManager : MonoBehaviour
 {
     public static TowerManager Instance;
 
-    private Dictionary<int, GameObject> _spawnedTowerList = new Dictionary<int, GameObject>();
-
     [Header("3D 배치 설정")]
+
+    [SerializeField] private SerializableDictionary<string, GameObject> towerPrefabs = new();
+
+    [SerializeField] private GameObject _TowerPlacementIndicatorPrefab = null;
+
     [SerializeField] private float _gridSize = 1f;
 
     private int _towerSequenceId = 0;
+
+    private Dictionary<int, GameObject> _spawnedTowerList = new Dictionary<int, GameObject>();
+
+    private PlacementIndicator _towerPlacementIndicatorObject;
+
 
     private void Awake()
     {
         Instance = this;
     }
 
-    public bool CanPlaceTower(Vector3 cellPos)
+    private void Start()
     {
-        // 올바른 바닥인지 검사
-        Ray ray = new Ray(cellPos + Vector3.up * 1f, Vector3.down);
+        _towerPlacementIndicatorObject = Instantiate(_TowerPlacementIndicatorPrefab).GetComponent<PlacementIndicator>();
+    }
 
-        // 레이어로 확인 후 태그 검사
-        if (Physics.Raycast(ray, out RaycastHit hit, 2f, _groundLayer))
+    /// <summary>
+    /// 카메라 레이가 맞은 오브젝트가 배치 가능한 레이어인지 검사합니다.
+    /// </summary>
+    public bool CanPlaceTower(RaycastHit placementHit, LayerMask placementLayerMask)
+    {
+        int hitLayerMask = 1 << placementHit.collider.gameObject.layer;
+        if ((placementLayerMask.value & hitLayerMask) == 0)
         {
-            if (!hit.collider.CompareTag("TowerSpace"))
-            {
-                Debug.LogWarning("타워를 설치할 수 없는 종류의 지형입니다.");
-                return false;
-            }
-        }
-        else
-        {
-            Debug.LogWarning("타워를 설치할 수 있는 바닥이 없습니다.");
             return false;
         }
 
-        // 중복 검사 OverlapSphere 범위 내에 컴포넌트가 있는지 검사
+        // 배치 지점에 이미 다른 타워가 있는지 검사합니다.
         float checkRadius = _gridSize * 0.4f;
-        Collider[] hitColliders = Physics.OverlapSphere(cellPos, checkRadius);
-
-        foreach (var hitCollider in hitColliders)
+        Collider[] hitColliders = Physics.OverlapSphere(placementHit.point, checkRadius);
+        foreach (Collider hitCollider in hitColliders)
         {
-            if (hitCollider.GetComponent<Tower>() != null)
+            if (hitCollider.GetComponentInParent<TowerBase>() != null)
             {
-                Debug.LogWarning("이미 타워가 있음");
                 return false;
             }
         }
@@ -54,11 +56,12 @@ public class TowerManager : MonoBehaviour
     }
 
     // 어떤 타워 ID가 들어오든 Grid에 맞춰 생성만 해주는 통합 기능
-    public void SpawnTower(string towerId, Vector3 cellPos)
+    public void SpawnTower(GameObject towerPrefab, string towerId, Vector3 cellPos)
     {
         Vector3 snapPos = SnapToGrid(cellPos);
 
-        GameObject towerObject = GameObjectManager.Instance.CreateTowerOjbect(towerId, snapPos);
+        // TODO : 후에 여기에서 GameObjectManager로 연결
+        GameObject towerObject = Instantiate(towerPrefab, cellPos, Quaternion.identity);
 
         if (towerObject != null)
         {
@@ -67,9 +70,30 @@ public class TowerManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 타워 배치 인디케이터 켜기
+    /// </summary>
+    public PlacementIndicator ShowTowerPlacementIndicator(GameObject towerPrefabToIndicate)
+    {
+        // 타워 프리팹에 저장된 배치 가능 레이어를 인디케이터에 전달합니다.
+        TowerBase tower = towerPrefabToIndicate.GetComponent<TowerBase>();
+        _towerPlacementIndicatorObject.SetRenderTarget(towerPrefabToIndicate, tower.PlacementLayerMask);
+
+        _towerPlacementIndicatorObject.gameObject.SetActive(true);
+        return _towerPlacementIndicatorObject;
+    }
+
+    /// <summary>
+    /// 타워 배치 인디케이터 끄기
+    /// </summary>
+    public void HideTowerPlacementIndicator()
+    {
+        _towerPlacementIndicatorObject.gameObject.SetActive(false);
+    }
+
     public void DestroyAllTower()
     {
-        GameObjectManager.Instance.RequestDestroyAllTowerObject();
+        // GameObjectManager.Instance.RequestDestroyAllTowerObject();
         _spawnedTowerList.Clear();
         _towerSequenceId = 0;
     }
