@@ -160,7 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7850621269300523523}
   m_Layer: 5
-  m_Name: TowerInfoUI
+  m_Name: TowerInfoPopupUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
