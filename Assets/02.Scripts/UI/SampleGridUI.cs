@@ -5,7 +5,7 @@ public class SampleGridUI : MonoBehaviour
 {
     [SerializeField] private GameObject Prefab_GridSlot; // 동적생성할 슬롯의 대상이 되는 프리팹을 등록한다
     [SerializeField] private Transform Transform_SlotRoot; // 동적생성되는 슬롯이 들어가야하는 스크롤뷰의 Content 위치다!
-    [SerializeField] private DaniTechUIButton Button_TestAddNewCard;
+    [SerializeField] private UIButton Button_TestAddNewCard;
 
     // 이 UI에서 추후에 해당 슬롯을 확인할 수 있게 자료구조에 보관하자!
     private Dictionary<int, DaniTech_SampleGridUISlot> _gridSlotList = new Dictionary<int, DaniTech_SampleGridUISlot>();

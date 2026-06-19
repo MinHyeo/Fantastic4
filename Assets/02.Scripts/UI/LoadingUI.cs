@@ -75,7 +75,7 @@ public class LoadingUI : UIBase
 
         // 4. 완료 처리
         Slider_LoadingBar.value = 1.0f;
-        UIManager.Instance.CloseLoadingUI();
+        // UIManager.Instance.CloseLoadingUI();
     }
 
     private void ChangeColorByLoadingBarValue(float curValue)

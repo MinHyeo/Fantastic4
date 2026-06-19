@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class StageUI : UIBase
 {
-    [SerializeField] private DaniTechUIButton[] Button_Stage;
-    [SerializeField] private DaniTechUIButton Button_Back;
+    [SerializeField] private UIButton[] Button_Stage;
+    [SerializeField] private UIButton Button_Back;
 
     [SerializeField] private Color LockColor = new Color(0.3f, 0.3f, 0.3f, 1f);
     [SerializeField] private Color UnLockColor = Color.white;

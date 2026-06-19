@@ -7,7 +7,7 @@ public class DialogueUI : UIBase
     [SerializeField] private GameObject Layout_CharacterName;
     [SerializeField] private Text Text_Character;
     [SerializeField] private Text Text_Description;
-    [SerializeField] private DaniTechUIButton Button_Next;
+    [SerializeField] private UIButton Button_Next;
 
     private string _currentDialogueId;
     private Queue<string> _descriptionQueue = new Queue<string>();
@@ -32,7 +32,7 @@ public class DialogueUI : UIBase
         bool isNextDialogueExist = CheckAndStartNextDialogue();
         if(isNextDialogueExist == false)
         {
-            UIManager.Instance.CloseContentUI(UIType.DialogueUI);
+            // UIManager.Instance.CloseContentUI(UIType.DialogueUI);
         }
     }
 

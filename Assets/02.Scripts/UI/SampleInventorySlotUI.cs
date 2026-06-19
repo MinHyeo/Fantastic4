@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class SampleInventorySlotUI : MonoBehaviour
 {
     [SerializeField] private Text Text_StackCount;
-    [SerializeField] private DaniTechUIButton Button_Slot;
+    [SerializeField] private UIButton Button_Slot;
     [SerializeField] private Image Image_Icon;
     [SerializeField] private Image Image_Frame;
     [SerializeField] private Image Image_Selected;

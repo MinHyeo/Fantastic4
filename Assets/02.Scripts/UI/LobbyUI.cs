@@ -1,12 +1,12 @@
-using UnityEditor.SceneManagement;
+﻿using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class LobbyUI : UIBase
 {
-    [SerializeField] private DaniTechUIButton Button_Start;
-    [SerializeField] private DaniTechUIButton Button_Information;
-    [SerializeField] private DaniTechUIButton Button_Setting;
-    [SerializeField] private DaniTechUIButton Button_End;
+    [SerializeField] private UIButton Button_Start;
+    [SerializeField] private UIButton Button_Information;
+    [SerializeField] private UIButton Button_Setting;
+    [SerializeField] private UIButton Button_End;
 
     private void OnEnable()
     {

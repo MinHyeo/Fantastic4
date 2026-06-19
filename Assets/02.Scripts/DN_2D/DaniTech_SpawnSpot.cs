@@ -73,7 +73,7 @@ public class DaniTech_SpawnSpot : MonoBehaviour
                 break;
             case DNSpawnSpotType.Dialogue:
                 // 다이얼로그 발생 유형은 시작 시 이 스폰스팟을 더이상 사용하지 않게 비활성화 한다 (제거도 무관)
-                UIManager.Instance.OpenDialogueUI(_spawnObjectDataId);
+                // UIManager.Instance.OpenDialogueUI(_spawnObjectDataId);
                 this.gameObject.SetActive(false);
                 break;
         }

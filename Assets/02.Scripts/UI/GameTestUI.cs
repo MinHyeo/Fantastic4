@@ -5,7 +5,7 @@ public class GameTestUI : MonoBehaviour
 {
     [SerializeField] private InputField InputField_ConsoleCommand;
     // [SerializeField] private Button Button_AAA;
-    // [SerializeField] private DaniTechUIButton Button_BBB;
+    // [SerializeField] private UIButton Button_BBB;
 
     private void OnEnable()
     {

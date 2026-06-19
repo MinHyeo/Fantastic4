@@ -10,7 +10,7 @@ public class StageButton : MonoBehaviour
         StageNumber = stagenumber;
         stageUI = stageui;
 
-        DaniTechUIButton button = GetComponent<DaniTechUIButton>();
+        UIButton button = GetComponent<UIButton>();
         if (button != null)
         {
             button.BindOnClickButtonEvent(OnClickThisButton);

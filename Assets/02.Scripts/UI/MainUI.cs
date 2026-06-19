@@ -2,10 +2,10 @@
 
 public class MainUI : UIBase
 {
-    [SerializeField] private DaniTechUIButton Btn_MyProfile;
-    [SerializeField] private DaniTechUIButton Btn_StartBattle;
-    [SerializeField] private DaniTechUIButton Btn_MonsterSpawn;
-    [SerializeField] private DaniTechUIButton Btn_OpenInventory;
+    [SerializeField] private UIButton Btn_MyProfile;
+    [SerializeField] private UIButton Btn_StartBattle;
+    [SerializeField] private UIButton Btn_MonsterSpawn;
+    [SerializeField] private UIButton Btn_OpenInventory;
 
     private void OnEnable()
     {
@@ -17,14 +17,14 @@ public class MainUI : UIBase
 
     public void OnClick_OpenInventory()
     {
-        UIManager.Instance.OpenInventoryPopup();
+        // UIManager.Instance.OpenInventoryPopup();
         GameManager.Instance.SaveData();
     }
 
     public void OnClick_OpenMyProfile()
     {
-        //UIManager.Instance.OpenMyProfilePopup("character_hellena_01");
-        UIManager.Instance.OpenInventoryPopup();
+        // UIManager.Instance.OpenMyProfilePopup("character_hellena_01");
+        // UIManager.Instance.OpenInventoryPopup();
         Debug.LogWarning("프로필 오픈");
     }
 

@@ -3,7 +3,7 @@ using TMPro;
 
 public class MainUI_Tower : UIBase
 {
-    [SerializeField] private DaniTechUIButton Button_Pause;
+    [SerializeField] private UIButton Button_Pause;
     [SerializeField] private TextMeshProUGUI Text_Wave;
     [SerializeField] private TextMeshProUGUI Text_Gold;
     [SerializeField] private GameObject TowerDeck;
@@ -15,7 +15,7 @@ public class MainUI_Tower : UIBase
     
     private void OnClickPauseGame()
     {
-        // UIManager.Instance.OpenPopupUI(UIType.PauseUI);
+        UIManager.Instance.OpenPopupUI(UIType.PauseUI);
         // Todo : 게임 일시정지 기능도 넣어야 함.
     }
 

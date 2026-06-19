@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class DaniTechUIButton : MonoBehaviour
+public class UIButton : MonoBehaviour
 {
     [SerializeField] private Button Button_Base;
     [SerializeField] private TextMeshProUGUI Text_Base;
