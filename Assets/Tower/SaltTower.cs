@@ -88,7 +88,7 @@ public class SaltTower : TowerBase
             Collider[] hitProjectiles = Physics.OverlapSphere(launchPoint.position, 0.5f);
             foreach (var col in hitProjectiles)
             {
-                var saltProj = col.GetComponent<SaltProjectile>();
+                var saltProj = col.GetComponent<SaltTowerProjectile>();
                 if (saltProj != null && !saltProj.IsInitialized)
                 {
                     saltProj.SetupSaltAbility(_abilityData);
