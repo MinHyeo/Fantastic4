@@ -1,0 +1,178 @@
+[
+  {
+    "Id": "wave1_01",
+    "WaveGroup": 1,
+    "EnemyId": "enemy_01",
+    "Count": 3,
+    "Interval": 1,
+    "PreDelay": 0
+  },
+  {
+    "Id": "wave1_02",
+    "WaveGroup": 1,
+    "EnemyId": "enemy_02",
+    "Count": 3,
+    "Interval": 0.5,
+    "PreDelay": 5
+  },
+  {
+    "Id": "wave1_03",
+    "WaveGroup": 1,
+    "EnemyId": "enemy_01",
+    "Count": 2,
+    "Interval": 1.5,
+    "PreDelay": 8
+  },
+  {
+    "Id": "wave2_01",
+    "WaveGroup": 1,
+    "EnemyId": "enemy_02",
+    "Count": 5,
+    "Interval": 0.5,
+    "PreDelay": 0
+  },
+  {
+    "Id": "wave2_02",
+    "WaveGroup": 1,
+    "EnemyId": "enemy_01",
+    "Count": 5,
+    "Interval": 0.25,
+    "PreDelay": 3
+  },
+  {
+    "Id": "wave2_03",
+    "WaveGroup": 1,
+    "EnemyId": "enemy_03",
+    "Count": 3,
+    "Interval": 0.25,
+    "PreDelay": 6
+  },
+  {
+    "Id": "wave3_01",
+    "WaveGroup": 1,
+    "EnemyId": "enemy_01",
+    "Count": 8,
+    "Interval": 0.25,
+    "PreDelay": 0
+  },
+  {
+    "Id": "wave3_02",
+    "WaveGroup": 1,
+    "EnemyId": "enemy_04",
+    "Count": 3,
+    "Interval": 0.25,
+    "PreDelay": 6
+  },
+  {
+    "Id": "wave3_03",
+    "WaveGroup": 2,
+    "EnemyId": "enemy_05",
+    "Count": 5,
+    "Interval": 0.25,
+    "PreDelay": 6
+  },
+  {
+    "Id": "wave4_01",
+    "WaveGroup": 1,
+    "EnemyId": "enemy_01",
+    "Count": 5,
+    "Interval": 0.25,
+    "PreDelay": 0
+  },
+  {
+    "Id": "wave4_02",
+    "WaveGroup": 1,
+    "EnemyId": "enemy_01",
+    "Count": 5,
+    "Interval": 0.25,
+    "PreDelay": 2
+  },
+  {
+    "Id": "wave4_03",
+    "WaveGroup": 2,
+    "EnemyId": "enemy_02",
+    "Count": 3,
+    "Interval": 0.5,
+    "PreDelay": 1
+  },
+  {
+    "Id": "wave4_04",
+    "WaveGroup": 2,
+    "EnemyId": "enemy_02",
+    "Count": 3,
+    "Interval": 0.5,
+    "PreDelay": 4
+  },
+  {
+    "Id": "wave4_05",
+    "WaveGroup": 3,
+    "EnemyId": "enemy_02",
+    "Count": 2,
+    "Interval": 0.5,
+    "PreDelay": 10
+  },
+  {
+    "Id": "wave5_01",
+    "WaveGroup": 1,
+    "EnemyId": "enemy_01",
+    "Count": 5,
+    "Interval": 0.25,
+    "PreDelay": 0
+  },
+  {
+    "Id": "wave5_02",
+    "WaveGroup": 1,
+    "EnemyId": "enemy_01",
+    "Count": 5,
+    "Interval": 0.25,
+    "PreDelay": 2
+  },
+  {
+    "Id": "wave5_03",
+    "WaveGroup": 1,
+    "EnemyId": "enemy_02",
+    "Count": 3,
+    "Interval": 0.25,
+    "PreDelay": 4
+  },
+  {
+    "Id": "wave5_04",
+    "WaveGroup": 2,
+    "EnemyId": "enemy_01",
+    "Count": 3,
+    "Interval": 0.5,
+    "PreDelay": 4
+  },
+  {
+    "Id": "wave5_05",
+    "WaveGroup": 2,
+    "EnemyId": "enemy_01",
+    "Count": 2,
+    "Interval": 0.5,
+    "PreDelay": 6
+  },
+  {
+    "Id": "wave5_06",
+    "WaveGroup": 3,
+    "EnemyId": "enemy_02",
+    "Count": 2,
+    "Interval": 0.5,
+    "PreDelay": 8
+  },
+  {
+    "Id": "wave5_07",
+    "WaveGroup": 3,
+    "EnemyId": "enemy_02",
+    "Count": 2,
+    "Interval": 0.5,
+    "PreDelay": 9
+  },
+  {
+    "Id": "wave5_08",
+    "WaveGroup": 4,
+    "EnemyId": "enemy_02",
+    "Count": 1,
+    "Interval": 0,
+    "PreDelay": 10
+  }
+]
