@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ResultFailUI : UIBase
+public class ResultSuccessUI : UIBase
 {
     [SerializeField] private UIButton Button_Retry;
     [SerializeField] private UIButton Button_Stage;
