@@ -991,6 +991,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6107758770753928061}
+  - component: {fileID: 7073320879664441010}
   m_Layer: 5
   m_Name: LobbyUI
   m_TagString: Untagged
@@ -1019,6 +1020,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7073320879664441010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7011023966205469173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0208b97e1b0a2c64bbd958fb85618de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LobbyUI
+  Button_Start: {fileID: 2017313875286117222}
+  Button_Information: {fileID: 8977329810947563559}
+  Button_Setting: {fileID: 8353693797229703757}
+  Button_End: {fileID: 6161798922266607972}
 --- !u!1 &7517545652849610509
 GameObject:
   m_ObjectHideFlags: 0
