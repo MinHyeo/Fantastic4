@@ -1,11 +1,11 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 /// <summary>
 /// 타워의 기본 스탯과 리소스 주소 데이터를 담는 클래스
 /// </summary>
 [Serializable]
-public class TowerData
+public class TowerData : GameDataBase
 {
     /// <summary>
     /// 타워 ID
