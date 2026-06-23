@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerManager : MonoBehaviour
@@ -61,7 +61,7 @@ public class TowerManager : MonoBehaviour
         Vector3 snapPos = SnapToGrid(cellPos);
 
         // TODO : 후에 여기에서 GameObjectManager로 연결
-        GameObject towerObject = Instantiate(towerPrefab, cellPos, Quaternion.identity);
+        GameObject towerObject = Instantiate(towerPrefab, snapPos, Quaternion.identity);
 
         if (towerObject != null)
         {
