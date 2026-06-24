@@ -1,17 +1,11 @@
 using UnityEngine;
 
-public class KetchupProjectile : Projectile
+public class PaperProjectile : Projectile
 {
-    ///<summary>
-    /// 케찹 데칼 생성기
-    ///</summary>
-    [SerializeField] private KetchupDecalSpawner _decalSpawner;
-
     ///<summary>
     /// 충돌 시 효과를 일으킬 레이어
     ///</summary>
     [SerializeField] private LayerMask _targetLayerMask;
-
 
     protected override void Update()
     {
@@ -28,17 +22,15 @@ public class KetchupProjectile : Projectile
     ///</summary>
     private void OnCollisionEnter(Collision collision)
     {
-        // 충돌한 오브젝트가 바닥 레이어인지 검사
-        // 케찹 데칼 생성
-        if (CheckIsGrounded(collision))
+        if (CheckIsEnemyCollider(collision))
         {
-            _decalSpawner.Spawn(collision.gameObject.transform.position, Vector3.up);
             Destroy(gameObject);
+            // TODO : 적에 대한 공격 판정
             return;
         }
     }
 
-    private bool CheckIsGrounded(Collision collision)
+    private bool CheckIsEnemyCollider(Collision collision)
     {
         return ((1 << collision.gameObject.layer) & _targetLayerMask) != 0;
     }
