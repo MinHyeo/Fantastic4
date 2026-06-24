@@ -18,8 +18,8 @@ public class NormalEnemy : EnemyBase
         _moveSpeed = 5f;
         _targetPosition = StageManager.Instance.GetCoursePosition(_courseIndex);
 
-        bool hasNextCourse = StageManager.Instance.CheckEndCourse(_courseIndex);
-        if (hasNextCourse == true)
+        bool isCourseEnd = StageManager.Instance.CheckEndCourse(_courseIndex);
+        if (isCourseEnd == true)
         {
             _isMoveEnd = true;
             return;
@@ -59,8 +59,8 @@ public class NormalEnemy : EnemyBase
 
         _courseIndex++;
 
-        bool hasNextCourse = StageManager.Instance.CheckEndCourse(_courseIndex);
-        if (hasNextCourse == true)
+        bool isCourseEnd = StageManager.Instance.CheckEndCourse(_courseIndex);
+        if (isCourseEnd == true)
         {
             _isMoveEnd = true;
             return;
