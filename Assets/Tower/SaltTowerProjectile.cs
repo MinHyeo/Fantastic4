@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class SaltProjectile : Projectile
+public class SaltTowerProjectile : Projectile
 {
     private AbilityData _saltAbility;
     private Transform _target;

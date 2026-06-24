@@ -41,7 +41,7 @@ public class EnemyData : GameDataBase
     public string PrefabPath;
 }
 
-[System.Serializable] 
+[System.Serializable]
 public class AbilityData : GameDataBase
 {
     public float PrecentValue;

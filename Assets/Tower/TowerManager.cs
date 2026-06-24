@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerManager : MonoBehaviour
@@ -17,6 +17,8 @@ public class TowerManager : MonoBehaviour
 
     private Dictionary<int, GameObject> _spawnedTowerList = new Dictionary<int, GameObject>();
 
+    private HashSet<Vector2Int> _occupiedGridCells = new HashSet<Vector2Int>();
+
     private PlacementIndicator _towerPlacementIndicatorObject;
 
 
@@ -28,6 +30,7 @@ public class TowerManager : MonoBehaviour
     private void Start()
     {
         _towerPlacementIndicatorObject = Instantiate(_TowerPlacementIndicatorPrefab).GetComponent<PlacementIndicator>();
+        _towerPlacementIndicatorObject.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -35,15 +38,33 @@ public class TowerManager : MonoBehaviour
     /// </summary>
     public bool CanPlaceTower(RaycastHit placementHit, LayerMask placementLayerMask)
     {
-        int hitLayerMask = 1 << placementHit.collider.gameObject.layer;
+        return CanPlaceTower(placementHit.point, placementHit.collider, placementLayerMask);
+    }
+
+    /// <summary>
+    /// 실제 타워가 생성될 위치를 기준으로 배치 가능 여부를 검사합니다.
+    /// </summary>
+    public bool CanPlaceTower(Vector3 placementPosition, Collider placementCollider, LayerMask placementLayerMask)
+    {
+        if (placementCollider == null)
+        {
+            return false;
+        }
+
+        int hitLayerMask = 1 << placementCollider.gameObject.layer;
         if ((placementLayerMask.value & hitLayerMask) == 0)
+        {
+            return false;
+        }
+
+        if (_occupiedGridCells.Contains(GetGridCell(placementPosition)))
         {
             return false;
         }
 
         // 배치 지점에 이미 다른 타워가 있는지 검사합니다.
         float checkRadius = _gridSize * 0.4f;
-        Collider[] hitColliders = Physics.OverlapSphere(placementHit.point, checkRadius);
+        Collider[] hitColliders = Physics.OverlapSphere(placementPosition, checkRadius);
         foreach (Collider hitCollider in hitColliders)
         {
             if (hitCollider.GetComponentInParent<TowerBase>() != null)
@@ -55,10 +76,32 @@ public class TowerManager : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// 타워 인디케이터를 통해 현재 배치 가능한 부분인지?
+    /// </summary>
+    public bool CanPlaceTower(out Vector3 worldPos)
+    {
+        bool result = _towerPlacementIndicatorObject.CanPlaceTower;
+        if (result)
+        {
+            worldPos = _towerPlacementIndicatorObject.transform.position;
+        }
+        else
+        {
+            worldPos = Vector3.zero;
+        }
+
+        return result;
+    }
+
     // 어떤 타워 ID가 들어오든 Grid에 맞춰 생성만 해주는 통합 기능
     public void SpawnTower(GameObject towerPrefab, string towerId, Vector3 cellPos)
     {
-        Vector3 snapPos = SnapToGrid(cellPos);
+        Vector2Int gridCell = GetGridCell(cellPos);
+        if (_occupiedGridCells.Contains(gridCell))
+        {
+            return;
+        }
 
         // TODO : 후에 여기에서 GameObjectManager로 연결
         GameObject towerObject = Instantiate(towerPrefab, cellPos, Quaternion.identity);
@@ -66,6 +109,7 @@ public class TowerManager : MonoBehaviour
         if (towerObject != null)
         {
             _spawnedTowerList.Add(_towerSequenceId, towerObject);
+            _occupiedGridCells.Add(gridCell);
             _towerSequenceId++;
         }
     }
@@ -77,9 +121,8 @@ public class TowerManager : MonoBehaviour
     {
         // 타워 프리팹에 저장된 배치 가능 레이어를 인디케이터에 전달합니다.
         TowerBase tower = towerPrefabToIndicate.GetComponent<TowerBase>();
-        _towerPlacementIndicatorObject.SetRenderTarget(towerPrefabToIndicate, tower.PlacementLayerMask);
-
         _towerPlacementIndicatorObject.gameObject.SetActive(true);
+        _towerPlacementIndicatorObject.SetRenderTarget(towerPrefabToIndicate, tower.PlacementLayerMask);
         return _towerPlacementIndicatorObject;
     }
 
@@ -95,13 +138,14 @@ public class TowerManager : MonoBehaviour
     {
         // GameObjectManager.Instance.RequestDestroyAllTowerObject();
         _spawnedTowerList.Clear();
+        _occupiedGridCells.Clear();
         _towerSequenceId = 0;
     }
 
-    private Vector3 SnapToGrid(Vector3 worldPos)
+    private Vector2Int GetGridCell(Vector3 worldPos)
     {
-        float x = Mathf.Floor(worldPos.x / _gridSize) * _gridSize + (_gridSize * 0.5f);
-        float z = Mathf.Floor(worldPos.z / _gridSize) * _gridSize + (_gridSize * 0.5f);
-        return new Vector3(x, worldPos.y, z);
+        int x = Mathf.FloorToInt(worldPos.x / _gridSize);
+        int z = Mathf.FloorToInt(worldPos.z / _gridSize);
+        return new Vector2Int(x, z);
     }
 }
