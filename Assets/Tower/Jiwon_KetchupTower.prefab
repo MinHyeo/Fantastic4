@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3100882431857460351
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 665741072109295437, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
+      propertyPath: m_Name
+      value: Jiwon_KetchupTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979051774812846538, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979051774812846538, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979051774812846538, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979051774812846538, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979051774812846538, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979051774812846538, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979051774812846538, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979051774812846538, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979051774812846538, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979051774812846538, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 665741072109295437, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8378898021799937486}
+  m_SourcePrefab: {fileID: 100100000, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
+--- !u!4 &164791038777743332 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2972930694467998619, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
+  m_PrefabInstance: {fileID: 3100882431857460351}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2465056548463530802 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 665741072109295437, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
+  m_PrefabInstance: {fileID: 3100882431857460351}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8378898021799937486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2465056548463530802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 699ba22cc7ce19a4b8930bfe289ce4fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KetchupTower
+  _renderer: {fileID: 0}
+  _animator: {fileID: 0}
+  _placementLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  _detector:
+    _ownerTransform: {fileID: 8786900888816876981}
+    _detectionRange: 0
+    _enemyLayer:
+      serializedVersion: 2
+      m_Bits: 64
+  _dragger:
+    _ownerTransform: {fileID: 8786900888816876981}
+    _fallbackDistance: 10
+  _firePoint: {fileID: 164791038777743332}
+  _projectilePrefab: {fileID: 573534402750079936, guid: e69f5a14556b5e843814f7f16ac21da5, type: 3}
+  _data:
+    Id: 
+    AttackDamage: 0
+    AttackRange: 0
+    AttackSpeed: 0
+    ProjectileSpeed: 0
+    AbilityId: 
+    BuildPrice: 0
+    UpgradeId: 
+    UpgradePrice: 
+    PrefabPath: 
+    ProjectilePath: 
+--- !u!4 &8786900888816876981 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5979051774812846538, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
+  m_PrefabInstance: {fileID: 3100882431857460351}
+  m_PrefabAsset: {fileID: 0}

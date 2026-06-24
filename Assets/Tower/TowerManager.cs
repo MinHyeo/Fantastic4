@@ -17,6 +17,8 @@ public class TowerManager : MonoBehaviour
 
     private Dictionary<int, GameObject> _spawnedTowerList = new Dictionary<int, GameObject>();
 
+    private HashSet<Vector2Int> _occupiedGridCells = new HashSet<Vector2Int>();
+
     private PlacementIndicator _towerPlacementIndicatorObject;
 
 
@@ -28,6 +30,7 @@ public class TowerManager : MonoBehaviour
     private void Start()
     {
         _towerPlacementIndicatorObject = Instantiate(_TowerPlacementIndicatorPrefab).GetComponent<PlacementIndicator>();
+        _towerPlacementIndicatorObject.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -37,6 +40,11 @@ public class TowerManager : MonoBehaviour
     {
         int hitLayerMask = 1 << placementHit.collider.gameObject.layer;
         if ((placementLayerMask.value & hitLayerMask) == 0)
+        {
+            return false;
+        }
+
+        if (_occupiedGridCells.Contains(GetGridCell(placementHit.point)))
         {
             return false;
         }
@@ -55,10 +63,32 @@ public class TowerManager : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// 타워 인디케이터를 통해 현재 배치 가능한 부분인지?
+    /// </summary>
+    public bool CanPlaceTower(out Vector3 worldPos)
+    {
+        bool result = _towerPlacementIndicatorObject.CanPlaceTower;
+        if (result)
+        {
+            worldPos = _towerPlacementIndicatorObject.transform.position;
+        }
+        else
+        {
+            worldPos = Vector3.zero;
+        }
+
+        return result;
+    }
+
     // 어떤 타워 ID가 들어오든 Grid에 맞춰 생성만 해주는 통합 기능
     public void SpawnTower(GameObject towerPrefab, string towerId, Vector3 cellPos)
     {
-        Vector3 snapPos = SnapToGrid(cellPos);
+        Vector2Int gridCell = GetGridCell(cellPos);
+        if (_occupiedGridCells.Contains(gridCell))
+        {
+            return;
+        }
 
         // TODO : 후에 여기에서 GameObjectManager로 연결
         GameObject towerObject = Instantiate(towerPrefab, cellPos, Quaternion.identity);
@@ -66,6 +96,7 @@ public class TowerManager : MonoBehaviour
         if (towerObject != null)
         {
             _spawnedTowerList.Add(_towerSequenceId, towerObject);
+            _occupiedGridCells.Add(gridCell);
             _towerSequenceId++;
         }
     }
@@ -77,9 +108,8 @@ public class TowerManager : MonoBehaviour
     {
         // 타워 프리팹에 저장된 배치 가능 레이어를 인디케이터에 전달합니다.
         TowerBase tower = towerPrefabToIndicate.GetComponent<TowerBase>();
-        _towerPlacementIndicatorObject.SetRenderTarget(towerPrefabToIndicate, tower.PlacementLayerMask);
-
         _towerPlacementIndicatorObject.gameObject.SetActive(true);
+        _towerPlacementIndicatorObject.SetRenderTarget(towerPrefabToIndicate, tower.PlacementLayerMask);
         return _towerPlacementIndicatorObject;
     }
 
@@ -95,13 +125,14 @@ public class TowerManager : MonoBehaviour
     {
         // GameObjectManager.Instance.RequestDestroyAllTowerObject();
         _spawnedTowerList.Clear();
+        _occupiedGridCells.Clear();
         _towerSequenceId = 0;
     }
 
-    private Vector3 SnapToGrid(Vector3 worldPos)
+    private Vector2Int GetGridCell(Vector3 worldPos)
     {
-        float x = Mathf.Floor(worldPos.x / _gridSize) * _gridSize + (_gridSize * 0.5f);
-        float z = Mathf.Floor(worldPos.z / _gridSize) * _gridSize + (_gridSize * 0.5f);
-        return new Vector3(x, worldPos.y, z);
+        int x = Mathf.FloorToInt(worldPos.x / _gridSize);
+        int z = Mathf.FloorToInt(worldPos.z / _gridSize);
+        return new Vector2Int(x, z);
     }
 }
