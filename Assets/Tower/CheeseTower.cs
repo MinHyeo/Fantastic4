@@ -4,17 +4,26 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class CheeseTower : TowerBase
 {
-    [Header("임시 동작 테스트용")]
-     private GameObject _projectilePrefab;
-     private float _damage = 10.0f;
-     private float _projectileSpeed = 5.0f;
+    [SerializeField] private Transform _headBase;
     [SerializeField] private Transform _firePoint;
+    [SerializeField] private float _rotationSpeed = 360f;
+
+    [SerializeField] private float _fireSpeed;
+    [SerializeField] private string _testTowerId; // 동작 테스트용
+
+    private GameObject _projectilePrefab;
+    private float _damage;
+    private float _projectileSpeed;
 
     private AsyncOperationHandle<GameObject> _projectileHandle;
     private TowerData _currentData;
     private float _lastFireTime;
     private float _fireCoolTime = 1.0f;
 
+    private void Start() // 동작 테스트용, 매니저 연동후 삭제
+    {
+        Initialize(_testTowerId);
+    }
     protected override void Update()
     {
         base.Update();
@@ -25,6 +34,10 @@ public class CheeseTower : TowerBase
         {
             return;
         }
+
+        Vector3 direction = targetTransform.position - _headBase.position;
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        _headBase.rotation = Quaternion.RotateTowards(_headBase.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
 
         if (Time.time - _lastFireTime < _fireCoolTime)
         {
@@ -59,6 +72,12 @@ public class CheeseTower : TowerBase
             if (_currentData.AttackSpeed > 0)
             {
                 _fireCoolTime = (1f / _currentData.AttackSpeed);
+            }
+
+            // 임시 ProjectilePath 하드코딩, 엑셀 데이터 채워지면 삭제해야함
+            if (string.IsNullOrEmpty(_currentData.ProjectilePath))
+            {
+                _currentData.ProjectilePath = "Prefab/Projectile/cheese";
             }
 
             if (!string.IsNullOrEmpty(_currentData.ProjectilePath))
