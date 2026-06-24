@@ -38,20 +38,33 @@ public class TowerManager : MonoBehaviour
     /// </summary>
     public bool CanPlaceTower(RaycastHit placementHit, LayerMask placementLayerMask)
     {
-        int hitLayerMask = 1 << placementHit.collider.gameObject.layer;
+        return CanPlaceTower(placementHit.point, placementHit.collider, placementLayerMask);
+    }
+
+    /// <summary>
+    /// 실제 타워가 생성될 위치를 기준으로 배치 가능 여부를 검사합니다.
+    /// </summary>
+    public bool CanPlaceTower(Vector3 placementPosition, Collider placementCollider, LayerMask placementLayerMask)
+    {
+        if (placementCollider == null)
+        {
+            return false;
+        }
+
+        int hitLayerMask = 1 << placementCollider.gameObject.layer;
         if ((placementLayerMask.value & hitLayerMask) == 0)
         {
             return false;
         }
 
-        if (_occupiedGridCells.Contains(GetGridCell(placementHit.point)))
+        if (_occupiedGridCells.Contains(GetGridCell(placementPosition)))
         {
             return false;
         }
 
         // 배치 지점에 이미 다른 타워가 있는지 검사합니다.
         float checkRadius = _gridSize * 0.4f;
-        Collider[] hitColliders = Physics.OverlapSphere(placementHit.point, checkRadius);
+        Collider[] hitColliders = Physics.OverlapSphere(placementPosition, checkRadius);
         foreach (Collider hitCollider in hitColliders)
         {
             if (hitCollider.GetComponentInParent<TowerBase>() != null)
@@ -91,7 +104,7 @@ public class TowerManager : MonoBehaviour
         }
 
         // TODO : 후에 여기에서 GameObjectManager로 연결
-        GameObject towerObject = Instantiate(towerPrefab, snapPos, Quaternion.identity);
+        GameObject towerObject = Instantiate(towerPrefab, cellPos, Quaternion.identity);
 
         if (towerObject != null)
         {

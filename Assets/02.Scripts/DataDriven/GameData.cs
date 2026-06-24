@@ -41,14 +41,14 @@ public class EnemyData : GameDataBase
     public string PrefabPath;
 }
 
-//[System.Serializable] 
-//public class AbilityData : GameDataBase
-//{
-//    public float PrecentValue;
-//    public float NumbericalValue;
-//    public float ActiveTime;
-//    public float EffectRound;
-//}
+[System.Serializable]
+public class AbilityData : GameDataBase
+{
+    public float PrecentValue;
+    public float NumbericalValue;
+    public float ActiveTime;
+    public float EffectRound;
+}
 
 [System.Serializable]
 public class StageData : GameDataBase

@@ -76,15 +76,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2972930694467998619, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.011
+      value: 0.012
       objectReference: {fileID: 0}
     - target: {fileID: 2972930694467998619, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.403
+      value: 0.476
       objectReference: {fileID: 0}
     - target: {fileID: 2972930694467998619, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.335
+      value: 0.039
       objectReference: {fileID: 0}
     - target: {fileID: 5979051774812846538, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
       propertyPath: m_LocalPosition.x
@@ -138,6 +138,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: -4922728090158212806}
   m_SourcePrefab: {fileID: 100100000, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
+--- !u!4 &186343366539075919 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5979051774812846538, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
+  m_PrefabInstance: {fileID: 5796094945444796549}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5736271750400764764 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2302616385002566617, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
@@ -164,14 +169,19 @@ MonoBehaviour:
   _animator: {fileID: 0}
   _placementLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   _detector:
-    _ownerTransform: {fileID: 0}
+    _ownerTransform: {fileID: 186343366539075919}
     _detectionRange: 0
     _enemyLayer:
       serializedVersion: 2
-      m_Bits: 0
+      m_Bits: 64
   _dragger:
-    _ownerTransform: {fileID: 0}
+    _ownerTransform: {fileID: 186343366539075919}
     _fallbackDistance: 10
-  _firePoint: {fileID: 0}
+  _firePoint: {fileID: 8731957495115959070}
+--- !u!4 &8731957495115959070 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2972930694467998619, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
+  m_PrefabInstance: {fileID: 5796094945444796549}
+  m_PrefabAsset: {fileID: 0}
