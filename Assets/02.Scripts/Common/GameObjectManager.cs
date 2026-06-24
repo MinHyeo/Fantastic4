@@ -1,12 +1,12 @@
 ﻿using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.CompilerServices;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameObjectManager : MonoBehaviour
 {
-    // 생성할 몬스터의 프리팹
-    [SerializeField] private GameObject Prefab_Enemy;
-    [SerializeField] private Transform Root_Enemy;
+    [SerializeField] private GameObject _prefabEnemy;
+    [SerializeField] private Transform _rootEnemy;
 
     public static GameObjectManager Instance { get; set; }
 
@@ -14,6 +14,9 @@ public class GameObjectManager : MonoBehaviour
     private int _objectInstanceKeyGenerator = 0;
 
     // 생성된 오브젝트의 생명을 보관
+    private Dictionary<string, Queue<GameObject>> _objectPool = new Dictionary<string, Queue<GameObject>>();
+    private List<GameObject> _activeObjectList = new List<GameObject>();
+
     private Dictionary<int, GameObject> _createdGameObjectContainer = new Dictionary<int, GameObject>();
     private Dictionary<int, DaniTech_2DFieldObject> _fieldObjectContainer = new Dictionary<int, DaniTech_2DFieldObject>();
 
@@ -22,16 +25,42 @@ public class GameObjectManager : MonoBehaviour
         Instance = this;
     }
 
+    public async UniTaskVoid CreateEnemyObject(string enemyId, Transform spawnSpot)
+    {
+        var enemyData = GameDataManager.Instance.GetData<FieldObjectData>(enemyId);
+        if (enemyData != null)
+        {
+            var createdObj = await ResourceManager.Instance.InstantiateAsync(enemyData.PrefabPath, _rootEnemy, true);
+            createdObj.transform.position = spawnSpot.position;
+            AddEnemyObjectOnCreate(createdObj, enemyId);
+        }
+    }
+
+    private void AddEnemyObjectOnCreate(GameObject createdObject, string fieldObjectDataId)
+    {
+        _objectInstanceKeyGenerator++;
+        var generatedInstanceId = _objectInstanceKeyGenerator;
+        var enemyObject = createdObject.GetComponent<EnemyBase>();
+
+        if (enemyObject != null)
+        {
+            //_fieldObjectContainer.Add(generatedInstanceId, enemyObject);
+            //enemyObject.InitFieldObjectInfoOnCreated(generatedInstanceId, fieldObjectDataId);
+        }
+    }
+
+
+
     public void RequestSpawnEnemy()
     {
-        if(Prefab_Enemy == null)
+        if (_prefabEnemy == null)
         {
             Debug.LogWarning("프리팹이 등록되지 않은 오브젝트 입니다.");
             return;
         }
 
-        var gObj = Instantiate(Prefab_Enemy, Root_Enemy);
-        if(gObj == null)
+        var gObj = Instantiate(_prefabEnemy, _rootEnemy);
+        if (gObj == null)
         {
             Debug.LogWarning("생성에 실패한 게임 오브젝트 입니다.");
             return;
@@ -58,7 +87,7 @@ public class GameObjectManager : MonoBehaviour
     {
         // 4-1 지금은 Enemy지만, 나중에 IGameEntity 같은 인터페이스로 개선하면 더 좋다
         DaniTech_2DEnemy gameEntity = gObj.GetComponent<DaniTech_2DEnemy>();
-        if(gameEntity == null)
+        if (gameEntity == null)
         {
             Debug.LogWarning($"생성된 {gObj.name}의 InstanceId를 대입할 수 있는 컴포넌트를 가져올 수 없습니다!");
             return;
@@ -71,7 +100,7 @@ public class GameObjectManager : MonoBehaviour
 
     public GameObject GetEntityObjectCanBeNull(int instanceId)
     {
-        if(_createdGameObjectContainer.ContainsKey(instanceId) == false)
+        if (_createdGameObjectContainer.ContainsKey(instanceId) == false)
         {
             Debug.LogWarning($"{instanceId}는 존재하지 않습니다.");
             return null;
@@ -79,12 +108,12 @@ public class GameObjectManager : MonoBehaviour
 
         // 2-1 실체화하면서 등록된 게임 오브젝트가 있다면 반환
         return _createdGameObjectContainer[instanceId];
-    } 
+    }
 
     public void RequestDestroyEntityObject(int instanceId)
     {
         var gObj = GetEntityObjectCanBeNull(instanceId);
-        if(gObj == null)
+        if (gObj == null)
         {
             return;
         }
@@ -106,7 +135,7 @@ public class GameObjectManager : MonoBehaviour
         var fieldObject = GameDataManager.Instance.GetData<FieldObjectData>(fieldObjectDataId);
         if (fieldObject != null)
         {
-            var createdObj = await ResourceManager.Inst.InstantiateAsync(fieldObject.PrefabPath, Root_Enemy, true);
+            var createdObj = await ResourceManager.Instance.InstantiateAsync(fieldObject.PrefabPath, _rootEnemy, true);
             createdObj.transform.position = spawnSpot.position;
             AddFieldObjectOnCreate(createdObj, fieldObjectDataId);
         }
@@ -118,7 +147,7 @@ public class GameObjectManager : MonoBehaviour
         var generatedInstanceId = _objectInstanceKeyGenerator;
         var fieldObject = createdObject.GetComponent<DaniTech_2DFieldObject>();
 
-        if(fieldObject != null)
+        if (fieldObject != null)
         {
             _fieldObjectContainer.Add(generatedInstanceId, fieldObject);
             fieldObject.InitFieldObjectInfoOnCreated(generatedInstanceId, fieldObjectDataId);
@@ -140,12 +169,12 @@ public class GameObjectManager : MonoBehaviour
 
     public DaniTech_2DFieldObject GetFieldObjectByInstanceId(int fieldObjectInstanceId)
     {
-        if(_fieldObjectContainer.ContainsKey(fieldObjectInstanceId) == false)
+        if (_fieldObjectContainer.ContainsKey(fieldObjectInstanceId) == false)
         {
             Debug.LogError($"{fieldObjectInstanceId} 찾으려는 필드 오브젝트가 유효하지 않습니다");
             return null;
         }
 
         return _fieldObjectContainer[fieldObjectInstanceId];
-    } 
+    }
 }
