@@ -500,7 +500,7 @@ GameObject:
   - component: {fileID: 3748403446507127330}
   - component: {fileID: 5532736922633867762}
   m_Layer: 5
-  m_Name: Text_AttackSpeed
+  m_Name: Text_AttackSpeedAfter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -637,7 +637,7 @@ GameObject:
   - component: {fileID: 8357554676580310254}
   - component: {fileID: 5901413750772373011}
   m_Layer: 5
-  m_Name: Text_Level
+  m_Name: Text_LevelBefore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1066,7 +1066,7 @@ GameObject:
   - component: {fileID: 5761571503201110454}
   - component: {fileID: 3589151832567088576}
   m_Layer: 5
-  m_Name: Text_Damage
+  m_Name: Text_DamageBefore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1415,7 +1415,7 @@ GameObject:
   - component: {fileID: 3505273156694549581}
   - component: {fileID: 7340733170615259357}
   m_Layer: 5
-  m_Name: Text_AttackSpeed
+  m_Name: Text_AttackSpeedBefore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1585,6 +1585,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4569430530959594974}
+  - component: {fileID: 2127030516682925442}
   m_Layer: 5
   m_Name: TowerUpgradeUI
   m_TagString: Untagged
@@ -1619,6 +1620,27 @@ RectTransform:
   m_AnchoredPosition: {x: -60, y: 0}
   m_SizeDelta: {x: 500, y: 600}
   m_Pivot: {x: 1, y: 0.5}
+--- !u!114 &2127030516682925442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4760204003122434883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe799f4cb0ff41c4a96579cc87819cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerUpgradeUI
+  Button_CloseBG: {fileID: 2755108853216925143}
+  Button_Close: {fileID: 40617125943955999}
+  Button_Upgrade: {fileID: 6015670354290762744}
+  Text_LevelBefore: {fileID: 5901413750772373011}
+  Text_DamageBefore: {fileID: 3589151832567088576}
+  Text_AttackSpeedBefore: {fileID: 7340733170615259357}
+  Text_LevelAfter: {fileID: 6070715443441348785}
+  Text_DamageAfter: {fileID: 3199644494682181184}
+  Text_AttackSpeedAfter: {fileID: 5532736922633867762}
 --- !u!1 &5233881216345012713
 GameObject:
   m_ObjectHideFlags: 0
@@ -1711,7 +1733,7 @@ GameObject:
   - component: {fileID: 6579529155079613109}
   - component: {fileID: 3199644494682181184}
   m_Layer: 5
-  m_Name: Text_Damage
+  m_Name: Text_DamageAfter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1848,7 +1870,7 @@ GameObject:
   - component: {fileID: 5913819529387542433}
   - component: {fileID: 6070715443441348785}
   m_Layer: 5
-  m_Name: Text_Level
+  m_Name: Text_LevelAfter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
