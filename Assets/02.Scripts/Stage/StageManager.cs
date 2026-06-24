@@ -21,8 +21,8 @@ public class StageManager : MonoBehaviour
     {
         Spline spline = _splineContainer.Splines[0];
         if (spline.Count <= courseIndex)
-            return false;
-        return true;
+            return true;
+        return false;
     }
 
     public Vector3 GetCoursePosition(int courseIndex)
