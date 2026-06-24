@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jiwon_PaperTower
       objectReference: {fileID: 0}
+    - target: {fileID: 2677056211177126433, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
+      propertyPath: _data.Id
+      value: Tower_02_Level1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677056211177126433, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
+      propertyPath: _projectilePrefab
+      value: 
+      objectReference: {fileID: 515403366634188863, guid: cb0d8b7a7fa286145b137ff116702be7, type: 3}
     - target: {fileID: 5979051774812846538, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
