@@ -84,7 +84,7 @@ public class CheeseTower : TowerBase
 
             if (!string.IsNullOrEmpty(_currentData.ProjectilePath))
             {
-                ResourceManager.Inst.LoadAsset<GameObject>(_currentData.ProjectilePath, OnProjectileLoaded);
+                ResourceManager.Instance.LoadAsset<GameObject>(_currentData.ProjectilePath, OnProjectileLoaded);
             }
         }
     }

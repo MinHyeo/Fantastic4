@@ -14,7 +14,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
   m_GroupName: Default Local Group
   m_GUID: 2a619742e7a30db46935034b2717f3df
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 353500b7cc3756e46af619e4960fd292
+    m_Address: Prefab/Enemy/Enemy_02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 706fdb0c1cd4f1046bfd12310761efe9
+    m_Address: Prefab/Enemy/Enemy_05
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8fe33deaba8604e4f80d3b58b4aaec1a
+    m_Address: Prefab/Enemy/Enemy_01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1e4d11b483f50d45b406b2fe2d2020a
+    m_Address: Prefab/Enemy/Enemy_04
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fbada98694b1858419548d1b7b8aed00
+    m_Address: Prefab/Enemy/Enemy_03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 94b85e6b53665a848b256af421902c70, type: 2}
   m_SchemaSet:
