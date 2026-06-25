@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PaperProjectile : Projectile
+public class PepperProjectile : Projectile
 {
     ///<summary>
     /// 충돌 시 효과를 일으킬 레이어

@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class PaperTower : RangeTower
+public class PepperTower : RangeTower
 {
-    [Header(nameof(PaperTower))]
+    [Header(nameof(PepperTower))]
 
-    [SerializeField] private PaperProjectile _projectilePrefab;
+    [SerializeField] private PepperProjectile _projectilePrefab;
 
     [SerializeField] private TowerData _data;
 
