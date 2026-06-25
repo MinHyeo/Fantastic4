@@ -17,6 +17,17 @@ public class StageManager : MonoBehaviour
             Instance = this;
     }
 
+    private void Start()
+    {
+        StartCoroutine(test());
+    }
+
+    private IEnumerator test()
+    {
+        yield return new WaitForSeconds(1f);
+        StartStage("stage_01");
+    }
+
     public bool CheckEndCourse(int courseIndex)
     {
         Spline spline = _splineContainer.Splines[0];
@@ -68,7 +79,9 @@ public class StageManager : MonoBehaviour
         for(int i = 0; i < spawnCount; i++)
         {
             await UniTask.Delay(TimeSpan.FromSeconds(interval), cancellationToken: cancellationToken);
-            GameObjectManager.Instance.CreateEnemyObject(enemyId, transform).Forget();
+
+            Vector3 spawnPoint = GetCoursePosition(0);
+            GameObjectManager.Instance.CreateEnemyObject(enemyId, spawnPoint).Forget();
         }
     }
 }

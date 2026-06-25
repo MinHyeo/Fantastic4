@@ -69,11 +69,12 @@ public class GameDataManager : MonoBehaviour
 
     public void LoadData<T>(string tableName) where T : GameDataBase
     {
+        string dataName = tableName + "Data";
         if (_dataList.ContainsKey(tableName) == false)
         {
-            _dataList.Add(tableName, new Dictionary<string, T>());
+            _dataList.Add(dataName, new Dictionary<string, T>());
         }
-        _dataList[tableName] = LoadJsonData<T>(tableName);
+        _dataList[dataName] = LoadJsonData<T>(tableName);
     }
 
 

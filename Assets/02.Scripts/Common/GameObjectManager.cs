@@ -25,13 +25,13 @@ public class GameObjectManager : MonoBehaviour
         Instance = this;
     }
 
-    public async UniTaskVoid CreateEnemyObject(string enemyId, Transform spawnSpot)
+    public async UniTaskVoid CreateEnemyObject(string enemyId, Vector3 spawnSpot)
     {
-        var enemyData = GameDataManager.Instance.GetData<FieldObjectData>(enemyId);
+        var enemyData = GameDataManager.Instance.GetData<EnemyData>(enemyId);
         if (enemyData != null)
         {
             var createdObj = await ResourceManager.Instance.InstantiateAsync(enemyData.PrefabPath, _rootEnemy, true);
-            createdObj.transform.position = spawnSpot.position;
+            createdObj.transform.position = spawnSpot;
             AddEnemyObjectOnCreate(createdObj, enemyId);
         }
     }

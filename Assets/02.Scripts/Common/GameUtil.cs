@@ -15,6 +15,8 @@ public static class GameUtil
     {
         // 게임 로딩할 때 불러올 데이터는 여기서! 
         GameDataManager.Instance.LoadData<EnemyData>("Enemy");
+        GameDataManager.Instance.LoadData<StageData>("Stage");
+        GameDataManager.Instance.LoadData<WaveData>("Wave");
     }
 
     public static int CalcCharacterFinalDamage(int curCharacterLevel, int levelPerDamage, bool isCritical)
