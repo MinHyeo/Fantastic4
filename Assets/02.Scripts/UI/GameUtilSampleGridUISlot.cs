@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class DaniTech_SampleGridUISlot : MonoBehaviour
 {
-    [SerializeField] private DaniTechUIButton Button_SelectSlot;
+    [SerializeField] private UIButton Button_SelectSlot;
     [SerializeField] private Image Image_Icon;
     [SerializeField] private Image Image_Selected;
 

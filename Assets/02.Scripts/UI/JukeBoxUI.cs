@@ -4,8 +4,8 @@ using UnityEngine.UI;
 public class JukeBoxUI : MonoBehaviour
 {
     [SerializeField] private InputField InputField_SoundDataId;
-    [SerializeField] private DaniTechUIButton Button_PlaySFX;
-    [SerializeField] private DaniTechUIButton Button_PlayBgm;
+    [SerializeField] private UIButton Button_PlaySFX;
+    [SerializeField] private UIButton Button_PlayBgm;
 
     private void Awake()
     {

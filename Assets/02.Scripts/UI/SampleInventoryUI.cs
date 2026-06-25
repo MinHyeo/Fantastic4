@@ -6,9 +6,9 @@ public class SampleInventoryUI : UIBase
 {
     [SerializeField] private GameObject Prefab_Slot;
     [SerializeField] private Transform Transform_UISlotRoot;
-    [SerializeField] private DaniTechUIButton Button_CreateSlot;
-    [SerializeField] private DaniTechUIButton Button_CloseSelf;
-    [SerializeField] private DaniTechUIButton Button_CloseSelfAllArea;
+    [SerializeField] private UIButton Button_CreateSlot;
+    [SerializeField] private UIButton Button_CloseSelf;
+    [SerializeField] private UIButton Button_CloseSelfAllArea;
 
     private int _generatedKey = 0;
     private Dictionary<int, SampleInventorySlotUI> _itemSlotList = new Dictionary<int, SampleInventorySlotUI>();
@@ -57,7 +57,7 @@ public class SampleInventoryUI : UIBase
 
     public void OnClick_ClosePopup()
     {
-        UIManager.Instance.CloseContentUI(UIType.Inventory);
+        // UIManager.Instance.CloseContentUI(UIType.Inventory);
     }
 
 
