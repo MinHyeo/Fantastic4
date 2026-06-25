@@ -22,8 +22,12 @@ public abstract partial class TowerBase : MonoBehaviour
 
     [SerializeField] protected Rotator _rotator;
 
+    [SerializeField] protected TowerData _data;
+
     [SerializeField] protected TowerRangeVisualizer _rangeVisualizer;
 
+
+    public TowerData Data => _data;
 
     public LayerMask PlacementLayerMask => _placementLayerMask;
 
