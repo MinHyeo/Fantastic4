@@ -1,6 +1,6 @@
 [
   {
-    "Id": "wave1_01",
+    "Id": "Wave1_01",
     "WaveGroup": 1,
     "EnemyId": "Enemy_01",
     "Count": 3,
@@ -8,7 +8,7 @@
     "PreDelay": 0
   },
   {
-    "Id": "wave1_02",
+    "Id": "Wave1_02",
     "WaveGroup": 1,
     "EnemyId": "Enemy_02",
     "Count": 3,
@@ -16,7 +16,7 @@
     "PreDelay": 5
   },
   {
-    "Id": "wave1_03",
+    "Id": "Wave1_03",
     "WaveGroup": 1,
     "EnemyId": "Enemy_01",
     "Count": 2,
@@ -24,7 +24,7 @@
     "PreDelay": 8
   },
   {
-    "Id": "wave2_01",
+    "Id": "Wave2_01",
     "WaveGroup": 1,
     "EnemyId": "Enemy_02",
     "Count": 5,
@@ -32,7 +32,7 @@
     "PreDelay": 0
   },
   {
-    "Id": "wave2_02",
+    "Id": "Wave2_02",
     "WaveGroup": 1,
     "EnemyId": "Enemy_01",
     "Count": 5,
@@ -40,7 +40,7 @@
     "PreDelay": 3
   },
   {
-    "Id": "wave2_03",
+    "Id": "Wave2_03",
     "WaveGroup": 1,
     "EnemyId": "Enemy_03",
     "Count": 3,
@@ -48,7 +48,7 @@
     "PreDelay": 6
   },
   {
-    "Id": "wave3_01",
+    "Id": "Wave3_01",
     "WaveGroup": 1,
     "EnemyId": "Enemy_01",
     "Count": 8,
@@ -56,7 +56,7 @@
     "PreDelay": 0
   },
   {
-    "Id": "wave3_02",
+    "Id": "Wave3_02",
     "WaveGroup": 1,
     "EnemyId": "Enemy_04",
     "Count": 3,
@@ -64,7 +64,7 @@
     "PreDelay": 6
   },
   {
-    "Id": "wave3_03",
+    "Id": "Wave3_03",
     "WaveGroup": 2,
     "EnemyId": "Enemy_05",
     "Count": 5,
@@ -72,7 +72,7 @@
     "PreDelay": 6
   },
   {
-    "Id": "wave4_01",
+    "Id": "Wave4_01",
     "WaveGroup": 1,
     "EnemyId": "Enemy_01",
     "Count": 5,
@@ -80,7 +80,7 @@
     "PreDelay": 0
   },
   {
-    "Id": "wave4_02",
+    "Id": "Wave4_02",
     "WaveGroup": 1,
     "EnemyId": "Enemy_01",
     "Count": 5,
@@ -88,7 +88,7 @@
     "PreDelay": 2
   },
   {
-    "Id": "wave4_03",
+    "Id": "Wave4_03",
     "WaveGroup": 2,
     "EnemyId": "Enemy_02",
     "Count": 3,
@@ -96,7 +96,7 @@
     "PreDelay": 1
   },
   {
-    "Id": "wave4_04",
+    "Id": "Wave4_04",
     "WaveGroup": 2,
     "EnemyId": "Enemy_02",
     "Count": 3,
@@ -104,7 +104,7 @@
     "PreDelay": 4
   },
   {
-    "Id": "wave4_05",
+    "Id": "Wave4_05",
     "WaveGroup": 3,
     "EnemyId": "Enemy_02",
     "Count": 2,
@@ -112,7 +112,7 @@
     "PreDelay": 10
   },
   {
-    "Id": "wave5_01",
+    "Id": "Wave5_01",
     "WaveGroup": 1,
     "EnemyId": "Enemy_01",
     "Count": 5,
@@ -120,7 +120,7 @@
     "PreDelay": 0
   },
   {
-    "Id": "wave5_02",
+    "Id": "Wave5_02",
     "WaveGroup": 1,
     "EnemyId": "Enemy_01",
     "Count": 5,
@@ -128,7 +128,7 @@
     "PreDelay": 2
   },
   {
-    "Id": "wave5_03",
+    "Id": "Wave5_03",
     "WaveGroup": 1,
     "EnemyId": "Enemy_02",
     "Count": 3,
@@ -136,7 +136,7 @@
     "PreDelay": 4
   },
   {
-    "Id": "wave5_04",
+    "Id": "Wave5_04",
     "WaveGroup": 2,
     "EnemyId": "Enemy_01",
     "Count": 3,
@@ -144,7 +144,7 @@
     "PreDelay": 4
   },
   {
-    "Id": "wave5_05",
+    "Id": "Wave5_05",
     "WaveGroup": 2,
     "EnemyId": "Enemy_01",
     "Count": 2,
@@ -152,7 +152,7 @@
     "PreDelay": 6
   },
   {
-    "Id": "wave5_06",
+    "Id": "Wave5_06",
     "WaveGroup": 3,
     "EnemyId": "Enemy_02",
     "Count": 2,
@@ -160,7 +160,7 @@
     "PreDelay": 8
   },
   {
-    "Id": "wave5_07",
+    "Id": "Wave5_07",
     "WaveGroup": 3,
     "EnemyId": "Enemy_02",
     "Count": 2,
@@ -168,7 +168,7 @@
     "PreDelay": 9
   },
   {
-    "Id": "wave5_08",
+    "Id": "Wave5_08",
     "WaveGroup": 4,
     "EnemyId": "Enemy_02",
     "Count": 1,

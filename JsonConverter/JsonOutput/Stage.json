@@ -1,37 +1,37 @@
 [
   {
-    "Id": "stage_01",
+    "Id": "Stage_01",
     "MaxLife": 3,
     "StartGold": 200,
-    "WaveId": "wave1_01,wave1_02,wave1_03",
-    "PrefabPath": null
+    "WaveId": "Wave1_01,Wave1_02,Wave1_03",
+    "PrefabPath": "Prefabs/Stage/Stage_01"
   },
   {
-    "Id": "stage_02",
+    "Id": "Stage_02",
     "MaxLife": 3,
     "StartGold": 200,
-    "WaveId": "wave2_01,wave2_02,wave2_03",
-    "PrefabPath": null
+    "WaveId": "Wave2_01,Wave2_02,Wave2_03",
+    "PrefabPath": "Prefabs/Stage/Stage_02"
   },
   {
-    "Id": "stage_03",
+    "Id": "Stage_03",
     "MaxLife": 3,
     "StartGold": 200,
-    "WaveId": "wave3_01,wave3_02,wave3_03",
-    "PrefabPath": null
+    "WaveId": "Wave3_01,Wave3_02,Wave3_03",
+    "PrefabPath": "Prefabs/Stage/Stage_03"
   },
   {
-    "Id": "stage_04",
+    "Id": "Stage_04",
     "MaxLife": 3,
     "StartGold": 200,
-    "WaveId": "wave4_01,wave4_02,wave4_03,wave4_04,wave4_05",
-    "PrefabPath": null
+    "WaveId": "Wave4_01,Wave4_02,Wave4_03,Wave4_04,Wave4_05",
+    "PrefabPath": "Prefabs/Stage/Stage_04"
   },
   {
-    "Id": "stage_05",
+    "Id": "Stage_05",
     "MaxLife": 3,
     "StartGold": 200,
-    "WaveId": "wave5_01,wave5_02,wave5_03,wave5_04,wave5_05,wave5_06,wave5_07,wave5_08",
-    "PrefabPath": null
+    "WaveId": "Wave5_01,Wave5_02,Wave5_03,Wave5_04,Wave5_05,Wave5_06,Wave5_07,Wave5_08",
+    "PrefabPath": "Prefabs/Stage/Stage_05"
   }
 ]

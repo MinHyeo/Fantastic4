@@ -25,7 +25,13 @@ public class StageManager : MonoBehaviour
     private IEnumerator test()
     {
         yield return new WaitForSeconds(1f);
-        StartStage("stage_01");
+        //StartStage("stage_01");
+    }
+
+    public void LoadStage(string stageId)
+    {
+        Vector3 spawnSpot = Vector3.zero;
+        GameObjectManager.Instance.CreateStageObject(stageId, spawnSpot).Forget();
     }
 
     public bool CheckEndCourse(int courseIndex)
@@ -45,12 +51,13 @@ public class StageManager : MonoBehaviour
         return worldPosition;
     }
 
-    public void StartStage(string stageId)
+    public void StartStage(string stageId, GameObject stageObject)
     {
         StageData stageData = GameDataManager.Instance.GetData<StageData>(stageId);
         if (stageData == null)
             return;
 
+        _splineContainer = stageObject.GetComponent<SplineContainer>();
         string[] waveIds = stageData.WaveId;
         foreach(string waveId in waveIds)
         {
