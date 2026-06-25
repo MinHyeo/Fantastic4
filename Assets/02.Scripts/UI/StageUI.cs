@@ -62,12 +62,12 @@ public class StageUI : UIBase
 
     public void OnClickStageOpen(int stageNumber)
     {
-        // Todo : 스테이지 시작 로직 넣기
+        // TODO : 스테이지 시작 로직 넣기
     }
 
     private void OnClickReturnLobby()
     {
-        // UIManager.Instance.OpenUI(UIRootType.MainUI, UIType.LobbyUI);
-        // UIManager.Instance.CloseContentUI(UIType.StageUI);
+        UIManager.Instance.OpenUI(UIRootType.MainUI, UIType.LobbyUI);
+        UIManager.Instance.CloseContentUI(UIType.StageUI);
     }
 }

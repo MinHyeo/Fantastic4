@@ -27,7 +27,7 @@ public class PauseUI : UIBase
 
     private void OnClickGoToMenu()
     {
-        // TODO : 모든 창과 맵을 닫는 로직을 추가해야 함.
+        // TODO : 모든 창과 맵을 닫는 로직을 추가해야 함. 게임매니저에서 할 듯
         UIManager.Instance.OpenUI(UIRootType.MainUI, UIType.MainUI);
     }
 }
