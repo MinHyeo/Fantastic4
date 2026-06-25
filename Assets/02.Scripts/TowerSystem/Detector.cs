@@ -1,0 +1,50 @@
+﻿using System;
+using UnityEngine;
+
+[Serializable]
+public class Detector
+{
+    [SerializeField] protected Transform _ownerTransform;
+    [SerializeField] protected float _detectionRange;
+    [SerializeField] protected LayerMask _enemyLayer;
+
+    public Detector() { }
+
+    public float DetectionRange
+    {
+        get { return _detectionRange; }
+        set { _detectionRange = value; }
+    }
+
+    public Collider[] FindEnemiesInRange()
+    {
+        Collider[] enemyColliders = Physics.OverlapSphere(_ownerTransform.position, _detectionRange, _enemyLayer);
+
+        return enemyColliders;
+    }
+
+    public Transform FindClosestEnemy()
+    {
+        Collider[] enemyColliders = FindEnemiesInRange();
+
+        Transform closestEnemy = null;
+        float closestDistance = float.MaxValue;
+
+        for(int i = 0; i < enemyColliders.Length; i++)
+        {
+            Transform enemyTransform = enemyColliders[i].transform;
+            float distanceToEnemy = Vector3.Distance(_ownerTransform.position, enemyTransform.position);
+
+            if(distanceToEnemy < closestDistance)
+            {
+                closestDistance = distanceToEnemy;
+                closestEnemy = enemyTransform;
+            }
+        }
+
+        return closestEnemy;
+    }
+
+  
+
+}

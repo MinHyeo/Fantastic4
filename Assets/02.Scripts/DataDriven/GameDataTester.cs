@@ -21,8 +21,8 @@ public static class GameDataTester
         //foreach(var kv in GameDataManager.Instance.CostumeDataList) 
         //{
         //    string key = kv.Key;
-        //    var data = kv.Value;
-        //    Debug.Log($"키는 {key} 데이터의 이름 : {data.Name} ");
+        //    var _data = kv.Value;
+        //    Debug.Log($"키는 {key} 데이터의 이름 : {_data.Name} ");
         //}
 
         // 2. 데이터 사용 (어디서나 호출 가능)
