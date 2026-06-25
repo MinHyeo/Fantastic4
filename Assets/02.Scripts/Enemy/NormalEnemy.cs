@@ -5,6 +5,7 @@ public class NormalEnemy : EnemyBase
 {
     [SerializeField] private string _enemyId = "Enemy_01"; // 임시 하드코딩, 추후 웨이브에서 전달받을 값으로 교체
     [SerializeField] private float _arriveDistance = 0.4f; // 도착판정범위
+    [SerializeField] private float _rotateSpeed = 360f; // 초당 회전 각도
 
     private float _moveSpeed;
     private int _courseIndex = 0;
@@ -33,12 +34,27 @@ public class NormalEnemy : EnemyBase
 
     private void FixedUpdate()
     {
+        RotateTowardsTarget(_targetPosition);
         MoveToPosition(_targetPosition);
     }
 
     public void MoveToPosition(Vector3 targetPosition)
     {
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, (_moveSpeed * Time.deltaTime));
+    }
+
+    public void RotateTowardsTarget(Vector3 targetPosition)
+    {
+        Vector3 direction = targetPosition - transform.position;
+        direction.y = 0f; //y 무시
+
+       if (direction.sqrMagnitude < 0.0001f)
+        {
+            return;
+        }
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, (_rotateSpeed * Time.deltaTime));
     }
 
     public void CheckArriveAndSetNextTarget()
