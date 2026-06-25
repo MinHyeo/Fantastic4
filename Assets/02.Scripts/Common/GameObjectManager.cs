@@ -1,6 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.CompilerServices;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameObjectManager : MonoBehaviour
@@ -15,7 +16,7 @@ public class GameObjectManager : MonoBehaviour
 
     // 생성된 오브젝트의 생명을 보관
     private Dictionary<string, Queue<GameObject>> _objectPool = new Dictionary<string, Queue<GameObject>>();
-    private List<GameObject> _activeObjectList = new List<GameObject>();
+    private HashSet<GameObject> _activeObjectList = new HashSet<GameObject>();
 
     private Dictionary<int, GameObject> _createdGameObjectContainer = new Dictionary<int, GameObject>();
     private Dictionary<int, DaniTech_2DFieldObject> _fieldObjectContainer = new Dictionary<int, DaniTech_2DFieldObject>();
@@ -25,27 +26,51 @@ public class GameObjectManager : MonoBehaviour
         Instance = this;
     }
 
-    public async UniTaskVoid CreateEnemyObject(string enemyId, Vector3 spawnSpot)
+    private GameObject GetGameObjectInObjectPool(string objectId)
     {
-        var enemyData = GameDataManager.Instance.GetData<EnemyData>(enemyId);
-        if (enemyData != null)
+        if (_objectPool.ContainsKey(objectId) == false)
         {
-            var createdObj = await ResourceManager.Instance.InstantiateAsync(enemyData.PrefabPath, _rootEnemy, true);
-            createdObj.transform.position = spawnSpot;
-            AddEnemyObjectOnCreate(createdObj, enemyId);
+            _objectPool[objectId] = new Queue<GameObject>();
         }
+
+        GameObject spawnObject = null;
+        if (_objectPool[objectId].Count > 0)
+        {
+            spawnObject = _objectPool[objectId].Dequeue();
+        }
+
+        return spawnObject;
     }
 
-    private void AddEnemyObjectOnCreate(GameObject createdObject, string fieldObjectDataId)
+    public async UniTaskVoid CreateEnemyObject(string enemyId, Vector3 spawnSpot)
+    {
+        // 데이터 유무 확인
+        var enemyData = GameDataManager.Instance.GetData<EnemyData>(enemyId);
+        if (enemyData == null)
+            return;
+
+        // ObjectPool에 존재하는지 확인
+        // 없으면 Queue 초기화
+        GameObject enemyObject = GetGameObjectInObjectPool(enemyId);
+        if(enemyObject == null)
+        {
+            enemyObject = await ResourceManager.Instance.InstantiateAsync(enemyData.PrefabPath, _rootEnemy, true);
+        }
+        enemyObject.SetActive(true);
+        enemyObject.transform.position = spawnSpot;
+        AddEnemyObjectOnCreate(enemyObject, enemyId);
+    }
+
+    private void AddEnemyObjectOnCreate(GameObject createdObject, string enemyId)
     {
         _objectInstanceKeyGenerator++;
         var generatedInstanceId = _objectInstanceKeyGenerator;
-        var enemyObject = createdObject.GetComponent<EnemyBase>();
+        var enemyObject = createdObject.GetComponent<NormalEnemy>();
 
         if (enemyObject != null)
         {
-            //_fieldObjectContainer.Add(generatedInstanceId, enemyObject);
-            //enemyObject.InitFieldObjectInfoOnCreated(generatedInstanceId, fieldObjectDataId);
+            enemyObject.Init(enemyId);
+            _activeObjectList.Add(createdObject);
         }
     }
 

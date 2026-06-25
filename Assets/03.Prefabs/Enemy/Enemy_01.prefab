@@ -22,15 +22,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4aa42e00120f3b344b8390568b426a91, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.54674
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4aa42e00120f3b344b8390568b426a91, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.01001
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4aa42e00120f3b344b8390568b426a91, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.5354
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4aa42e00120f3b344b8390568b426a91, type: 3}
       propertyPath: m_LocalRotation.w
@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 5a3c89393c90d2942b536293e023dda8, type: 2}
     - target: {fileID: 919132149155446097, guid: 4aa42e00120f3b344b8390568b426a91, type: 3}
       propertyPath: m_Name
-      value: Enemy_01_Model
+      value: Enemy_01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -93,5 +93,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb9ca277c92b034489e213e7b0eddc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NormalEnemy
-  _enemyId: Enemy_01
   _arriveDistance: 0.4
+  _rotateSpeed: 360

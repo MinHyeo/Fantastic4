@@ -25,6 +25,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8fe33deaba8604e4f80d3b58b4aaec1a
+    m_Address: Prefab/Enemy/Enemy_01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b1e4d11b483f50d45b406b2fe2d2020a
     m_Address: Prefab/Enemy/Enemy_04
     m_ReadOnly: 0
