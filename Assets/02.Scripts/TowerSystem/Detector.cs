@@ -19,6 +19,7 @@ public class Detector
     public Collider[] FindEnemiesInRange()
     {
         Collider[] enemyColliders = Physics.OverlapSphere(_ownerTransform.position, _detectionRange, _enemyLayer);
+
         return enemyColliders;
     }
 

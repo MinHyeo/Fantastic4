@@ -1,60 +1,63 @@
 using System;
 using UnityEngine;
 
-/// <summary>
-/// 선택한 축의 회전을 대상 Transform을 따라가도록 처리하는 클래스
-/// </summary>
+///<summary>
+/// 선택한 축만 사용해서 대상 Transform의 위치를 바라보도록 회전시키는 클래스
+///</summary>
 [Serializable]
 public class Rotator
 {
-    /// <summary>
+    ///<summary>
     /// 회전을 적용할 대상 Transform
-    /// </summary>
+    ///</summary>
     [SerializeField] private Transform _ownerTransform;
 
-    /// <summary>
-    /// 회전을 따라갈 대상 Transform
-    /// </summary>
+    ///<summary>
+    /// 바라볼 대상 Transform
+    ///</summary>
     [SerializeField, ReadOnly] private Transform _lookAt;
 
-    /// <summary>
+    ///<summary>
     /// X축 회전을 따라갈지 여부
-    /// </summary>
-    [SerializeField] private bool _followX = true;
+    ///</summary>
+    [SerializeField] private bool _followX = false;
 
-    /// <summary>
+    ///<summary>
     /// Y축 회전을 따라갈지 여부
-    /// </summary>
+    ///</summary>
     [SerializeField] private bool _followY = true;
 
-    /// <summary>
+    ///<summary>
     /// Z축 회전을 따라갈지 여부
-    /// </summary>
-    [SerializeField] private bool _followZ = true;
+    ///</summary>
+    [SerializeField] private bool _followZ = false;
 
-    /// <summary>
+    ///<summary>
+    /// 높이 차이를 무시하고 바닥 평면 기준으로만 바라볼지 여부
+    ///</summary>
+    [SerializeField] private bool _ignoreHeight = true;
+
+    ///<summary>
     /// 추가로 더할 회전값
-    /// </summary>
+    ///</summary>
     [SerializeField] private Vector3 _rotationOffset;
 
-    /// <summary>
+    ///<summary>
     /// 회전을 따라가는 속도
-    /// </summary>
+    ///</summary>
     [SerializeField] private float _followSpeedPerSec = 10f;
 
-
-
-    /// <summary>
-    /// 바라볼 대상 설정
-    /// </summary>
+    ///<summary>
+    /// 바라볼 대상을 설정한다
+    ///</summary>
     public void SetLookAt(Transform target)
     {
         _lookAt = target;
     }
 
-    /// <summary>
-    /// 회전을 갱신한다
-    /// </summary>
+    ///<summary>
+    /// 대상의 위치를 바라보도록 회전을 갱신한다
+    ///</summary>
     public void Rotate(float deltaTime)
     {
         if (_ownerTransform == null || _lookAt == null)
@@ -62,30 +65,43 @@ public class Rotator
             return;
         }
 
-        // 현재 회전값 가져오기
+        Vector3 direction = _lookAt.position - _ownerTransform.position;
+
+        if (_ignoreHeight)
+        {
+            direction.y = 0f;
+        }
+
+        if (direction.sqrMagnitude <= 0.0001f)
+        {
+            return;
+        }
+
+        Quaternion lookRotation = Quaternion.LookRotation(direction.normalized, Vector3.up);
+
+        Vector3 targetEuler = lookRotation.eulerAngles + _rotationOffset;
+
         Vector3 currentEuler = _ownerTransform.eulerAngles;
 
-        // 따라갈 대상의 회전값 가져오기
-        Vector3 targetEuler = _lookAt.eulerAngles;
+        Vector3 nextEuler = currentEuler;
 
-        // 선택한 축만 대상 회전값으로 교체
+        float t = 1f - Mathf.Exp(-_followSpeedPerSec * deltaTime);
+
         if (_followX)
         {
-            currentEuler.x = targetEuler.x + _rotationOffset.x;
+            nextEuler.x = Mathf.LerpAngle(currentEuler.x, targetEuler.x, t);
         }
 
         if (_followY)
         {
-            currentEuler.y = targetEuler.y + _rotationOffset.y;
+            nextEuler.y = Mathf.LerpAngle(currentEuler.y, targetEuler.y, t);
         }
 
         if (_followZ)
         {
-            currentEuler.z = targetEuler.z + _rotationOffset.z;
+            nextEuler.z = Mathf.LerpAngle(currentEuler.z, targetEuler.z, t);
         }
 
-        // 부드럽게 회전 적용
-        Quaternion nextRotation = Quaternion.Lerp(_ownerTransform.rotation, Quaternion.Euler(currentEuler), deltaTime * _followSpeedPerSec);
-        _ownerTransform.rotation = nextRotation;
+        _ownerTransform.rotation = Quaternion.Euler(nextEuler);
     }
 }

@@ -6,8 +6,6 @@ public class PepperTower : RangeTower
 
     [SerializeField] private PepperProjectile _projectilePrefab;
 
-    [SerializeField] private TowerData _data;
-
     private float _currentFireTimer;
 
 
@@ -30,7 +28,7 @@ public class PepperTower : RangeTower
     {
         base.Update();
 
-        // Attack();
+        Attack();
         Rotate();
     }
 

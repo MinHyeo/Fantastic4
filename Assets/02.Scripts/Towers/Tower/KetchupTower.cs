@@ -6,9 +6,6 @@ public class KetchupTower : RangeTower
 
     [SerializeField] private KetchupProjectile _projectilePrefab;
 
-    [SerializeField] private TowerData _data;
-
-
 
     private float _currentFireTimer;
 
@@ -32,7 +29,7 @@ public class KetchupTower : RangeTower
     {
         base.Update();
 
-        Attack();
+        // Attack();
         Rotate();
     }
 
