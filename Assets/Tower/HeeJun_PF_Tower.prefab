@@ -71,6 +71,7 @@ MonoBehaviour:
   _firePoint: {fileID: 1189431940768871222}
   _rotationSpeed: 360
   _upgradeScaleMultiplier: 1.5
+  _cheeseHead: {fileID: 7841967420730697719}
   _testTowerId: 
 --- !u!1 &3735084749774655464
 GameObject:

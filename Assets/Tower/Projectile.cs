@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class Projectile : MonoBehaviour
 
     public virtual void Initialize(float damage, Transform targetTransform, float projectileSpeed)
     {
+        transform.DORotate(new Vector3(0, 360, 0), 1f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart);
+
         _damage = damage;
         _targetTransform = targetTransform;
         _projectileSpeed = projectileSpeed;
