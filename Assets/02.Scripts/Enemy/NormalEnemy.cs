@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class NormalEnemy : EnemyBase
 {
-    [SerializeField] private string _enemyId = "Enemy_01"; // 임시 하드코딩, 추후 웨이브에서 전달받을 값으로 교체
     [SerializeField] private float _arriveDistance = 0.4f; // 도착판정범위
     [SerializeField] private float _rotateSpeed = 360f; // 초당 회전 각도
 
@@ -12,9 +11,9 @@ public class NormalEnemy : EnemyBase
     private Vector3 _targetPosition;
     private bool _isMoveEnd = false; // 임시
 
-    private void Start()
+    public void Init(string enemyId)
     {
-        EnemyData enemyData = GameDataManager.Instance.GetData<EnemyData>(_enemyId);
+        EnemyData enemyData = GameDataManager.Instance.GetData<EnemyData>(enemyId);
         //_moveSpeed = enemyData.MoveSpeed;
         _moveSpeed = 5f;
         _targetPosition = StageManager.Instance.GetCoursePosition(_courseIndex);
