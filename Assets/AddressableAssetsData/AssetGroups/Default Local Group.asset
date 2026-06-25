@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Default Local Group
+  m_GUID: e6f10166b95d5d743a12c834cda280cd
+  m_SerializeEntries:
+  - m_GUID: 353500b7cc3756e46af619e4960fd292
+    m_Address: Prefab/Enemy/Enemy_02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 706fdb0c1cd4f1046bfd12310761efe9
+    m_Address: Prefab/Enemy/Enemy_05
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1e4d11b483f50d45b406b2fe2d2020a
+    m_Address: Prefab/Enemy/Enemy_04
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fbada98694b1858419548d1b7b8aed00
+    m_Address: Prefab/Enemy/Enemy_03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 1758b47452af55e4894b1972b2ff2d89, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: b4d6408ee05b2c04d94c538464a0b894, type: 2}
+    - {fileID: 11400000, guid: c41bc77f10cbe5346b21eedc9ecfefac, type: 2}
