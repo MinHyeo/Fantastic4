@@ -22,20 +22,23 @@ public class PaperTower : RangeTower
     protected override void Start()
     {
         base.Start();
+
+        _data = GameDataManager.Instance.GetData<TowerData>(_data.Id);
     }
 
     protected override void Update()
     {
         base.Update();
 
-        Attack();
+        // Attack();
+        Rotate();
     }
 
     private void Attack()
     {
         _currentFireTimer += Time.deltaTime;
 
-        // 대상이 없다면?
+        // 가장 가까운 대상이 없다면?
         Transform enemy = _detector.FindClosestEnemy();
         if (!enemy)
         {
@@ -58,5 +61,19 @@ public class PaperTower : RangeTower
         var projectile = Instantiate(_projectilePrefab, _firePoint.position, Quaternion.identity);
         projectile.Initialize(0f, enemy, _data.ProjectileSpeed);
         _currentFireTimer = 0f;
+    }
+
+    private void Rotate()
+    {
+        // 가장 가까운 대상이 없다면?
+        Transform enemy = _detector.FindClosestEnemy();
+        if (!enemy)
+        {
+            return;
+        }
+
+        // 가까운 대상을 향해 회전
+        _rotator.SetLookAt(enemy);
+        _rotator.Rotate(Time.deltaTime);
     }
 }
