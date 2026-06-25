@@ -268,8 +268,8 @@ MonoBehaviour:
     Id: 
     AttackDamage: 5
     AttackRange: 5
-    AttackSpeed: 5
-    ProjectileSpeed: 5
+    AttackSpeed: 1
+    ProjectileSpeed: 10
     AbilityId: 
     BuildPrice: 50
     UpgradeId: 
