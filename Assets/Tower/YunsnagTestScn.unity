@@ -37513,18 +37513,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SaltProjectile
       objectReference: {fileID: 0}
-    - target: {fileID: 4372230640436116442, guid: 80835d9274b0c024bb4cb2f45db07f5b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4372230640436116442, guid: 80835d9274b0c024bb4cb2f45db07f5b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4372230640436116442, guid: 80835d9274b0c024bb4cb2f45db07f5b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8728236508915141743, guid: 80835d9274b0c024bb4cb2f45db07f5b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
