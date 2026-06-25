@@ -7,15 +7,17 @@ public class CheeseTower : TowerBase
     [SerializeField] private Transform _headBase;
     [SerializeField] private Transform _firePoint;
     [SerializeField] private float _rotationSpeed = 360f;
+    [SerializeField] private float _upgradeScaleMultiplier = 1.5f;
 
-    [SerializeField] private float _fireSpeed;
+
+
+
     [SerializeField] private string _testTowerId; // 동작 테스트용
 
     private GameObject _projectilePrefab;
     private float _damage;
     private float _projectileSpeed;
 
-    private AsyncOperationHandle<GameObject> _projectileHandle;
     private TowerData _currentData;
     private float _lastFireTime;
     private float _fireCoolTime = 1.0f;
@@ -53,13 +55,7 @@ public class CheeseTower : TowerBase
         _lastFireTime = Time.time;
     }
 
-    private void OnDestroy()
-    {
-        if (_projectileHandle.IsValid())
-        {
-            Addressables.Release(_projectileHandle);
-        }
-    }
+    
     public void Initialize(string towerId)
     {
         _currentData = GameDataManager.Instance.GetData<TowerData>(towerId);
@@ -68,6 +64,7 @@ public class CheeseTower : TowerBase
         {
             _damage = _currentData.AttackDamage;
             _projectileSpeed = _currentData.ProjectileSpeed;
+            _detector.DetectionRange = _currentData.AttackRange;
 
             if (_currentData.AttackSpeed > 0)
             {
@@ -82,21 +79,43 @@ public class CheeseTower : TowerBase
 
             if (!string.IsNullOrEmpty(_currentData.ProjectilePath))
             {
-                _projectileHandle = Addressables.LoadAssetAsync<GameObject>(_currentData.ProjectilePath);
-                _projectileHandle.Completed += OnProjectileLoaded;
+                ResourceManager.Inst.LoadAsset<GameObject>(_currentData.ProjectilePath, OnProjectileLoaded);
             }
         }
     }
 
-    private void OnProjectileLoaded(AsyncOperationHandle<GameObject> handle)
+    private void OnProjectileLoaded(GameObject loadedPrefab)
     {
-        if (handle.Status == AsyncOperationStatus.Succeeded)
+        _projectilePrefab = loadedPrefab;
+    }
+
+    public void Upgrade()
+    {
+        if(_currentData == null)
         {
-            _projectilePrefab = handle.Result;
+            return;
         }
-        else
+
+        string nextId = _currentData.UpgradeId;
+        if (string.IsNullOrEmpty(nextId))
         {
-            Debug.LogWarning($"투사체 프리팹 로드 실패 {_currentData.ProjectilePath}");
+            Debug.Log("이미 최대 강화상태임");
+            return;
         }
+
+        Initialize(nextId);
+        ApplyUpgradeVisual();
+        Debug.LogWarning($"강화 후 데미지{_currentData.AttackDamage}, 사거리 {_currentData.AttackRange}");
+    }
+
+    private void ApplyUpgradeVisual()
+    {
+        if (_headBase == null)
+        {
+            return;
+        }
+
+        _headBase.localScale *= _upgradeScaleMultiplier;
+                   
     }
 }

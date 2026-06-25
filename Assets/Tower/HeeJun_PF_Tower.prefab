@@ -47,6 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CheeseTower
   _renderer: {fileID: 0}
   _animator: {fileID: 0}
+  _placementLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
   _detector:
     _ownerTransform: {fileID: 838435946185937315}
     _detectionRange: 5
@@ -55,14 +58,19 @@ MonoBehaviour:
       m_Bits: 64
   _dragger:
     _ownerTransform: {fileID: 838435946185937315}
-    _placementLayerMask:
-      serializedVersion: 2
-      m_Bits: 128
     _fallbackDistance: 10
+  _rotator:
+    _ownerTransform: {fileID: 0}
+    _lookAt: {fileID: 0}
+    _followX: 1
+    _followY: 1
+    _followZ: 1
+    _rotationOffset: {x: 0, y: 0, z: 0}
+    _followSpeedPerSec: 10
   _headBase: {fileID: 4376373765789278417}
   _firePoint: {fileID: 1189431940768871222}
   _rotationSpeed: 360
-  _fireSpeed: 0
+  _upgradeScaleMultiplier: 1.5
   _testTowerId: 
 --- !u!1 &3735084749774655464
 GameObject:
