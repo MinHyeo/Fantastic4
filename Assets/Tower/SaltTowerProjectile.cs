@@ -2,37 +2,42 @@
 
 public class SaltTowerProjectile : Projectile
 {
-    private AbilityData _saltAbility;
-    private Transform _target;
+    private DebuffAbility _debuffAbility;
 
-    public bool IsInitialized => _saltAbility != null;
+    public bool IsInitialized => _debuffAbility != null;
 
     public new void Initialize(float damage, Transform targetTransform, float projectileSpeed)
     {
+        // 부모의 Initialize를 실행하여 _targetTransform을 안전하게 채우기
         base.Initialize(damage, targetTransform, projectileSpeed);
-
-        // 디버프를 멕이기 위해 타겟 적의 주소를 보관
-        _target = targetTransform;
     }
 
-    public void SetupSaltAbility(AbilityData abilityData)
+    public void SetupSaltAbility(DebuffAbility debuffAbility)
     {
-        _saltAbility = abilityData;
+        _debuffAbility = debuffAbility;
     }
 
     private void Update()
     {
-        if (_target == null) return;
+        if (_targetTransform == null)
+        {
+            return;
+        }
 
-        float distance = Vector3.Distance(_target.position, transform.position);
+        // 데이터가 유효하고 적이 살아있을 때만 부모의 이동(Move) 및 기본 피격 연산 실행
+        base.Update();
+
+        // 적이 필드 상에서 안전하게 살아있을 때만 거리 계산 진행
+        float distance = Vector3.Distance(_targetTransform.position, transform.position);
+
         if (distance < 0.1f)
         {
-            if (_saltAbility != null)
+            if (_debuffAbility == null)
             {
-                // 소금 디버프 메서드를 타겟 오브젝트에 직접 트리거 (받는 피해 증가 %, 지속시간)
-                object[] parameters = new object[] { _saltAbility.PrecentValue, _saltAbility.ActiveTime };
-                _target.gameObject.SendMessage("ApplyDamageAmplificationDebuff", parameters, SendMessageOptions.DontRequireReceiver);
+                return;
             }
+
+            _debuffAbility.ApplyDebuff(_targetTransform.gameObject);
         }
     }
 }
