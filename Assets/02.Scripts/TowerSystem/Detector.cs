@@ -10,6 +10,12 @@ public class Detector
 
     public Detector() { }
 
+    public float DetectionRange
+    {
+        get { return _detectionRange; }
+        set { _detectionRange = value; }
+    }
+
     public Collider[] FindEnemiesInRange()
     {
         Collider[] enemyColliders = Physics.OverlapSphere(_ownerTransform.position, _detectionRange, _enemyLayer);
@@ -37,5 +43,7 @@ public class Detector
 
         return closestEnemy;
     }
+
+  
 
 }

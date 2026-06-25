@@ -7,10 +7,14 @@ public class TowerRangeVisualizer
 
     public TowerRangeVisualizer(float attackRange, GameObject rangeCylinder)
     {
-        _attackRange = attackRange;
         _rangeCylinder = rangeCylinder;
-        _rangeCylinder.transform.localScale = new Vector3((2.0f * _attackRange), 0.1f, (2.0f * _attackRange));
+        SetRange(attackRange);
+    }
 
+    public void SetRange(float attackRange)
+    {
+        _attackRange = attackRange;
+        _rangeCylinder.transform.localScale = new Vector3((2.0f * _attackRange), 0.1f, (2.0f * _attackRange));
     }
     public void ShowRange()
     {
