@@ -4,26 +4,55 @@ using UnityEngine.UI;
 
 public class EnemyInfoPopupUI : UIBase
 {
-    [SerializeField] private UIButton Button_TowerInfo;
-    [SerializeField] private UIButton Button_Enemy1;
-    [SerializeField] private UIButton Button_Enemy2;
-    [SerializeField] private UIButton Button_Enemy3;
-    [SerializeField] private UIButton Button_Enemy4;
-    [SerializeField] private UIButton Button_Enemy5;
+    [Header("프리팹")]
+    [SerializeField] private GameObject Prefab_NomalKnomeSlotUI;
+    [SerializeField] private GameObject Prefab_SpecialKnomeSlotUI;
 
-    [SerializeField] private TextMeshProUGUI Text_EnemyName1;
-    [SerializeField] private TextMeshProUGUI Text_EnemyName2;
-    [SerializeField] private TextMeshProUGUI Text_EnemyName3;
-    [SerializeField] private TextMeshProUGUI Text_EnemyName4;
-    [SerializeField] private TextMeshProUGUI Text_EnemyName5;
+    [Header("노움 세부 정보 디테일")]
+    [SerializeField] private Image Image_Portrait;
+    [SerializeField] private TextMeshProUGUI Text_KnomeName;
+    [SerializeField] private TextMeshProUGUI Text_StatATD;
+    [SerializeField] private TextMeshProUGUI Text_StatRange;
+    [SerializeField] private TextMeshProUGUI Text_StatAttackSpeed;
+    [SerializeField] private TextMeshProUGUI Text_StatSpeed;
 
-    [SerializeField] private Image Image_Enemy1;
-    [SerializeField] private Image Image_Enemy2;
-    [SerializeField] private Image Image_Enemy3;
-    [SerializeField] private Image Image_Enemy4;
-    [SerializeField] private Image Image_Enemy5;
+    [Header("슬롯 리스트 영역")]
+    [SerializeField] private Transform Transform_NomalSlotRoot;
+    [SerializeField] private Transform Transform_SpecialSlotRoot;
 
 
+
+    private void CreateNomalSlot(string dataId)
+    {
+        var gObj = Instantiate(Prefab_NomalKnomeSlotUI, Transform_NomalSlotRoot);
+        if (gObj == null)
+        {
+            return;
+        }
+
+        var slotComponent = gObj.GetComponent<NomalKnomeSlotUI>();
+        if (slotComponent == null)
+        {
+            return;
+        }
+
+    }
+
+    private void CreateSpecialSlot(string dataId)
+    {
+        var gObj = Instantiate(Prefab_SpecialKnomeSlotUI, Transform_SpecialSlotRoot);
+        if (gObj == null)
+        {
+            return;
+        }
+
+        var slotComponent = gObj.GetComponent<SpecialKnomeSlotUI>();
+        if (slotComponent == null)
+        {
+            return;
+        }
+
+    }
 
 
 
