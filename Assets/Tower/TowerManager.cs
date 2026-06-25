@@ -38,33 +38,34 @@ public class TowerManager : MonoBehaviour
     /// </summary>
     public bool CanPlaceTower(RaycastHit placementHit, LayerMask placementLayerMask)
     {
-        return CanPlaceTower(placementHit.point, placementHit.collider, placementLayerMask);
+        return CanPlaceTower(placementHit.collider, placementLayerMask);
     }
 
     /// <summary>
-    /// 실제 타워가 생성될 위치를 기준으로 배치 가능 여부를 검사합니다.
+    /// 배치 가능한 콜라이더의 위치와 높이를 기준으로 배치 가능 여부를 검사합니다.
     /// </summary>
-    public bool CanPlaceTower(Vector3 placementPosition, Collider placementCollider, LayerMask placementLayerMask)
+    public bool CanPlaceTower(Collider placementCollider, LayerMask placementLayerMask)
     {
         if (placementCollider == null)
         {
             return false;
         }
 
+        Vector3 snapPos = GetGridSnappedPosition(placementCollider);
         int hitLayerMask = 1 << placementCollider.gameObject.layer;
         if ((placementLayerMask.value & hitLayerMask) == 0)
         {
             return false;
         }
 
-        if (_occupiedGridCells.Contains(GetGridCell(placementPosition)))
+        if (_occupiedGridCells.Contains(GetGridCell(snapPos)))
         {
             return false;
         }
 
         // 배치 지점에 이미 다른 타워가 있는지 검사합니다.
         float checkRadius = _gridSize * 0.4f;
-        Collider[] hitColliders = Physics.OverlapSphere(placementPosition, checkRadius);
+        Collider[] hitColliders = Physics.OverlapSphere(snapPos, checkRadius);
         foreach (Collider hitCollider in hitColliders)
         {
             if (hitCollider.GetComponentInParent<TowerBase>() != null)
@@ -147,5 +148,13 @@ public class TowerManager : MonoBehaviour
         int x = Mathf.FloorToInt(worldPos.x / _gridSize);
         int z = Mathf.FloorToInt(worldPos.z / _gridSize);
         return new Vector2Int(x, z);
+    }
+
+    public Vector3 GetGridSnappedPosition(Collider placementCollider)
+    {
+        Vector3 snappedWorldPos = placementCollider.gameObject.transform.position;
+        float heightOffset = placementCollider.bounds.size.y;
+
+        return new Vector3(snappedWorldPos.x, snappedWorldPos.y + heightOffset, snappedWorldPos.z);
     }
 }

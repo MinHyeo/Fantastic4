@@ -53,7 +53,12 @@ public class PlacementIndicator : MonoBehaviour
 
             // snap 가능한 레이어에 닿았을 때만 인디케이터를 snap 위치로 이동합니다.
             bool hasSnapHit = _snapper.Snap(mainCamera, transform, out RaycastHit snapHit);
-            if (hasSnapHit && TowerManager.Instance.CanPlaceTower(transform.position, snapHit.collider, _placementLayerMask))
+            if (hasSnapHit)
+            {
+                transform.position = TowerManager.Instance.GetGridSnappedPosition(snapHit.collider);
+            }
+
+            if (hasSnapHit && TowerManager.Instance.CanPlaceTower(snapHit.collider, _placementLayerMask))
             {
                 _canPlaceTower = true;
                 SetPlacementPreviewMode(PlacementPreviewRenderMode.Valid);

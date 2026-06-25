@@ -585,7 +585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d449ea558298917488055671afb0fb16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JiwonTestRunner
-  _towerPrefab: {fileID: 2465056548463530802, guid: 4cc9d48d7250bd042b60ae15f2074946, type: 3}
+  _towerPrefab: {fileID: 6436473305168531400, guid: 1449fb0de1e67d34ab8b6965b285f105, type: 3}
 --- !u!1001 &1098034529
 PrefabInstance:
   m_ObjectHideFlags: 0

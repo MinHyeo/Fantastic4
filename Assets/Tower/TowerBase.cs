@@ -20,6 +20,8 @@ public abstract partial class TowerBase : MonoBehaviour
 
     [SerializeField] protected Dragger _dragger;
 
+    [SerializeField] protected Rotator _rotator;
+
     [SerializeField] protected TowerRangeVisualizer _rangeVisualizer;
 
 
