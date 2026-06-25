@@ -553,7 +553,9 @@ MonoBehaviour:
   Button_Pause: {fileID: 6746623123351489917}
   Text_Wave: {fileID: 5541726912311917144}
   Text_Gold: {fileID: 7163734857289480597}
-  TowerDeck: {fileID: 1831644826643808957, guid: dfdcf200396745b4b9e9f49338edb716, type: 3}
+  Text_Timer: {fileID: 1921974337057280792}
+  Prefab_TowerDeck: {fileID: 1831644826643808957, guid: dfdcf200396745b4b9e9f49338edb716, type: 3}
+  Transform_TowerDeckRoot: {fileID: 1160756036108717115}
 --- !u!1 &6563510481916875317
 GameObject:
   m_ObjectHideFlags: 0
