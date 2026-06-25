@@ -10,6 +10,8 @@ public class TowerDragUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
 
     [SerializeField] private GameObject _towerPrefab;
 
+    [SerializeField] private GameObject _notice;
+
 
     /// <summary>
     /// 버튼에서 드래그가 시작되면 미리보기 타워를 생성합니다.
@@ -29,6 +31,9 @@ public class TowerDragUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
     /// </summary>
     public void OnEndDrag(PointerEventData eventData)
     {
+        TowerBase tower = _towerPrefab.GetComponent<TowerBase>();
+
+        // UI_TODO : 여기서 돈 부족하다? 설치할 수 없다 notice 열어야함
         if (TowerManager.Instance.CanPlaceTower(out Vector3 worldPos))
         {
             TowerManager.Instance.SpawnTower(_towerPrefab, null, worldPos);

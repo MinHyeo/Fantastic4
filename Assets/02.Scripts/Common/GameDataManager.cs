@@ -79,7 +79,7 @@ public class GameDataManager : MonoBehaviour
 
     public T GetData<T>(string id) where T : GameDataBase
     {
-        string type = typeof(T).FullName;
+        string type = typeof(T).Name;
         object dictObj = null;
 
         if (_dataList.TryGetValue(type, out dictObj))

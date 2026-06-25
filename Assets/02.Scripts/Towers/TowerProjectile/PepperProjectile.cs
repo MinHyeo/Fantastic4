@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PaperProjectile : Projectile
+public class PepperProjectile : Projectile
 {
     ///<summary>
     /// 충돌 시 효과를 일으킬 레이어
@@ -20,18 +20,19 @@ public class PaperProjectile : Projectile
     ///<summary>
     /// 충돌 시 호출됩니다.
     ///</summary>
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collider)
     {
-        if (CheckIsEnemyCollider(collision))
+        if (CheckIsEnemyCollider(collider))
         {
             Destroy(gameObject);
             // TODO : 적에 대한 공격 판정
+            
             return;
         }
     }
 
-    private bool CheckIsEnemyCollider(Collision collision)
+    private bool CheckIsEnemyCollider(Collider collider)
     {
-        return ((1 << collision.gameObject.layer) & _targetLayerMask) != 0;
+        return ((1 << collider.gameObject.layer) & _targetLayerMask) != 0;
     }
 }

@@ -1,12 +1,11 @@
 using UnityEngine;
 
-public class PaperTower : RangeTower
+public class KetchupTower : RangeTower
 {
-    [Header(nameof(PaperTower))]
+    [Header(nameof(KetchupTower))]
 
-    [SerializeField] private PaperProjectile _projectilePrefab;
+    [SerializeField] private KetchupProjectile _projectilePrefab;
 
-    [SerializeField] private TowerData _data;
 
     private float _currentFireTimer;
 
@@ -16,14 +15,14 @@ public class PaperTower : RangeTower
     {
         base.Awake();
 
-
+        
     }
 
     protected override void Start()
     {
         base.Start();
 
-        _data = GameDataManager.Instance.GetData<TowerData>(_data.Id);
+        // _data = GameDataManager.Instance.GetData<TowerData>(_data.Id);
     }
 
     protected override void Update()
