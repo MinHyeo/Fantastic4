@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
@@ -7,7 +8,9 @@ public class CheeseTower : TowerBase
     [SerializeField] private Transform _headBase;
     [SerializeField] private Transform _firePoint;
     [SerializeField] private float _rotationSpeed = 360f;
-    [SerializeField] private float _upgradeScaleMultiplier = 1.5f;
+    [SerializeField] private float _upgradeScaleMultiplier = 1.2f;
+    [SerializeField] private Transform _cheeseHead;
+
 
 
 
@@ -53,6 +56,8 @@ public class CheeseTower : TowerBase
 
         AttackSystem.Attack(_projectilePrefab, _firePoint, targetTransform, _damage, _projectileSpeed);
         _lastFireTime = Time.time;
+
+        _cheeseHead.DOPunchScale(Vector3.one * 0.1f, 0.2f);
     }
 
     
