@@ -9,12 +9,12 @@ public class SaltTower : TowerBase
     [Header("Projectile Settings")]
     [SerializeField] private GameObject _projectilePrefab;
 
+    [Header("Rotation Settings")]
+    [SerializeField] private Transform _headTransform;
+
     private TowerRangeVisualizer _rangeVisualizer;
     private TowerData _currentData;
     private SaltDebuff _saltDebuff;
-
-    [Header("Rotation Settings")]
-    [SerializeField] private Transform _headTransform;
 
     private float _lastFireTime;
     private float _fireCoolTime = 1.0f;
@@ -69,6 +69,9 @@ public class SaltTower : TowerBase
             return;
         }
 
+        // 인스펙터에 지정한 머리 오브젝트가 없다면 예외 방지를 위해 본체를 기본값으로 사용
+        Transform rotationTarget = _headTransform != null ? _headTransform : transform;
+
         Transform targetEnemy = _detector.FindClosestEnemy();
 
         if (targetEnemy == null)
@@ -76,17 +79,16 @@ public class SaltTower : TowerBase
             return;
         }
 
-        // 타워 몸통(transform)과 적의 위치 차이 계산 (Y축 값을 같게 만들어 위아래로 꺾이는 현상 방지)
-        Vector3 direction = targetEnemy.position - transform.position;
+        // 지정된 오브젝트(머리)와 적의 위치 차이 계산 (Y축 값을 같게 만들어 위아래로 꺾이는 현상 방지)
+        Vector3 direction = targetEnemy.position - rotationTarget.position;
         direction.y = 0f;
 
         if (direction.sqrMagnitude > 0.001f)
         {
-            // 적을 바라보는 쿼터니언 각도 계산 및 회전 적용 (Quaternion.LookRotation)
+            // 적을 바라보는 쿼터니언 각도 계산
             Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-            // 즉시 휙 도는 대신 초당 10의 속도로 부드럽게 몸통 회전 연출
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+            rotationTarget.rotation = Quaternion.Slerp(rotationTarget.rotation, targetRotation, Time.deltaTime * 10f);
         }
     }
 
