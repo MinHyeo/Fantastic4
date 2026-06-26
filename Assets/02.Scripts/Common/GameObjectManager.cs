@@ -13,7 +13,7 @@ public class GameObjectManager : MonoBehaviour
     // 생성된 오브젝트의 키가 됨
     private int _objectInstanceKeyGenerator = 0;
 
-    // 생성된 오브젝트의 생명을 보관
+    // 키값의 오브젝트의 이름, 비활성화된 오브젝트들을 Queue에 담기
     private Dictionary<string, Queue<GameObject>> _objectPool = new Dictionary<string, Queue<GameObject>>();
     private HashSet<GameObject> _activeObjectList = new HashSet<GameObject>();
 
@@ -131,5 +131,53 @@ public class GameObjectManager : MonoBehaviour
 
         StageManager.Instance.StartStage(stageId, createdObject);
         _activeObjectList.Add(createdObject);
+    }
+
+    // 오브젝트 반환
+    public void ReturnObjectPool(GameObject returnObject)
+    {
+        GameObject gameObject = null;
+        if (_activeObjectList.TryGetValue(returnObject, out gameObject) == false)
+            return;
+
+        gameObject.SetActive(false);
+
+        _activeObjectList.Remove(returnObject);
+        string objectName = returnObject.name;
+        _objectPool[objectName].Enqueue(gameObject);
+    }
+
+    // 전체 오브젝트 삭제
+    public void RemoveObjectPool(GameObject removeObject)
+    {
+        
+    }
+
+    public void ClearAllObjectPool()
+    {
+        // 활성화된 오브젝트 삭제
+        foreach(var activeObject in _activeObjectList)
+        {
+            if(activeObject != null)
+            {
+                Destroy(activeObject);
+            }
+        }
+        _activeObjectList.Clear();
+
+        // 비활성화된 오브젝트 삭제
+        foreach(var pair in _objectPool)
+        {
+            var queue = pair.Value;
+            while(queue.Count > 0)
+            {
+                var gameObject = queue.Dequeue();
+                if(gameObject != null)
+                {
+                    Destroy(gameObject);
+                }
+            }
+        }
+        _objectPool.Clear();
     }
 }
