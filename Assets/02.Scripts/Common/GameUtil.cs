@@ -89,24 +89,6 @@ public static class GameUtil
         targetRawImage.gameObject.SetActive(true);
     }
 
-    public static List<string> GetDialogueIdList(string dialogueGroupId)
-    {
-        var list = new List<string>();
-
-        // "dialogue_group_mainstream_1_1"
-        var data = GameDataManager.Instance.GetData<DialogueGroupData>(dialogueGroupId);
-        if (data != null)
-        {
-            var idArr = data.DialogueIdList;
-            foreach(var id in idArr)
-            {
-                list.Add(id);
-            }
-        }
-
-        return list;
-    }
-
     // 그냥 유니크 키가 발급되어야 할 때 사용하려고 만든 것 (의미가 있는 건 아니므로 사용만 하세요)
     public static long GenerateUniqueId()
     {
