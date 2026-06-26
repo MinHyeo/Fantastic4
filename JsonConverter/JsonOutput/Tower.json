@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "Id": "Tower_01_Level1",
     "AttackDamage": 5,
@@ -156,38 +156,38 @@
     "ProjectilePath": null
   },
   {
-    "Id": "Tower_05_Level1",
+    "Id": "Tower_Salt_Level1",
     "AttackDamage": 4,
-    "AttackRange": 3,
+    "AttackRange": 5,
     "AttackSpeed": 2,
-    "ProjectileSpeed": null,
-    "AbilityId": null,
+    "ProjectileSpeed": 15,
+    "AbilityId": "SaltDebuff",
     "BuildPrice": null,
-    "UpgradeId": null,
+    "UpgradeId": "Tower_Salt_Level2",
     "UpgradePrice": null,
     "PrefabPath": null,
     "ProjectilePath": null
   },
   {
-    "Id": "Tower_05_Level2",
+    "Id": "Tower_Salt_Level2",
     "AttackDamage": 6,
-    "AttackRange": 4,
+    "AttackRange": 5,
     "AttackSpeed": 3,
-    "ProjectileSpeed": null,
-    "AbilityId": null,
+    "ProjectileSpeed": 15,
+    "AbilityId": "SaltDebuff",
     "BuildPrice": null,
-    "UpgradeId": null,
+    "UpgradeId": "Tower_Salt_Level3",
     "UpgradePrice": null,
     "PrefabPath": null,
     "ProjectilePath": null
   },
   {
-    "Id": "Tower_05_Level3",
+    "Id": "Tower_Salt_Level3",
     "AttackDamage": 9,
     "AttackRange": 5,
     "AttackSpeed": 4,
-    "ProjectileSpeed": null,
-    "AbilityId": null,
+    "ProjectileSpeed": 15,
+    "AbilityId": "SaltDebuff",
     "BuildPrice": null,
     "UpgradeId": null,
     "UpgradePrice": null,

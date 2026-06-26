@@ -1,9 +1,9 @@
-[
+﻿[
   {
-    "Id": null,
-    "PercentValue": 0,
+    "Id": "SaltDebuff",
+    "PercentValue": 10,
     "NumbericalValue": "10",
-    "ActiveTime": null,
+    "ActiveTime": 3,
     "EffectRound": null
   },
   {

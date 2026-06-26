@@ -87,6 +87,7 @@ MonoBehaviour:
   _firePoint: {fileID: 1681293330937122159}
   _projectilePrefab: {fileID: 1286543469607582688, guid: 80835d9274b0c024bb4cb2f45db07f5b, type: 3}
   _headTransform: {fileID: 3117771263868445581}
+  _testTowerId: Tower_Salt_Level1
 --- !u!1 &1405217896013216740
 GameObject:
   m_ObjectHideFlags: 0

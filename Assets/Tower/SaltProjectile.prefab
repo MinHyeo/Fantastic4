@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SaltTowerProjectile
   _damage: 0
   _targetTransform: {fileID: 0}
-  _projectileSpeed: 15
+  _projectileSpeed: 0
   _areaEffectPrefab: {fileID: 0}
 --- !u!65 &443193603908925027
 BoxCollider:

@@ -12,44 +12,53 @@ public class SaltTower : TowerBase
     [Header("Rotation Settings")]
     [SerializeField] private Transform _headTransform;
 
+    [SerializeField] private string _testTowerId;
+
     private TowerRangeVisualizer _rangeVisualizer;
     private TowerData _currentData;
     private SaltDebuff _saltDebuff;
 
     private float _lastFireTime;
     private float _fireCoolTime = 1.0f;
+    private float _damage;
+    private float _projectileSpeed;
+
+    private void Start()
+    {
+        Initialize(_testTowerId);
+    }
 
     public void Initialize(string towerId)
     {
-        //_currentData = GameDataManager.Instance.GetData<TowerData>("Tower_04_Level1");
+        _currentData = GameDataManager.Instance.GetData<TowerData>(towerId);
 
-        //if (_currentData != null)
-        //{
-        //    if (_currentData.AttackSpeed > 0)
-        //    {
-        //        _fireCoolTime = 1f / _currentData.AttackSpeed;
-        //    }
-
-        //    // 특수능력 ID를 기반으로 소금 디버프 데이터 로드
-        //    if (!string.IsNullOrEmpty(_currentData.AbilityId))
-        //    {
-        //        _saltDebuff = gameObject.AddComponent<SaltDebuff>();
-        //        _saltDebuff.Initialize(_currentData.AbilityId);
-        //    }
-
-        //    if (_rangeObject != null)
-        //    {
-        //        _rangeVisualizer = new TowerRangeVisualizer(_currentData.AttackRange, _rangeObject);
-        //        _rangeVisualizer.HideRange();
-        //    }
-        //}
-
-        _fireCoolTime = 1f / 2f; // 공격 속도 2 반영 (0.5초당 1번 발사)
-
-        if (_rangeObject != null)
+        if (_currentData != null)
         {
-            _rangeVisualizer = new TowerRangeVisualizer(2.0f, _rangeObject); // 임시 사거리 2 수치 적용
-            _rangeVisualizer.HideRange();
+            _damage = _currentData.AttackDamage;
+            _projectileSpeed = _currentData.ProjectileSpeed;
+            _detector.DetectionRange = _currentData.AttackRange;
+
+            if (_currentData.AttackSpeed > 0)
+            {
+                _fireCoolTime = 1f / _currentData.AttackSpeed;
+            }
+
+            // 특수능력 ID를 기반으로 소금 디버프 데이터 로드
+            if (!string.IsNullOrEmpty(_currentData.AbilityId))
+            {
+                _saltDebuff = gameObject.AddComponent<SaltDebuff>();
+                _saltDebuff.Initialize(_currentData.AbilityId);
+            }
+
+            if (_rangeObject != null)
+            {
+                _rangeVisualizer = new TowerRangeVisualizer(_currentData.AttackRange, _rangeObject);
+                _rangeVisualizer.HideRange();
+            }
+        }
+        else
+        {
+            Debug.LogError($"[SaltTower 에러] GameDataManager에서 ID [{towerId}]에 해당하는 TowerData를 찾지 못했습니다.");
         }
     }
 
@@ -117,14 +126,9 @@ public class SaltTower : TowerBase
         // 발사 위치 예외 처리 (인스펙터 미지정 시 타워 본체 포지션 사용)
         Transform launchPoint = _firePoint != null ? _firePoint : transform;
 
-        AttackSystem.Attack(
-            _projectilePrefab,
-            launchPoint,
-            targetEnemy,
-            //_currentData.AttackDamage,
-            //_currentData.ProjectileSpeed,
-            1.0f,
-            5.0f
+        AttackSystem.Attack(_projectilePrefab, launchPoint, targetEnemy, 
+            _damage,
+            _projectileSpeed
         );
     }
 
