@@ -165,7 +165,7 @@ MonoBehaviour:
   _decalSpawner: {fileID: 662034215408709516, guid: 787eefb0b35e6d342b29e91701eff2b3, type: 3}
   _targetLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!54 &-1849516350918078173
 Rigidbody:
   m_ObjectHideFlags: 0
