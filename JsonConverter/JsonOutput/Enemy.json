@@ -1,42 +1,42 @@
 [
   {
-    "Id": "Enemy_01",
+    "Id": "Enemy_Normal",
     "MaxHp": 50,
     "MoveSpeed": 2.5,
     "AbilityId": null,
     "RewardGold": 50,
-    "PrefabPath": "Prefab/Enemy/Enemy_01"
+    "PrefabPath": "Prefab/Enemy/Enemy_Normal"
   },
   {
-    "Id": "Enemy_02",
-    "MaxHp": 100,
+    "Id": "Enemy_Cup",
+    "MaxHp": 300,
     "MoveSpeed": 2,
     "AbilityId": null,
     "RewardGold": 75,
-    "PrefabPath": "Prefab/Enemy/Enemy_02"
+    "PrefabPath": "Prefab/Enemy/Enemy_Cup"
   },
   {
-    "Id": "Enemy_03",
+    "Id": "Enemy_Crazgy",
     "MaxHp": 75,
-    "MoveSpeed": 2.5,
+    "MoveSpeed": 5,
     "AbilityId": null,
     "RewardGold": 75,
-    "PrefabPath": "Prefab/Enemy/Enemy_03"
+    "PrefabPath": "Prefab/Enemy/Enemy_Crazy"
   },
   {
-    "Id": "Enemy_04",
+    "Id": "Enemy_Doctor",
     "MaxHp": 75,
     "MoveSpeed": 3,
     "AbilityId": null,
     "RewardGold": 75,
-    "PrefabPath": "Prefab/Enemy/Enemy_04"
+    "PrefabPath": "Prefab/Enemy/Enemy_Doctor"
   },
   {
-    "Id": "Enemy_05",
-    "MaxHp": 300,
-    "MoveSpeed": 1.5,
+    "Id": "Enemy_Special",
+    "MaxHp": 200,
+    "MoveSpeed": 4,
     "AbilityId": null,
     "RewardGold": 150,
-    "PrefabPath": "Prefab/Enemy/Enemy_05"
+    "PrefabPath": "Prefab/Enemy/Enemy_Special"
   }
 ]

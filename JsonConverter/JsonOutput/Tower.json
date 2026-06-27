@@ -9,8 +9,8 @@
     "BuildPrice": 50,
     "UpgradeId": "Tower_Cheese_Level2",
     "UpgradePrice": 45,
-    "PrefabPath": "Prefab/Tower/CheeseTower",
-    "ProjectilePath": "Prefab/TowerProjectile/CheeseProjectile"
+    "PrefabPath": "Prefabs/Tower/CheeseTower",
+    "ProjectilePath": "Prefabs/TowerProjectile/CheeseProjectile"
   },
   {
     "Id": "Tower_Cheese_Level2",
@@ -22,8 +22,8 @@
     "BuildPrice": null,
     "UpgradeId": "Tower_Cheese_Level3",
     "UpgradePrice": 60,
-    "PrefabPath": "Prefab/Tower/CheeseTower",
-    "ProjectilePath": "Prefab/TowerProjectile/CheeseProjectile"
+    "PrefabPath": "Prefabs/Tower/CheeseTower",
+    "ProjectilePath": "Prefabs/TowerProjectile/CheeseProjectile"
   },
   {
     "Id": "Tower_Cheese_Level3",
@@ -35,8 +35,8 @@
     "BuildPrice": null,
     "UpgradeId": null,
     "UpgradePrice": null,
-    "PrefabPath": "Prefab/Tower/CheeseTower",
-    "ProjectilePath": "Prefab/TowerProjectile/CheeseProjectile"
+    "PrefabPath": "Prefabs/Tower/CheeseTower",
+    "ProjectilePath": "Prefabs/TowerProjectile/CheeseProjectile"
   },
   {
     "Id": "Tower_Pepper_Level1",
@@ -48,8 +48,8 @@
     "BuildPrice": 65,
     "UpgradeId": "Tower_Pepper_Level2",
     "UpgradePrice": 55,
-    "PrefabPath": "Prefab/Tower/PepperTower",
-    "ProjectilePath": "Prefab/TowerProjectile/PepperProjectile"
+    "PrefabPath": "Prefabs/Tower/PepperTower",
+    "ProjectilePath": "Prefabs/TowerProjectile/PepperProjectile"
   },
   {
     "Id": "Tower_Pepper_Level2",
@@ -61,8 +61,8 @@
     "BuildPrice": null,
     "UpgradeId": "Tower_Pepper_Level3",
     "UpgradePrice": 75,
-    "PrefabPath": "Prefab/Tower/PepperTower",
-    "ProjectilePath": "Prefab/TowerProjectile/PepperProjectile"
+    "PrefabPath": "Prefabs/Tower/PepperTower",
+    "ProjectilePath": "Prefabs/TowerProjectile/PepperProjectile"
   },
   {
     "Id": "Tower_Pepper_Level3",
@@ -74,8 +74,8 @@
     "BuildPrice": null,
     "UpgradeId": null,
     "UpgradePrice": null,
-    "PrefabPath": "Prefab/Tower/PepperTower",
-    "ProjectilePath": "Prefab/TowerProjectile/PepperProjectile"
+    "PrefabPath": "Prefabs/Tower/PepperTower",
+    "ProjectilePath": "Prefabs/TowerProjectile/PepperProjectile"
   },
   {
     "Id": "Tower_Ketchup_Level1",
@@ -87,8 +87,8 @@
     "BuildPrice": 60,
     "UpgradeId": "Tower_Ketchup_Level2",
     "UpgradePrice": 50,
-    "PrefabPath": "Prefab/Tower/KetchupTower",
-    "ProjectilePath": "Prefab/TowerProjectile/KetchupProjectile"
+    "PrefabPath": "Prefabs/Tower/KetchupTower",
+    "ProjectilePath": "Prefabs/TowerProjectile/KetchupProjectile"
   },
   {
     "Id": "Tower_Ketchup_Level2",
@@ -100,8 +100,8 @@
     "BuildPrice": null,
     "UpgradeId": "Tower_Ketchup_Level3",
     "UpgradePrice": 70,
-    "PrefabPath": "Prefab/Tower/KetchupTower",
-    "ProjectilePath": "Prefab/TowerProjectile/KetchupProjectile"
+    "PrefabPath": "Prefabs/Tower/KetchupTower",
+    "ProjectilePath": "Prefabs/TowerProjectile/KetchupProjectile"
   },
   {
     "Id": "Tower_Ketchup_Level3",
@@ -113,8 +113,8 @@
     "BuildPrice": null,
     "UpgradeId": null,
     "UpgradePrice": null,
-    "PrefabPath": "Prefab/Tower/KetchupTower",
-    "ProjectilePath": "Prefab/TowerProjectile/KetchupProjectile"
+    "PrefabPath": "Prefabs/Tower/KetchupTower",
+    "ProjectilePath": "Prefabs/TowerProjectile/KetchupProjectile"
   },
   {
     "Id": "Tower_Oil_Level1",
@@ -126,8 +126,8 @@
     "BuildPrice": 70,
     "UpgradeId": "Tower_Oil_Level2",
     "UpgradePrice": 60,
-    "PrefabPath": "Prefab/Tower/OilTower",
-    "ProjectilePath": "Prefab/TowerProjectile/OilProjectile"
+    "PrefabPath": "Prefabs/Tower/OilTower",
+    "ProjectilePath": "Prefabs/TowerProjectile/OilProjectile"
   },
   {
     "Id": "Tower_Oil_Level2",
@@ -139,8 +139,8 @@
     "BuildPrice": null,
     "UpgradeId": "Tower_Oil_Level3",
     "UpgradePrice": 80,
-    "PrefabPath": "Prefab/Tower/OilTower",
-    "ProjectilePath": "Prefab/TowerProjectile/OilProjectile"
+    "PrefabPath": "Prefabs/Tower/OilTower",
+    "ProjectilePath": "Prefabs/TowerProjectile/OilProjectile"
   },
   {
     "Id": "Tower_Oil_Level3",
@@ -152,8 +152,8 @@
     "BuildPrice": null,
     "UpgradeId": null,
     "UpgradePrice": null,
-    "PrefabPath": "Prefab/Tower/OilTower",
-    "ProjectilePath": "Prefab/TowerProjectile/OilProjectile"
+    "PrefabPath": "Prefabs/Tower/OilTower",
+    "ProjectilePath": "Prefabs/TowerProjectile/OilProjectile"
   },
   {
     "Id": "Tower_Salt_Level1",
@@ -165,8 +165,8 @@
     "BuildPrice": 60,
     "UpgradeId": "Tower_Salt_Level2",
     "UpgradePrice": 50,
-    "PrefabPath": "Prefab/Tower/SaltTower",
-    "ProjectilePath": "Prefab/TowerProjectile/SaltProjectile"
+    "PrefabPath": "Prefabs/Tower/SaltTower",
+    "ProjectilePath": "Prefabs/TowerProjectile/SaltProjectile"
   },
   {
     "Id": "Tower_Salt_Level2",
@@ -178,8 +178,8 @@
     "BuildPrice": null,
     "UpgradeId": "Tower_Salt_Level3",
     "UpgradePrice": 70,
-    "PrefabPath": "Prefab/Tower/SaltTower",
-    "ProjectilePath": "Prefab/TowerProjectile/SaltProjectile"
+    "PrefabPath": "Prefabs/Tower/SaltTower",
+    "ProjectilePath": "Prefabs/TowerProjectile/SaltProjectile"
   },
   {
     "Id": "Tower_Salt_Level3",
@@ -191,7 +191,7 @@
     "BuildPrice": null,
     "UpgradeId": null,
     "UpgradePrice": null,
-    "PrefabPath": "Prefab/Tower/SaltTower",
-    "ProjectilePath": "Prefab/TowerProjectile/SaltProjectile"
+    "PrefabPath": "Prefabs/Tower/SaltTower",
+    "ProjectilePath": "Prefabs/TowerProjectile/SaltProjectile"
   }
 ]
