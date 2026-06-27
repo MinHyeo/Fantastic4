@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class SaltTowerProjectile : Projectile
+public class SaltProjectile : Projectile
 {
     private DebuffAbility _debuffAbility;
 

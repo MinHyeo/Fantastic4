@@ -55,7 +55,7 @@ MonoBehaviour:
     m_Bits: 128
   _detector:
     _ownerTransform: {fileID: 2006173409093214815}
-    _detectionRange: 10
+    _detectionRange: 0
     _enemyLayer:
       serializedVersion: 2
       m_Bits: 64
@@ -63,7 +63,7 @@ MonoBehaviour:
     _ownerTransform: {fileID: 2006173409093214815}
     _fallbackDistance: 10
   _rotator:
-    _ownerTransform: {fileID: 0}
+    _ownerTransform: {fileID: 3117771263868445581}
     _lookAt: {fileID: 0}
     _followX: 1
     _followY: 1

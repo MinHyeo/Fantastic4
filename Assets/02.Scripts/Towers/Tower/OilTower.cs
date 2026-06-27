@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class SaltTower : TowerBase
+public class OilTower : TowerBase
 {
     [Header("3D Range Visualizer Element")]
     [SerializeField] private GameObject _rangeObject; // 범위 표시용 실린더 오브젝트
@@ -13,7 +13,7 @@ public class SaltTower : TowerBase
 
     private TowerRangeVisualizer _rangeVisualizer;
     private TowerData _currentData;
-    private SaltDebuff _saltDebuff;
+    //private OilSlickAura _oilSlickAura; // 기름 타워 전용 지속 데미지(DoT) 장판/디버프 능력 컴포넌트
 
     private float _lastFireTime;
     private float _fireCoolTime = 1.0f;
@@ -40,12 +40,12 @@ public class SaltTower : TowerBase
                 _fireCoolTime = 1f / _currentData.AttackSpeed;
             }
 
-            // 특수능력 ID를 기반으로 소금 디버프 데이터 로드
-            if (!string.IsNullOrEmpty(_currentData.AbilityId))
-            {
-                _saltDebuff = gameObject.AddComponent<SaltDebuff>();
-                _saltDebuff.Initialize(_currentData.AbilityId);
-            }
+            // 특수능력 ID를 기반으로 기름 장판/디버프 능력 데이터 로드
+            //if (!string.IsNullOrEmpty(_currentData.AbilityId))
+            //{
+            //    _oilSlickAura = gameObject.AddComponent<OilSlickAura>();
+            //    _oilSlickAura.Initialize(_currentData.AbilityId);
+            //}
 
             if (_rangeObject != null)
             {
@@ -55,7 +55,7 @@ public class SaltTower : TowerBase
         }
         else
         {
-            Debug.LogError($"[SaltTower 에러] GameDataManager에서 ID [{towerId}]에 해당하는 TowerData를 찾지 못했습니다.");
+            Debug.LogError($"[OilTower 에러] GameDataManager에서 ID [{towerId}]에 해당하는 TowerData를 찾지 못했습니다.");
         }
     }
 
@@ -107,7 +107,7 @@ public class SaltTower : TowerBase
         // 발사 위치 예외 처리 (인스펙터 미지정 시 타워 본체 포지션 사용)
         Transform launchPoint = _firePoint != null ? _firePoint : transform;
 
-        AttackSystem.Attack(_projectilePrefab, launchPoint, targetEnemy, 
+        AttackSystem.Attack(_projectilePrefab, launchPoint, targetEnemy,
             _damage,
             _projectileSpeed
         );
