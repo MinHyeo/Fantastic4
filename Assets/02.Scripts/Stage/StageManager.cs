@@ -1,31 +1,23 @@
 ﻿using Cysharp.Threading.Tasks;
 using System;
-using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Splines;
+using static UnityEngine.GraphicsBuffer;
 
 public class StageManager : MonoBehaviour
 {
     public static StageManager Instance;
 
-    [SerializeField] private SplineContainer _splineContainer;
+    private EnemyRouteManager _enemyRouteManager;
+    private List<EnemyBase> _activeEnemyList = new List<EnemyBase>();
 
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
-    }
-
-    private void Start()
-    {
-        StartCoroutine(test());
-    }
-
-    private IEnumerator test()
-    {
-        yield return new WaitForSeconds(1f);
-        //StartStage("stage_01");
     }
 
     public void LoadStage(string stageId)
@@ -34,30 +26,15 @@ public class StageManager : MonoBehaviour
         GameObjectManager.Instance.CreateStageObject(stageId, spawnSpot).Forget();
     }
 
-    public bool CheckEndCourse(int courseIndex)
-    {
-        Spline spline = _splineContainer.Splines[0];
-        if (spline.Count <= courseIndex)
-            return true;
-        return false;
-    }
-
-    public Vector3 GetCoursePosition(int courseIndex)
-    {
-        Spline spline = _splineContainer.Splines[0];
-        Vector3 localPosition = (Vector3)spline[courseIndex].Position;
-        Vector3 worldPosition = _splineContainer.transform.TransformPoint(localPosition);
-
-        return worldPosition;
-    }
-
     public void StartStage(string stageId, GameObject stageObject)
     {
         StageData stageData = GameDataManager.Instance.GetData<StageData>(stageId);
         if (stageData == null)
             return;
 
-        _splineContainer = stageObject.GetComponent<SplineContainer>();
+        var splineContinear = stageObject.GetComponent<SplineContainer>();
+        _enemyRouteManager.SetSplineCointer(splineContinear);
+
         string[] waveIds = stageData.WaveId;
         foreach(string waveId in waveIds)
         {
@@ -90,5 +67,38 @@ public class StageManager : MonoBehaviour
             Vector3 spawnPoint = GetCoursePosition(0);
             GameObjectManager.Instance.CreateEnemyObject(enemyId, spawnPoint).Forget();
         }
+    }
+
+    public bool CheckEndCourse(int courseIndex)
+    {
+        return _enemyRouteManager.CheckEndCource(courseIndex);
+    }
+
+    public Vector3 GetCoursePosition(int courseIndex)
+    {
+        return _enemyRouteManager.GetCoursePosition(courseIndex);
+    }
+
+    public GameObject CompareLeadEnemy(GameObject leadEnemy, GameObject comparisonEnemy)
+    {
+        var leadEnemyScript = leadEnemy.GetComponent<EnemyBase>();
+        var comparisonEnemyScript = comparisonEnemy.GetComponent<EnemyBase>();
+        if (leadEnemyScript == null || comparisonEnemyScript == null)
+            return null;
+
+        int comparisonIndex = comparisonEnemyScript.CourseIndex;
+        int leadIndex = leadEnemyScript.CourseIndex;
+        if (comparisonIndex > leadIndex)
+            return comparisonEnemy;
+        if (comparisonIndex < leadIndex)
+            return leadEnemy;
+
+        var coursePosition = _enemyRouteManager.GetCoursePosition(comparisonIndex);
+        float leadDist = Vector3.Distance(leadEnemy.transform.position, coursePosition);
+        float comparisionDist = Vector3.Distance(comparisonEnemy.transform.position, coursePosition);
+
+        if (leadDist < comparisionDist)
+            return leadEnemy;
+        return comparisonEnemy;
     }
 }
