@@ -13,11 +13,7 @@ public class TowerManager : MonoBehaviour
 
     [SerializeField] private float _gridSize = 1f;
 
-    private int _towerSequenceId = 0;
-
-    private Dictionary<int, GameObject> _spawnedTowerList = new Dictionary<int, GameObject>();
-
-    private HashSet<Vector2Int> _occupiedGridCells = new HashSet<Vector2Int>();
+    private Dictionary<Vector2Int, GameObject> _spawnedTowerList = new Dictionary<Vector2Int, GameObject>();
 
     private PlacementIndicator _towerPlacementIndicatorObject;
 
@@ -58,7 +54,7 @@ public class TowerManager : MonoBehaviour
             return false;
         }
 
-        if (_occupiedGridCells.Contains(GetGridCell(snapPos)))
+        if (_spawnedTowerList.ContainsKey(GetGridCell(snapPos)))
         {
             return false;
         }
@@ -99,16 +95,14 @@ public class TowerManager : MonoBehaviour
     public void SpawnTower(string towerId, Vector3 cellWorldPos)
     {
         Vector2Int gridCell = GetGridCell(cellWorldPos);
-        if (_occupiedGridCells.Contains(gridCell))
+        if (_spawnedTowerList.ContainsKey(gridCell))
         {
             return;
         }
 
         GameObjectManager.Instance.CreateTowerObject(towerId, cellWorldPos, towerObject =>
         {
-            _spawnedTowerList.Add(_towerSequenceId, towerObject);
-            _occupiedGridCells.Add(gridCell);
-            _towerSequenceId++;
+            _spawnedTowerList.Add(gridCell, towerObject);
         }).Forget();
     }
 
@@ -136,8 +130,6 @@ public class TowerManager : MonoBehaviour
     {
         // GameObjectManager.Instance.RequestDestroyAllTowerObject();
         _spawnedTowerList.Clear();
-        _occupiedGridCells.Clear();
-        _towerSequenceId = 0;
     }
 
     private Vector2Int GetGridCell(Vector3 worldPos)
