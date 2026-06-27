@@ -18,6 +18,8 @@ public class StageManager : MonoBehaviour
     {
         if (Instance == null)
             Instance = this;
+
+        _enemyRouteManager = new();
     }
 
     public void LoadStage(string stageId)
