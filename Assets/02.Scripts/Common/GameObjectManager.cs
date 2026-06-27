@@ -153,7 +153,7 @@ public class GameObjectManager : MonoBehaviour
         
     }
 
-    public void ClearAllObjectPool()
+    public void DestroyAllObjectPool()
     {
         // 활성화된 오브젝트 삭제
         foreach(var activeObject in _activeObjectList)
