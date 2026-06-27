@@ -12,16 +12,35 @@ public class Detector : MonoBehaviour
     private List<Collider> _enemiesInRange = new List<Collider>();
 
 
-    public float DetectionRange
+    public float DetectionRange => _detectionRange;
+
+
+    public Collider[] FindEnemiesInRange()
     {
-        get { return _detectionRange; }
-        set { 
-                _detectionRange = value;
-                if (_rangeCollider != null)
-                {
-                    _rangeCollider.radius = value;
-                }
-            }
+        // 방식 변경시 삭제필요
+        //Collider[] enemyColliders = Physics.OverlapSphere(_ownerTransform.position, _detectionRange, _enemyLayer);
+        //return enemyColliders;
+        RemoveDeadEnemies();
+        return _enemiesInRange.ToArray();
+    }
+
+    public Transform FindClosestEnemy()
+    {
+        Collider[] enemiesInRange = FindEnemiesInRange();
+        GameObject leadEnemy = BattleManager.Instance.GetBeInTheLead(enemiesInRange);
+
+
+        if (leadEnemy == null)
+        {
+            return null;
+        }
+        return leadEnemy.transform;
+    }
+
+    public void SetRange(float range)
+    {
+        _detectionRange = range;
+        _rangeCollider.radius = range;
     }
 
     private void AddEnemy(Collider enemy)
@@ -38,27 +57,6 @@ public class Detector : MonoBehaviour
         _enemiesInRange.Remove(enemy);
     }
 
-    public Collider[] FindEnemiesInRange()
-    {
-        // 방식 변경시 삭제필요
-        //Collider[] enemyColliders = Physics.OverlapSphere(_ownerTransform.position, _detectionRange, _enemyLayer);
-        //return enemyColliders;
-        RemoveDeadEnemies();
-        return _enemiesInRange.ToArray();
-    }
-
-    public Transform FindClosestEnemy()
-    {
-        Collider[] enemiesInRange = FindEnemiesInRange();
-        GameObject leadEnemy = BattleManager.Instance.GetBeInTheLead(enemiesInRange);
-        
-
-        if (leadEnemy == null)
-        {
-            return null;
-        }
-        return leadEnemy.transform;
-    }
     private bool IsEnemyLayer(int layer)
     {
         int layerBit = (1 << layer);
@@ -91,9 +89,5 @@ public class Detector : MonoBehaviour
     {
         RemoveEnemy(other);
     }
-
-    
-
-
 
 }

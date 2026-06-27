@@ -13,13 +13,14 @@ public class PepperTower : RangeTower
     protected override void Awake()
     {
         base.Awake();
-
-
     }
 
     protected override void Start()
     {
         base.Start();
+
+        // 처음 포탑이 생성될 때, 바로 사격 가능하도록
+        _currentFireTimer = _data.AttackSpeed;
     }
 
     protected override void Update()

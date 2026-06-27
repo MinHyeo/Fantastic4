@@ -94,7 +94,6 @@ public class GameDataManager : MonoBehaviour
         _dataList[dataName] = LoadJsonData<T>(tableName);
     }
 
-
     public T GetData<T>(string id) where T : GameDataBase
     {
         string type = typeof(T).Name;

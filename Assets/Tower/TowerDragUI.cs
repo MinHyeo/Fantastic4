@@ -8,19 +8,25 @@ public class TowerDragUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
 {
     [Header("타워 배치 설정")]
 
-    [SerializeField] private GameObject _towerPrefab;
-
     [SerializeField] private string _towerId;
 
-    [SerializeField] private GameObject _notice;
+    /// <summary>
+    /// 이 UI가 생성할 타워
+    /// </summary>
+    private GameObject _tower;
 
+    public void Start()
+    {
+        var towerData = GameDataManager.Instance.GetData<TowerData>(_towerId);
+        ResourceManager.Instance.LoadAsset<GameObject>(towerData.PrefabPath, tower => _tower = tower);
+    }
 
     /// <summary>
     /// 버튼에서 드래그가 시작되면 미리보기 타워를 생성합니다.
     /// </summary>
     public void OnBeginDrag(PointerEventData eventData)
     {
-        TowerManager.Instance.ShowTowerPlacementIndicator(_towerPrefab);
+        TowerManager.Instance.ShowTowerPlacementIndicator(_tower);
     }
 
     /// <summary>
@@ -33,7 +39,7 @@ public class TowerDragUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
     /// </summary>
     public void OnEndDrag(PointerEventData eventData)
     {
-        TowerBase tower = _towerPrefab.GetComponent<TowerBase>();
+        TowerBase tower = _tower.GetComponent<TowerBase>();
 
         // UI_TODO : 여기서 돈 부족하다? 설치할 수 없다 notice 열어야함
         if (TowerManager.Instance.CanPlaceTower(out Vector3 worldPos))

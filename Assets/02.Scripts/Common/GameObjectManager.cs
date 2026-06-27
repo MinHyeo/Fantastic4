@@ -97,7 +97,7 @@ public class GameObjectManager : MonoBehaviour
     {
         _objectInstanceKeyGenerator++;
         var generatedInstanceId = _objectInstanceKeyGenerator;
-        var towerObject = createdObject.GetComponent<NormalEnemy>();
+        var towerObject = createdObject.GetComponent<TowerBase>();
 
         if (towerObject != null)
         {

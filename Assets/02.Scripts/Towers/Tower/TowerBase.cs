@@ -15,17 +15,17 @@ public abstract partial class TowerBase : MonoBehaviour, IPointerClickHandler
 
     [SerializeField, ReadOnly] private Animator _animator;
 
-    [SerializeField] protected LayerMask _placementLayerMask;
+    [SerializeField, ReadOnly] protected Detector _detector;
 
-    [SerializeField] protected Detector _detector;
+    [SerializeField, ReadOnly] protected RangeVisualizer _rangeVisualizer;
+
+    [SerializeField] protected LayerMask _placementLayerMask;
 
     [SerializeField] protected Dragger _dragger;
 
     [SerializeField] protected Rotator _rotator;
 
     [SerializeField] protected TowerData _data;
-
-    [SerializeField] protected TowerRangeVisualizer _rangeVisualizer;
 
     private bool _isToggleRangeVisualizer = false;
 
@@ -37,24 +37,26 @@ public abstract partial class TowerBase : MonoBehaviour, IPointerClickHandler
 
     protected virtual void Awake()
     {
-        _renderer = GetComponentInChildren<MeshRenderer>();
-        _animator = GetComponentInChildren<Animator>();
+        _renderer = GetComponentInChildren<MeshRenderer>(true);
+        _animator = GetComponentInChildren<Animator>(true);
+        _detector = GetComponentInChildren<Detector>(true);
+        _rangeVisualizer = GetComponentInChildren<RangeVisualizer>(true);
     }
 
     public virtual void Init(string towerId)
     {
         _data = GameDataManager.Instance.GetData<TowerData>(towerId);
+
+        _detector.SetRange(_data.AttackRange);
+
+        _rangeVisualizer.SetRadius(_data.AttackRange);
+        _rangeVisualizer.SetVisible(false);
+        _isToggleRangeVisualizer = false;
     }
 
-    protected virtual void Start()
-    {
-        
-    }
+    protected virtual void Start() { }
 
-    protected virtual void Update() 
-    { 
-       
-    }
+    protected virtual void Update() { }
 
     protected virtual void OnEnable() { }
 
@@ -64,8 +66,7 @@ public abstract partial class TowerBase : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        _isToggleRangeVisualizer = _isToggleRangeVisualizer ? false : true;
-        ToggleRangeVisualizer(_isToggleRangeVisualizer);
+        ToggleRangeVisualizer();
     }
 
     public void Upgrade()
@@ -87,20 +88,14 @@ public abstract partial class TowerBase : MonoBehaviour, IPointerClickHandler
         Debug.LogWarning($"강화 후 데미지{_data.AttackDamage}, 사거리 {_data.AttackRange}, 공속 {_data.AttackSpeed}, 투사체 속도 {_data.ProjectileSpeed}");
     }
 
-    public void ToggleRangeVisualizer(bool show)
+    public void ToggleRangeVisualizer()
     {
         if (_rangeVisualizer == null)
         {
             return;
         }
 
-        if (show)
-        {
-            _rangeVisualizer.ShowRange();
-        }
-        else
-        {
-            _rangeVisualizer.HideRange();
-        }
+        _isToggleRangeVisualizer = _isToggleRangeVisualizer ? false : true;
+        _rangeVisualizer.SetVisible(_isToggleRangeVisualizer);
     }
 }

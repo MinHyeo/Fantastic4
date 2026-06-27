@@ -9,21 +9,40 @@ public class CheeseTower : TowerBase
     [SerializeField] private Transform _firePoint;
     [SerializeField] private float _rotationSpeed = 360f;
     [SerializeField] private Transform _cheeseHead;
-
-
-
-
-
     [SerializeField] private string _testTowerId; // 동작 테스트용
 
     private GameObject _projectilePrefab;
     private float _damage;
     private float _projectileSpeed;
-
     private float _lastFireTime;
     private float _fireCoolTime = 1.0f;
 
-    protected override void Start() // 동작 테스트용, 매니저 연동후 삭제
+    public override void Init(string towerId)
+    {
+        _data = GameDataManager.Instance.GetData<TowerData>(towerId);
+
+        if (_data != null)
+        {
+            _damage = _data.AttackDamage;
+            _projectileSpeed = _data.ProjectileSpeed;
+
+            if (_data.AttackSpeed > 0)
+            {
+                _fireCoolTime = (1f / _data.AttackSpeed);
+            }
+
+            if (!string.IsNullOrEmpty(_data.ProjectilePath))
+            {
+                ResourceManager.Instance.LoadAsset<GameObject>(_data.ProjectilePath, OnProjectileLoaded);
+            }
+        }
+        else
+        {
+            Debug.LogError($"[{nameof(CheeseTower)} 에러] GameDataManager에서 ID [{towerId}]에 해당하는 TowerData를 찾지 못했습니다.");
+        }
+    }
+
+    protected override void Start() 
     {
         base.Start();
     }
@@ -57,34 +76,6 @@ public class CheeseTower : TowerBase
         _lastFireTime = Time.time;
 
         _cheeseHead.DOPunchScale(Vector3.one * 0.1f, 0.2f);
-    }
-
-    
-    public override void Init(string towerId)
-    {
-        _data = GameDataManager.Instance.GetData<TowerData>(towerId);
-
-        if (_data != null)
-        {
-            _damage = _data.AttackDamage;
-            _projectileSpeed = _data.ProjectileSpeed;
-            _detector.DetectionRange = _data.AttackRange;
-
-            if (_rangeVisualizer != null)
-            {
-                _rangeVisualizer.SetRange(_data.AttackRange);
-            }
-
-            if (_data.AttackSpeed > 0)
-            {
-                _fireCoolTime = (1f / _data.AttackSpeed);
-            }
-
-            if (!string.IsNullOrEmpty(_data.ProjectilePath))
-            {
-                ResourceManager.Instance.LoadAsset<GameObject>(_data.ProjectilePath, OnProjectileLoaded);
-            }
-        }
     }
 
     private void OnProjectileLoaded(GameObject loadedPrefab)

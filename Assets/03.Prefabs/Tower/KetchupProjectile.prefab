@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4475222294416105261
+--- !u!1 &3666001059373865245
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4627456169264851907}
-  - component: {fileID: 4157766343044089753}
-  - component: {fileID: 5780693065878760128}
-  - component: {fileID: 7532254088229218473}
+  - component: {fileID: 3057516655450991036}
+  - component: {fileID: 7974686339523976576}
+  - component: {fileID: 509692456133435649}
+  - component: {fileID: 1165068798106089726}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -19,36 +19,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4627456169264851907
+--- !u!4 &3057516655450991036
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4475222294416105261}
+  m_GameObject: {fileID: 3666001059373865245}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4120910795010371559}
+  m_Father: {fileID: 9163228404029186364}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4157766343044089753
+--- !u!33 &7974686339523976576
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4475222294416105261}
+  m_GameObject: {fileID: 3666001059373865245}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &5780693065878760128
+--- !u!23 &509692456133435649
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4475222294416105261}
+  m_GameObject: {fileID: 3666001059373865245}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 46982fdc8da5e9e4d87ccd5954837a6a, type: 2}
+  - {fileID: 2100000, guid: d0cafb6d2f5620445b18de63da7626a2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -91,13 +91,13 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7532254088229218473
+--- !u!135 &1165068798106089726
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4475222294416105261}
+  m_GameObject: {fileID: 3666001059373865245}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -112,7 +112,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &4538999571047944563
+--- !u!1 &8698646797633836897
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,58 +120,59 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4120910795010371559}
-  - component: {fileID: 1108333471924021806}
-  - component: {fileID: 4795026197874928898}
+  - component: {fileID: 9163228404029186364}
+  - component: {fileID: 573534402750079936}
+  - component: {fileID: -1849516350918078173}
   m_Layer: 0
-  m_Name: Jiwon_PepperProjectile
+  m_Name: KetchupProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4120910795010371559
+--- !u!4 &9163228404029186364
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4538999571047944563}
+  m_GameObject: {fileID: 8698646797633836897}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4627456169264851907}
+  - {fileID: 3057516655450991036}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1108333471924021806
+--- !u!114 &573534402750079936
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4538999571047944563}
+  m_GameObject: {fileID: 8698646797633836897}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed7eed1f48767cb4cb1241c1e964dc7a, type: 3}
+  m_Script: {fileID: 11500000, guid: 811054711869aef4b9e3a305a8c2d287, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PepperProjectile
+  m_EditorClassIdentifier: Assembly-CSharp::KetchupProjectile
   _damage: 0
   _targetTransform: {fileID: 0}
-  _projectileSpeed: 0
+  _projectileSpeed: 10
   _areaEffectPrefab: {fileID: 0}
+  _decalSpawner: {fileID: 662034215408709516, guid: 787eefb0b35e6d342b29e91701eff2b3, type: 3}
   _targetLayerMask:
     serializedVersion: 2
-    m_Bits: 64
---- !u!54 &4795026197874928898
+    m_Bits: 0
+--- !u!54 &-1849516350918078173
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4538999571047944563}
+  m_GameObject: {fileID: 8698646797633836897}
   serializedVersion: 5
   m_Mass: 1
   m_LinearDamping: 0

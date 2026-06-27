@@ -122,6 +122,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2972930694467998619, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
   m_PrefabInstance: {fileID: 3100882431857460351}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &366272259108621828 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3323039189320256123, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
+  m_PrefabInstance: {fileID: 3100882431857460351}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a5cb4dd1a3d804b900abd2d3d3e575, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Detector
 --- !u!1 &2465056548463530802 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 665741072109295437, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
@@ -144,10 +155,10 @@ MonoBehaviour:
   _placementLayerMask:
     serializedVersion: 2
     m_Bits: 128
-  _detector: {fileID: 15393960038920961, guid: 76ee51402bde0614e89db890e100643e, type: 3}
+  _detector: {fileID: 366272259108621828}
   _dragger:
     _ownerTransform: {fileID: 8786900888816876981}
-    _fallbackDistance: 10
+    _fallbackDistance: 15
   _rotator:
     _ownerTransform: {fileID: 3817932371623114662}
     _lookAt: {fileID: 0}
@@ -156,7 +167,7 @@ MonoBehaviour:
     _followZ: 1
     _ignoreHeight: 0
     _rotationOffset: {x: 5, y: 0, z: 0}
-    _followSpeedPerSec: 10
+    _followSpeedPerSec: 20
   _data:
     Id: Tower_01_Level1
     AttackDamage: 5
