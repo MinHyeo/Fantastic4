@@ -10,6 +10,8 @@ public class TowerDragUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
 
     [SerializeField] private GameObject _towerPrefab;
 
+    [SerializeField] private string _towerId;
+
     [SerializeField] private GameObject _notice;
 
 
@@ -36,7 +38,7 @@ public class TowerDragUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
         // UI_TODO : 여기서 돈 부족하다? 설치할 수 없다 notice 열어야함
         if (TowerManager.Instance.CanPlaceTower(out Vector3 worldPos))
         {
-            TowerManager.Instance.SpawnTower(_towerPrefab, null, worldPos);
+            TowerManager.Instance.SpawnTower(_towerId, worldPos);
         }
 
         TowerManager.Instance.HideTowerPlacementIndicator();

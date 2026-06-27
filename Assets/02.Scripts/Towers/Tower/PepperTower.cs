@@ -20,8 +20,6 @@ public class PepperTower : RangeTower
     protected override void Start()
     {
         base.Start();
-
-        // _data = GameDataManager.Instance.GetData<TowerData>(_data.Id);
     }
 
     protected override void Update()

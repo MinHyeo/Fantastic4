@@ -246,12 +246,7 @@ MonoBehaviour:
   _placementLayerMask:
     serializedVersion: 2
     m_Bits: 128
-  _detector:
-    _ownerTransform: {fileID: 186343366539075919}
-    _detectionRange: 10
-    _enemyLayer:
-      serializedVersion: 2
-      m_Bits: 64
+  _detector: {fileID: 15393960038920961, guid: 76ee51402bde0614e89db890e100643e, type: 3}
   _dragger:
     _ownerTransform: {fileID: 186343366539075919}
     _fallbackDistance: 10
@@ -276,7 +271,9 @@ MonoBehaviour:
     UpgradePrice: 
     PrefabPath: 
     ProjectilePath: 
-  _rangeVisualizer: {fileID: 0}
+  _rangeVisualizer:
+    _attackRange: 0
+    _rangeCylinder: {fileID: 0}
   _firePoint: {fileID: 8731957495115959070}
   _projectilePrefab: {fileID: 1108333471924021806, guid: cb0d8b7a7fa286145b137ff116702be7, type: 3}
 --- !u!4 &8731957495115959070 stripped

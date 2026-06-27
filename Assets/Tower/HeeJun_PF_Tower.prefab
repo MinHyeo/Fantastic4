@@ -461,58 +461,58 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7017823009514507912}
     m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 499a1433e8ae69d4d84dc7dbaf6808bc, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 83258b2b4786ec84aa8fddfa3d35f7e4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 499a1433e8ae69d4d84dc7dbaf6808bc, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 83258b2b4786ec84aa8fddfa3d35f7e4, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 499a1433e8ae69d4d84dc7dbaf6808bc, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 83258b2b4786ec84aa8fddfa3d35f7e4, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 499a1433e8ae69d4d84dc7dbaf6808bc, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 83258b2b4786ec84aa8fddfa3d35f7e4, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 499a1433e8ae69d4d84dc7dbaf6808bc, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 83258b2b4786ec84aa8fddfa3d35f7e4, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 499a1433e8ae69d4d84dc7dbaf6808bc, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 83258b2b4786ec84aa8fddfa3d35f7e4, type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 499a1433e8ae69d4d84dc7dbaf6808bc, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 83258b2b4786ec84aa8fddfa3d35f7e4, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 499a1433e8ae69d4d84dc7dbaf6808bc, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 83258b2b4786ec84aa8fddfa3d35f7e4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 499a1433e8ae69d4d84dc7dbaf6808bc, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 83258b2b4786ec84aa8fddfa3d35f7e4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 499a1433e8ae69d4d84dc7dbaf6808bc, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 83258b2b4786ec84aa8fddfa3d35f7e4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 499a1433e8ae69d4d84dc7dbaf6808bc, type: 3}
+    - target: {fileID: 919132149155446097, guid: 83258b2b4786ec84aa8fddfa3d35f7e4, type: 3}
       propertyPath: m_Name
-      value: Tower_Body
+      value: tower-square-build-a
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 499a1433e8ae69d4d84dc7dbaf6808bc, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 83258b2b4786ec84aa8fddfa3d35f7e4, type: 3}
 --- !u!4 &1648511024200989168 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 499a1433e8ae69d4d84dc7dbaf6808bc, type: 3}
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 83258b2b4786ec84aa8fddfa3d35f7e4, type: 3}
   m_PrefabInstance: {fileID: 1254825855757966875}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7736896841180741660

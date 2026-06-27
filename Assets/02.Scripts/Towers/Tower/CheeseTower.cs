@@ -20,14 +20,14 @@ public class CheeseTower : TowerBase
     private float _damage;
     private float _projectileSpeed;
 
-    private TowerData _currentData;
     private float _lastFireTime;
     private float _fireCoolTime = 1.0f;
 
-    private void Start() // 동작 테스트용, 매니저 연동후 삭제
+    protected override void Start() // 동작 테스트용, 매니저 연동후 삭제
     {
-        Initialize(_testTowerId);
+        base.Start();
     }
+
     protected override void Update()
     {
         base.Update();
@@ -60,29 +60,29 @@ public class CheeseTower : TowerBase
     }
 
     
-    public void Initialize(string towerId)
+    public override void Init(string towerId)
     {
-        _currentData = GameDataManager.Instance.GetData<TowerData>(towerId);
+        _data = GameDataManager.Instance.GetData<TowerData>(towerId);
 
-        if (_currentData != null)
+        if (_data != null)
         {
-            _damage = _currentData.AttackDamage;
-            _projectileSpeed = _currentData.ProjectileSpeed;
-            _detector.DetectionRange = _currentData.AttackRange;
+            _damage = _data.AttackDamage;
+            _projectileSpeed = _data.ProjectileSpeed;
+            _detector.DetectionRange = _data.AttackRange;
 
             if (_rangeVisualizer != null)
             {
-                _rangeVisualizer.SetRange(_currentData.AttackRange);
+                _rangeVisualizer.SetRange(_data.AttackRange);
             }
 
-            if (_currentData.AttackSpeed > 0)
+            if (_data.AttackSpeed > 0)
             {
-                _fireCoolTime = (1f / _currentData.AttackSpeed);
+                _fireCoolTime = (1f / _data.AttackSpeed);
             }
 
-            if (!string.IsNullOrEmpty(_currentData.ProjectilePath))
+            if (!string.IsNullOrEmpty(_data.ProjectilePath))
             {
-                ResourceManager.Instance.LoadAsset<GameObject>(_currentData.ProjectilePath, OnProjectileLoaded);
+                ResourceManager.Instance.LoadAsset<GameObject>(_data.ProjectilePath, OnProjectileLoaded);
             }
         }
     }
@@ -90,41 +90,5 @@ public class CheeseTower : TowerBase
     private void OnProjectileLoaded(GameObject loadedPrefab)
     {
         _projectilePrefab = loadedPrefab;
-    }
-
-    public void Upgrade()
-    {
-        if(_currentData == null)
-        {
-            return;
-        }
-
-        string nextId = _currentData.UpgradeId;
-        if (string.IsNullOrEmpty(nextId))
-        {
-            Debug.Log("이미 최대 강화상태임");
-            return;
-        }
-
-        Initialize(nextId);
-       
-        Debug.LogWarning($"강화 후 데미지{_currentData.AttackDamage}, 사거리 {_currentData.AttackRange}, 공속 {_currentData.AttackSpeed}, 투사체 속도 {_currentData.ProjectileSpeed}");
-    }
-
-    public void ToggleRangeVisualizer(bool show)
-    {
-        if (_rangeVisualizer == null)
-        {
-            return;
-        }
-
-        if (show)
-        {
-            _rangeVisualizer.ShowRange();
-        }
-        else
-        {
-            _rangeVisualizer.HideRange();
-        }
     }
 }

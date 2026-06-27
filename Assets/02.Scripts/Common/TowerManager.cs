@@ -96,23 +96,20 @@ public class TowerManager : MonoBehaviour
     }
 
     // 어떤 타워 ID가 들어오든 Grid에 맞춰 생성만 해주는 통합 기능
-    public void SpawnTower(GameObject towerPrefab, string towerId, Vector3 cellPos)
+    public void SpawnTower(string towerId, Vector3 cellWorldPos)
     {
-        Vector2Int gridCell = GetGridCell(cellPos);
+        Vector2Int gridCell = GetGridCell(cellWorldPos);
         if (_occupiedGridCells.Contains(gridCell))
         {
             return;
         }
 
-        // TODO : 후에 여기에서 GameObjectManager로 연결
-        GameObject towerObject = Instantiate(towerPrefab, cellPos, Quaternion.identity);
-
-        if (towerObject != null)
+        GameObjectManager.Instance.CreateTowerObject(towerId, cellWorldPos, towerObject =>
         {
             _spawnedTowerList.Add(_towerSequenceId, towerObject);
             _occupiedGridCells.Add(gridCell);
             _towerSequenceId++;
-        }
+        }).Forget();
     }
 
     /// <summary>

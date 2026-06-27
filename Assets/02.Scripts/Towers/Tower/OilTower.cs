@@ -41,10 +41,10 @@ public class OilTower : TowerBase
             }
 
             // 특수능력 ID를 기반으로 기름 장판/디버프 능력 데이터 로드
-            //if (!string.IsNullOrEmpty(_currentData.AbilityId))
+            //if (!string.IsNullOrEmpty(_data.AbilityId))
             //{
             //    _oilSlickAura = gameObject.AddComponent<OilSlickAura>();
-            //    _oilSlickAura.Initialize(_currentData.AbilityId);
+            //    _oilSlickAura.Init(_data.AbilityId);
             //}
 
             if (_rangeObject != null)

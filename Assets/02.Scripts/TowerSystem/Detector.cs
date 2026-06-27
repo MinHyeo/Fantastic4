@@ -51,6 +51,7 @@ public class Detector : MonoBehaviour
     {
         Collider[] enemiesInRange = FindEnemiesInRange();
         GameObject leadEnemy = BattleManager.Instance.GetBeInTheLead(enemiesInRange);
+        
 
         if (leadEnemy == null)
         {

@@ -27,6 +27,8 @@ public abstract partial class TowerBase : MonoBehaviour, IPointerClickHandler
 
     [SerializeField] protected TowerRangeVisualizer _rangeVisualizer;
 
+    private bool _isToggleRangeVisualizer = false;
+
 
     public TowerData Data => _data;
 
@@ -39,12 +41,20 @@ public abstract partial class TowerBase : MonoBehaviour, IPointerClickHandler
         _animator = GetComponentInChildren<Animator>();
     }
 
+    public virtual void Init(string towerId)
+    {
+        _data = GameDataManager.Instance.GetData<TowerData>(towerId);
+    }
+
     protected virtual void Start()
     {
         
     }
 
-    protected virtual void Update() { }
+    protected virtual void Update() 
+    { 
+       
+    }
 
     protected virtual void OnEnable() { }
 
@@ -54,6 +64,43 @@ public abstract partial class TowerBase : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Test");
+        _isToggleRangeVisualizer = _isToggleRangeVisualizer ? false : true;
+        ToggleRangeVisualizer(_isToggleRangeVisualizer);
+    }
+
+    public void Upgrade()
+    {
+        if (_data == null)
+        {
+            return;
+        }
+
+        string nextId = _data.UpgradeId;
+        if (string.IsNullOrEmpty(nextId))
+        {
+            Debug.Log("이미 최대 강화상태임");
+            return;
+        }
+
+        Init(nextId);
+
+        Debug.LogWarning($"강화 후 데미지{_data.AttackDamage}, 사거리 {_data.AttackRange}, 공속 {_data.AttackSpeed}, 투사체 속도 {_data.ProjectileSpeed}");
+    }
+
+    public void ToggleRangeVisualizer(bool show)
+    {
+        if (_rangeVisualizer == null)
+        {
+            return;
+        }
+
+        if (show)
+        {
+            _rangeVisualizer.ShowRange();
+        }
+        else
+        {
+            _rangeVisualizer.HideRange();
+        }
     }
 }
