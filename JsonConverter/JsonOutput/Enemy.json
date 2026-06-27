@@ -27,7 +27,7 @@
     "Id": "Enemy_Doctor",
     "MaxHp": 75,
     "MoveSpeed": 3,
-    "AbilityId": null,
+    "AbilityId": "Ability_04",
     "RewardGold": 75,
     "PrefabPath": "Prefab/Enemy/Enemy_Doctor"
   },
