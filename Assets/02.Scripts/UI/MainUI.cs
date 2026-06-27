@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
+using Unity.Collections;
 
-public class MainUI_Tower : UIBase
+public class MainUI : UIBase
 {
     [SerializeField] private UIButton Button_Pause;
     [SerializeField] private TextMeshProUGUI Text_Wave;
@@ -43,20 +44,28 @@ public class MainUI_Tower : UIBase
         }
     }
 
+    private void InitMainUI()
+    {
+        ReadTowerListAndCreateSlot();
+
+        _currentTimer = 40.0f;
+        _isTimerRunning = true;
+        UpdateTimerText();
+    }
+
     // 타워덱 생성 부분
     private void ReadTowerListAndCreateSlot()
     {
-        //var dataList = GameDataManager.Instance.TowerDataList; // TODO : 데이터 매니저 호출 부분이 다르기에 바꿔야 함.
-        //foreach (var dataKv in dataList)
-        //{
-        //    var data = dataKv.Value;
-        //    if (data == null)
-        //    {
-        //        continue;
-        //    }
+        var towerIdList = GameDataManager.Instance.GetAllTowerIds();
+        foreach (var towerId in towerIdList)
+        {
+            if (towerId == null)
+            {
+                continue;
+            }
 
-        //    CreateTowerDeckSlot(data.Id);
-        //}
+            CreateTowerDeckSlot(towerId);
+        }
     }
 
     private void CreateTowerDeckSlot(string dataId)
@@ -73,20 +82,8 @@ public class MainUI_Tower : UIBase
             return;
         }
 
-        slotComponent.InitTowerDeck(dataId, OnClickTowerDeckSlotSelected);
+        slotComponent.InitTowerDeck(dataId);
         _deckList.Add(dataId, slotComponent);
-    }
-
-    private void OnClickTowerDeckSlotSelected(string slotDataId)
-    {
-        // TODO : 버튼 선택시 생성 부분
-        
-        foreach (var slotKv in _deckList)
-        {
-            var slot = slotKv.Value;
-            var dataId = slot.GetTowerDataId();
-            slot.SetSelected(slotDataId == dataId);
-        }
     }
 
     // 타이머 설정 부분
@@ -94,13 +91,6 @@ public class MainUI_Tower : UIBase
     {
         UIManager.Instance.OpenPopupUI(UIType.PauseUI);
         Time.timeScale = 0f;
-    }
-
-    private void InitMainUI()
-    {
-        _currentTimer = 40.0f;
-        _isTimerRunning = true;
-        UpdateTimerText();
     }
 
     private void FinalTimeUpdate()
@@ -135,6 +125,6 @@ public class MainUI_Tower : UIBase
 
     private void OnTimerFinished()
     {
-        // 타이머 종료후 이벤트 넣기
+        // TODO : 타이머 종료후 이벤트 넣기
     }
 }
