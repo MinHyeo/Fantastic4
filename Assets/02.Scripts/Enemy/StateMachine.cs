@@ -13,7 +13,7 @@ public enum StateType
 public class StateMachine
 {
     private StateType _currentState;
-    private Dictionary<StateType, IState> _stateList = new Dictionary<StateType, IState>;
+    private Dictionary<StateType, IState> _stateList = new Dictionary<StateType, IState>();
 
     public void AddState(StateType stateType, IState state)
     {
