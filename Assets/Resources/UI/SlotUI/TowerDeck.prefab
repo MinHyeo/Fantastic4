@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8475992705813173131}
   - component: {fileID: 2337295459406618734}
+  - component: {fileID: 2810966203117471790}
   m_Layer: 5
   m_Name: TowerDeck
   m_TagString: Untagged
@@ -55,6 +56,20 @@ MonoBehaviour:
   Button_Select: {fileID: 1969271371311581901}
   Image_Tower: {fileID: 1402674451656486892}
   Text_Cost: {fileID: 3188547675224320705}
+--- !u!114 &2810966203117471790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831644826643808957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d449ea558298917488055671afb0fb16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerDragUI
+  _towerPrefab: {fileID: 0}
+  _notice: {fileID: 0}
 --- !u!1 &2261412465985271286
 GameObject:
   m_ObjectHideFlags: 0
