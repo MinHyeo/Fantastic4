@@ -5,6 +5,11 @@ public class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance;
 
+    public void Awake()
+    {
+        Instance = this;
+    }
+
     public GameObject GetBeInTheLead(Collider[] enemyArray)
     {
         if (enemyArray.Length <= 0)
