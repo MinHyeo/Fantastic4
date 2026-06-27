@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public enum PlacementPreviewRenderMode
 {
@@ -6,7 +7,7 @@ public enum PlacementPreviewRenderMode
     Valid
 }
 
-public abstract partial class TowerBase : MonoBehaviour
+public abstract partial class TowerBase : MonoBehaviour, IPointerClickHandler
 {
     [Header(nameof(TowerBase))]
 
@@ -36,22 +37,23 @@ public abstract partial class TowerBase : MonoBehaviour
     {
         _renderer = GetComponentInChildren<MeshRenderer>();
         _animator = GetComponentInChildren<Animator>();
-        _detector ??= new();
     }
 
     protected virtual void Start()
     {
-
+        
     }
+
+    protected virtual void Update() { }
 
     protected virtual void OnEnable() { }
 
     protected virtual void OnDisable() { }
 
-    protected virtual void Update()
-    {
-        _detector.FindEnemiesInRange();
-    }
-
     protected virtual void OnDrawGizmos() { }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Debug.Log("Test");
+    }
 }
