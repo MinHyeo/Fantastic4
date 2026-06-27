@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-public class TowerRangeVisualizer
+[Serializable] public class TowerRangeVisualizer
 {
     [SerializeField] private float _attackRange;
     [SerializeField] private GameObject _rangeCylinder;
 
-    public TowerRangeVisualizer(float attackRange, GameObject rangeCylinder)
+    public TowerRangeVisualizer(float attackRange, GameObject rangeCylinder) // Todo 다른 타워와 확인후 제거 필요
     {
         _rangeCylinder = rangeCylinder;
         SetRange(attackRange);

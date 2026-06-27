@@ -8,7 +8,6 @@ public class CheeseTower : TowerBase
     [SerializeField] private Transform _headBase;
     [SerializeField] private Transform _firePoint;
     [SerializeField] private float _rotationSpeed = 360f;
-    [SerializeField] private float _upgradeScaleMultiplier = 1.2f;
     [SerializeField] private Transform _cheeseHead;
 
 
@@ -71,15 +70,14 @@ public class CheeseTower : TowerBase
             _projectileSpeed = _currentData.ProjectileSpeed;
             _detector.DetectionRange = _currentData.AttackRange;
 
+            if (_rangeVisualizer != null)
+            {
+                _rangeVisualizer.SetRange(_currentData.AttackRange);
+            }
+
             if (_currentData.AttackSpeed > 0)
             {
                 _fireCoolTime = (1f / _currentData.AttackSpeed);
-            }
-
-            // 임시 ProjectilePath 하드코딩, 엑셀 데이터 채워지면 삭제해야함
-            if (string.IsNullOrEmpty(_currentData.ProjectilePath))
-            {
-                _currentData.ProjectilePath = "Prefab/Projectile/cheese";
             }
 
             if (!string.IsNullOrEmpty(_currentData.ProjectilePath))
@@ -109,18 +107,24 @@ public class CheeseTower : TowerBase
         }
 
         Initialize(nextId);
-        ApplyUpgradeVisual();
-        Debug.LogWarning($"강화 후 데미지{_currentData.AttackDamage}, 사거리 {_currentData.AttackRange}");
+       
+        Debug.LogWarning($"강화 후 데미지{_currentData.AttackDamage}, 사거리 {_currentData.AttackRange}, 공속 {_currentData.AttackSpeed}, 투사체 속도 {_currentData.ProjectileSpeed}");
     }
 
-    private void ApplyUpgradeVisual()
+    public void ToggleRangeVisualizer(bool show)
     {
-        if (_headBase == null)
+        if (_rangeVisualizer == null)
         {
             return;
         }
 
-        _headBase.localScale *= _upgradeScaleMultiplier;
-                   
+        if (show)
+        {
+            _rangeVisualizer.ShowRange();
+        }
+        else
+        {
+            _rangeVisualizer.HideRange();
+        }
     }
 }
