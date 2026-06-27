@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour
 
     public virtual void Initialize(float damage, Transform targetTransform, float projectileSpeed)
     {
-        transform.DORotate(new Vector3(0, 360, 0), 1f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart);
+        transform.DORotate(new Vector3(0, 360, 0), 0.3f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Incremental).SetEase(Ease.Linear).SetLink(gameObject);
 
         _damage = damage;
         _targetTransform = targetTransform;
@@ -24,6 +24,12 @@ public class Projectile : MonoBehaviour
 
     protected virtual void Move()
     {
+        if (_targetTransform == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         transform.position = Vector3.MoveTowards(transform.position, _targetTransform.position, (_projectileSpeed * Time.deltaTime));
         float distance = Vector3.Distance(_targetTransform.position, transform.position);
         if (distance < 0.1f)
