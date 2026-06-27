@@ -7,7 +7,7 @@ public class NormalEnemy : EnemyBase
     [SerializeField] private float _rotateSpeed = 360f; // 초당 회전 각도
 
     private float _moveSpeed;
-    private int _courseIndex = 0;
+    //private int _courseIndex = 0;
     private Vector3 _targetPosition;
     private bool _isMoveEnd = false; // 임시
 
