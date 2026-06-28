@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "Id": "Enemy_01",
     "MaxHp": 50,
@@ -18,7 +18,7 @@
   {
     "Id": "Enemy_03",
     "MaxHp": 75,
-    "MoveSpeed": 2.5,
+    "MoveSpeed": 4.3,
     "AbilityId": null,
     "RewardGold": 75,
     "PrefabPath": "Prefab/Enemy/Enemy_03"
