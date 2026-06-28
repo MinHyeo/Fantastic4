@@ -12,7 +12,7 @@ public class PharmacistEnemy : EnemyBase
 
     protected override void Die()
     {
-        _ability.Employ();
+        _ability.Employ(_enemyData.AbilityId);
         base.Die();
     }
 }

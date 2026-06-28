@@ -135,6 +135,41 @@ public class GameObjectManager : MonoBehaviour
         _activeObjectList.Add(createdObject);
     }
 
+    // 어빌리티 소환
+    public async UniTaskVoid CreateAbilityObject(string abilityId, Vector3 spawnSpot)
+    {
+        // 데이터 유무 확인
+        var abilityData = GameDataManager.Instance.GetData<AbilityData>(abilityId);
+        if (abilityData == null)
+            return;
+
+        // ObjectPool에 존재하는지 확인
+        // 없으면 Queue 초기화
+        GameObject stageObject = GetGameObjectInObjectPool(abilityId);
+        if (stageObject == null)
+        {
+            stageObject = await ResourceManager.Instance.InstantiateAsync(abilityData.PrefabPath, _root, true);
+        }
+        stageObject.SetActive(true);
+        stageObject.transform.position = spawnSpot;
+        AddAbilityObjectOnCreate(stageObject, abilityData);
+    }
+
+    private void AddAbilityObjectOnCreate(GameObject createdObject, AbilityData abilityData)
+    {
+        _objectInstanceKeyGenerator++;
+        var generatedInstanceId = _objectInstanceKeyGenerator;
+
+        var fieldObject = createdObject.GetComponent<FieldBase>();
+
+        if (fieldObject != null)
+        {
+            fieldObject.Init(abilityData);
+            _activeObjectList.Add(createdObject);
+        }
+        _activeObjectList.Add(createdObject);
+    }
+
     // 오브젝트 반환
     public void ReturnObjectPool(GameObject returnObject)
     {
@@ -147,12 +182,6 @@ public class GameObjectManager : MonoBehaviour
         _activeObjectList.Remove(returnObject);
         string objectName = returnObject.name;
         _objectPool[objectName].Enqueue(gameObject);
-    }
-
-    // 전체 오브젝트 삭제
-    public void RemoveObjectPool(GameObject removeObject)
-    {
-        
     }
 
     public void DestroyAllObjectPool()

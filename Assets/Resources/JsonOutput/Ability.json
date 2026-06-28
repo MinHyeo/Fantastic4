@@ -5,7 +5,7 @@
     "NumbericalValue": 10,
     "ActiveTime": 3,
     "EffectRound": 0,
-    "PrefabPath": "Prefab/Ability/SaltDebuff"
+    "PrefabPath": null
   },
   {
     "Id": "Ability_02",
@@ -13,7 +13,7 @@
     "NumbericalValue": 0,
     "ActiveTime": 5,
     "EffectRound": 1,
-    "PrefabPath": "Prefab/Ability/KetchupField"
+    "PrefabPath": "Prefabs/Ability/KetchupField"
   },
   {
     "Id": "Ability_03",
@@ -21,7 +21,7 @@
     "NumbericalValue": 20,
     "ActiveTime": 4,
     "EffectRound": 2,
-    "PrefabPath": "Prefab/Ability/OilField"
+    "PrefabPath": "Prefabs/Ability/OilField"
   },
   {
     "Id": "Ability_04",
@@ -29,6 +29,6 @@
     "NumbericalValue": 10,
     "ActiveTime": 5,
     "EffectRound": 3,
-    "PrefabPath": "Prefab/Ability/HealField"
+    "PrefabPath": "Prefabs/Ability/HealField"
   }
 ]

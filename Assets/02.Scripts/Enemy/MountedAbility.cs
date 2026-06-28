@@ -4,7 +4,7 @@ public abstract class MountedAbility : AbilityBase
 {
     protected string _targetTag;
 
-    public override void Employ()
+    public override void Employ(string abilityId)
     {
 
     }

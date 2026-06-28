@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-public abstract class AbilityBase : MonoBehaviour
+public abstract class AbilityBase
 {
     protected string _targetType;
 
-    public abstract void Employ();
+    public abstract void Employ(string abilityId);
 }
