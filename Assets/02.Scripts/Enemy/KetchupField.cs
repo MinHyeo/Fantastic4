@@ -1,27 +1,27 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class HealField : FieldBase
+public class KetchupField : FieldBase
 {
     protected override void ApplyAbility()
     {
-        StartCoroutine(CoHealingField());
+        StartCoroutine(CoKetchupSlowed());
     }
 
-    private IEnumerator CoHealingField()
+    private IEnumerator CoKetchupSlowed()
     {
         float activeTime = _abilityData.ActiveTime;
 
         while (activeTime > 0)
         {
-            foreach(var entity in _onFieldEntityList)
+            foreach (var entity in _onFieldEntityList)
             {
                 var enemyScript = entity.GetComponent<EnemyBase>();
                 if (enemyScript == null)
                     continue;
 
-                float healValue = _abilityData.NumbericalValue;
-                //enemyScript.HealHealth(healValue);
+                float slowPercent = _abilityData.PrecentValue;
+                //enemyScript.Slowe(slowPercent);
             }
             yield return _tickRate;
 
@@ -30,4 +30,5 @@ public class HealField : FieldBase
 
         GameObjectManager.Instance.ReturnObjectPool(this.gameObject);
     }
+
 }

@@ -48,6 +48,7 @@ public class AbilityData : GameDataBase
     public float NumbericalValue;
     public float ActiveTime;
     public float EffectRound;
+    public string PrefabPath;
 }
 
 [System.Serializable]

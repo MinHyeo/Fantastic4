@@ -1,27 +1,27 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class HealField : FieldBase
+public class OilField : FieldBase
 {
     protected override void ApplyAbility()
     {
-        StartCoroutine(CoHealingField());
+        StartCoroutine(CoOilDamaged());
     }
 
-    private IEnumerator CoHealingField()
+    private IEnumerator CoOilDamaged()
     {
         float activeTime = _abilityData.ActiveTime;
 
         while (activeTime > 0)
         {
-            foreach(var entity in _onFieldEntityList)
+            foreach (var entity in _onFieldEntityList)
             {
                 var enemyScript = entity.GetComponent<EnemyBase>();
                 if (enemyScript == null)
                     continue;
 
-                float healValue = _abilityData.NumbericalValue;
-                //enemyScript.HealHealth(healValue);
+                float damageValue = _abilityData.NumbericalValue;
+                enemyScript.OnDamaged(damageValue);
             }
             yield return _tickRate;
 
