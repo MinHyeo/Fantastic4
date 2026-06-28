@@ -14,26 +14,11 @@ public class UIButton : MonoBehaviour
     {
         // 1-2) 이 오브젝트가 생성될 때, 한번 컴포넌트를 찾아서 캐싱하자
         InitUIButton();
-        SetDefaultUI();
-    }
-
-    private void OnEnable()
-    {
-        BindOnClickButtonEvent(OnClickSetSelectUI);
     }
 
     private void OnDisable()
     {
         Button_Base.onClick.RemoveAllListeners();
-    }
-
-
-    private void SetDefaultUI()
-    {
-        if(Image_Select != null)
-        {
-            Image_Select.gameObject.SetActive(false);
-        }
     }
 
     private void InitUIButton()
@@ -73,14 +58,5 @@ public class UIButton : MonoBehaviour
         if (Text_Base == null) return;
 
         Text_Base.text = buttonStr;
-    }
-
-    private void OnClickSetSelectUI()
-    {
-        if(Image_Select != null)
-        {
-            bool currentActive = Image_Select.gameObject.activeSelf;
-            Image_Select.gameObject.SetActive(!currentActive);
-        }
     }
 }

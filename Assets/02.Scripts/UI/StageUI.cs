@@ -18,43 +18,34 @@ public class StageUI : UIBase
 
     private void RefreshStageButton()
     {
-        int clearStage = PlayerPrefs.GetInt("ClearStage", 0);
+        if (GameManager.Instance == null)
+        {
+            return;
+        }
 
-        int openStageIndex = clearStage;
+        int unlockedStage = GameManager.Instance.CurrentUnlockedStage;
 
         for (int i = 0; i < Button_Stage.Length; i++)
         {
-            Button buttonComponent = Button_Stage[i].GetComponent<Button>();
-            Image imageComponent = Button_Stage[i].GetComponent<Image>();
-
-            if (i <= openStageIndex)
+            if (Button_Stage[i] == null)
             {
-                if (buttonComponent != null)
-                {
-                    buttonComponent.interactable = true;
-                }
-                if (imageComponent != null)
-                {
-                    imageComponent.color = UnLockColor;
-                }
-
-                StageButton info = Button_Stage[i].GetComponent<StageButton>();
-                if (info == null)
-                {
-                    info = Button_Stage[i].gameObject.AddComponent<StageButton>();
-                }
-
-                info.InitStageButton(i + 1, this);
+                continue;
             }
-            else
+
+            int stageNumber = i + 1;
+
+            StageButton stageButton = Button_Stage[i].GetComponent<StageButton>();
+            if(stageButton != null)
             {
-                if (buttonComponent != null)
+                stageButton.InitStageButton(stageNumber, this);
+
+                if (stageNumber > unlockedStage)
                 {
-                    buttonComponent.interactable = false;
+                    stageButton.SetLockStage(true, LockColor);
                 }
-                if (imageComponent != null)
+                else
                 {
-                    imageComponent.color = LockColor;
+                    stageButton.SetLockStage(false, UnLockColor);
                 }
             }
         }
@@ -62,7 +53,12 @@ public class StageUI : UIBase
 
     public void OnClickStageOpen(int stageNumber)
     {
-        // TODO : 스테이지 시작 로직 넣기
+        string stageId = $"Stage_{stageNumber:D2}";
+
+        StageManager.Instance.LoadStage(stageId);
+
+        //UIManager.Instance.OpenUI(UIRootType.MainUI, UIType.MainUI);
+        UIManager.Instance.CloseContentUI(UIType.StageUI);
     }
 
     private void OnClickReturnLobby()

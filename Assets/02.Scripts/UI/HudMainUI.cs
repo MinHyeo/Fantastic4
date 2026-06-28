@@ -3,37 +3,79 @@ using UnityEngine;
 
 public class HudMainUI : UIBase
 {
-    [SerializeField] private GameObject Prefab_HudSlot;
+    [SerializeField] private GameObject Prefab_HudHpSlot;
+    [SerializeField] private GameObject Prefab_HudTowerLevelSlot;
     [SerializeField] private Transform Transform_SlotRoot;
 
-    private Dictionary<int, HudSlotUI> _hudSlotList = new Dictionary<int, HudSlotUI> ();
+    private Dictionary<int, Hud_HpSlotUI> _hudHpSlotList = new Dictionary<int, Hud_HpSlotUI> ();
+    private Dictionary<int, Hud_TowerLevelSlotUI> _hudTowerLevelSlotList = new Dictionary<int, Hud_TowerLevelSlotUI>();
 
-    public void AddHudSlot(int instanceId, Transform targetTransform)
+    public void AddHudHpSlot(int instanceId, Transform targetTransform)
     {
-        CreateHudSlot(instanceId, targetTransform);
+        CreateHudHpSlot(instanceId, targetTransform);
     }
 
-    private void CreateHudSlot(int instanceId, Transform targetTransform)
+    private void CreateHudHpSlot(int instanceId, Transform targetTransform)
     {
-        var gObj = Instantiate(Prefab_HudSlot, Transform_SlotRoot);
-        if (gObj == null) return;
+        var gObj = Instantiate(Prefab_HudHpSlot, Transform_SlotRoot);
+        if (gObj == null)
+        {
+            return;
+        }
 
-        var slotComponent = gObj.GetComponent<HudSlotUI>();
-        if (slotComponent == null) return;
+        var slotComponent = gObj.GetComponent<Hud_HpSlotUI>();
+        if (slotComponent == null)
+        {
+            return;
+        }
 
         slotComponent.InitSlot(instanceId, targetTransform);
 
-        _hudSlotList.Add(instanceId, slotComponent);
+        _hudHpSlotList.Add(instanceId, slotComponent);
     }
-
-    public void RemoveHudSlot(int instanceId)
+    public void RemoveHudHpSlot(int instanceId)
     {
-        if (_hudSlotList.ContainsKey(instanceId) == true)
+        if (_hudHpSlotList.ContainsKey(instanceId) == true)
         {
-            var slot = _hudSlotList[instanceId];
+            var slot = _hudHpSlotList[instanceId];
 
             Destroy(slot.gameObject);
-            _hudSlotList.Remove(instanceId);
+            _hudHpSlotList.Remove(instanceId);
+        }
+    }
+
+    public void AddHudTowerLevelSlot(int instanceId, Transform targetTransform)
+    {
+        CreateHudTowerLevelSlot(instanceId, targetTransform);
+    }
+
+    private void CreateHudTowerLevelSlot(int instanceId, Transform targetTransform)
+    {
+        var gObj = Instantiate(Prefab_HudTowerLevelSlot, Transform_SlotRoot);
+        if (gObj == null) 
+        {
+            return;
+        }
+
+        var slotComponent = gObj.GetComponent<Hud_TowerLevelSlotUI>();
+        if (slotComponent == null)
+        {
+            return;
+        }
+
+        slotComponent.InitSlot(instanceId, targetTransform);
+
+        _hudTowerLevelSlotList.Add(instanceId, slotComponent);
+    }
+
+    public void RemoveHudTowerLevelSlot(int instanceId)
+    {
+        if (_hudTowerLevelSlotList.ContainsKey(instanceId) == true)
+        {
+            var slot = _hudTowerLevelSlotList[instanceId];
+
+            Destroy(slot.gameObject);
+            _hudTowerLevelSlotList.Remove(instanceId);
         }
     }
 }

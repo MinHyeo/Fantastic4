@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Cysharp.Threading.Tasks;
 
 public class TowerDeck : MonoBehaviour
 {
@@ -9,17 +10,11 @@ public class TowerDeck : MonoBehaviour
     [SerializeField] private Image Image_Tower;
     [SerializeField] private TextMeshProUGUI Text_Cost;
 
-    private event Action<string> _onclickTowerDeck;
     private string _towerDataId;
 
     private void OnEnable()
     {
-        Button_Select.BindOnClickButtonEvent(OnClickTowerDeck);
-    }
-
-    private void OnDisable()
-    {
-        _onclickTowerDeck = null;
+        
     }
 
     public string GetTowerDataId()
@@ -27,35 +22,26 @@ public class TowerDeck : MonoBehaviour
         return _towerDataId;
     }
 
-    public void OnClickTowerDeck()
+    public void InitTowerDeck(string towerId)
     {
-        _onclickTowerDeck?.Invoke(_towerDataId);
-    }
+        var entityData = GameDataManager.Instance.GetData<EntityData>(towerId);
+        if (entityData == null)
+        {
+            return;
+        }
 
-    public void InitTowerDeck(string dataId, Action<string> OnClickCallback)
-    {
-        //var towerData = GameDataManager.Instance.GetTowerData(dataId);
-        //if (towerData == null)
-        //{
-        //    return;
-        //}
+        string iconPath = entityData.IconPath;
+        if (string.IsNullOrEmpty(iconPath) == true)
+        {
+            return;
+        }
+        GameUtil.LoadAndSetSpriteImage(Image_Tower, iconPath).Forget();
 
-        //Text_Cost.text = towerData.cost;
-        //string iconPath = towerData.IconPath;
-        //if (string.IsNullOrEmpty(iconPath) == true)
-        //{
-        //    return;
-        //}
+        string Id = entityData.Id;
+        var towerData = GameDataManager.Instance.GetData<TowerData>(Id);
 
-        //GameUtil.LoadAndSetSpriteImage(Image_Tower, iconPath).Forget();
-
-        //_towerDataId = dataId;
-
-        _onclickTowerDeck += OnClickCallback;
-    }
-
-    public void SetSelected(bool isSelect)
-    {
-
+        int price = towerData.BuildPrice;
+        Text_Cost.text = price.ToString();
+        _towerDataId = towerId;
     }
 }

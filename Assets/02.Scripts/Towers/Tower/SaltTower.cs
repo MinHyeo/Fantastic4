@@ -9,13 +9,8 @@ public class SaltTower : TowerBase
     [Header("Projectile Settings")]
     [SerializeField] private GameObject _projectilePrefab;
 
-    [Header("Rotation Settings")]
-    [SerializeField] private Transform _headTransform;
-
     [SerializeField] private string _testTowerId;
 
-    private TowerRangeVisualizer _rangeVisualizer;
-    private TowerData _currentData;
     private SaltDebuff _saltDebuff;
 
     private float _lastFireTime;
@@ -23,42 +18,30 @@ public class SaltTower : TowerBase
     private float _damage;
     private float _projectileSpeed;
 
-    private void Start()
+    public override void Init(string towerId)
     {
-        Initialize(_testTowerId);
-    }
+        _data = GameDataManager.Instance.GetData<TowerData>(towerId);
 
-    public void Initialize(string towerId)
-    {
-        _currentData = GameDataManager.Instance.GetData<TowerData>(towerId);
-
-        if (_currentData != null)
+        if (_data != null)
         {
-            _damage = _currentData.AttackDamage;
-            _projectileSpeed = _currentData.ProjectileSpeed;
-            _detector.DetectionRange = _currentData.AttackRange;
+            _damage = _data.AttackDamage;
+            _projectileSpeed = _data.ProjectileSpeed;
 
-            if (_currentData.AttackSpeed > 0)
+            if (_data.AttackSpeed > 0)
             {
-                _fireCoolTime = 1f / _currentData.AttackSpeed;
+                _fireCoolTime = 1f / _data.AttackSpeed;
             }
 
             // 특수능력 ID를 기반으로 소금 디버프 데이터 로드
-            if (!string.IsNullOrEmpty(_currentData.AbilityId))
+            if (!string.IsNullOrEmpty(_data.AbilityId))
             {
                 _saltDebuff = gameObject.AddComponent<SaltDebuff>();
-                _saltDebuff.Initialize(_currentData.AbilityId);
-            }
-
-            if (_rangeObject != null)
-            {
-                _rangeVisualizer = new TowerRangeVisualizer(_currentData.AttackRange, _rangeObject);
-                _rangeVisualizer.HideRange();
+                _saltDebuff.Initialize(_data.AbilityId);
             }
         }
         else
         {
-            Debug.LogError($"[SaltTower 에러] GameDataManager에서 ID [{towerId}]에 해당하는 TowerData를 찾지 못했습니다.");
+            Debug.LogError($"[{nameof(SaltTower)} 에러] GameDataManager에서 ID [{towerId}]에 해당하는 TowerData를 찾지 못했습니다.");
         }
     }
 
@@ -78,27 +61,11 @@ public class SaltTower : TowerBase
             return;
         }
 
-        // 인스펙터에 지정한 머리 오브젝트가 없다면 예외 방지를 위해 본체를 기본값으로 사용
-        Transform rotationTarget = _headTransform != null ? _headTransform : transform;
-
         Transform targetEnemy = _detector.FindClosestEnemy();
 
-        if (targetEnemy == null)
-        {
-            return;
-        }
-
-        // 지정된 오브젝트(머리)와 적의 위치 차이 계산 (Y축 값을 같게 만들어 위아래로 꺾이는 현상 방지)
-        Vector3 direction = targetEnemy.position - rotationTarget.position;
-        direction.y = 0f;
-
-        if (direction.sqrMagnitude > 0.001f)
-        {
-            // 적을 바라보는 쿼터니언 각도 계산
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-
-            rotationTarget.rotation = Quaternion.Slerp(rotationTarget.rotation, targetRotation, Time.deltaTime * 10f);
-        }
+        // Rotator 클래스에게 실시간 타겟을 세팅하고 회전 연산 위임
+        _rotator.SetLookAt(targetEnemy);
+        _rotator.Rotate(Time.deltaTime);
     }
 
     private void TryAttackTarget()
@@ -130,22 +97,5 @@ public class SaltTower : TowerBase
             _damage,
             _projectileSpeed
         );
-    }
-
-    public void ToggleRangeVisualizer(bool show)
-    {
-        if (_rangeVisualizer == null)
-        {
-            return;
-        }
-
-        if (show)
-        {
-            _rangeVisualizer.ShowRange();
-        }
-        else
-        {
-            _rangeVisualizer.HideRange();
-        }
     }
 }

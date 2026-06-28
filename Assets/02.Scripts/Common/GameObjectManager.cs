@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.CompilerServices;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -72,7 +73,7 @@ public class GameObjectManager : MonoBehaviour
     }
 
     // 타워 소환
-    public async UniTaskVoid CreateTowerObject(string towerId, Vector3 spawnSpot)
+    public async UniTaskVoid CreateTowerObject(string towerId, Vector3 spawnSpot, Action<GameObject> onComplete)
     {
         // 데이터 유무 확인
         var towerData = GameDataManager.Instance.GetData<TowerData>(towerId);
@@ -89,13 +90,14 @@ public class GameObjectManager : MonoBehaviour
         towerObject.SetActive(true);
         towerObject.transform.position = spawnSpot;
         AddTowerObjectOnCreate(towerObject, towerId);
+        onComplete?.Invoke(towerObject);
     }
 
     private void AddTowerObjectOnCreate(GameObject createdObject, string towerId)
     {
         _objectInstanceKeyGenerator++;
         var generatedInstanceId = _objectInstanceKeyGenerator;
-        var towerObject = createdObject.GetComponent<NormalEnemy>();
+        var towerObject = createdObject.GetComponent<TowerBase>();
 
         if (towerObject != null)
         {

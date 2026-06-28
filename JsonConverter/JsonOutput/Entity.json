@@ -1,72 +1,72 @@
 [
   {
-    "Id": "Tower_01",
+    "Id": "Tower_Cheese_Level1",
     "Name": "치즈타워",
     "Description": "치즈타워다( 일반)",
     "EntityType": "Tower",
-    "IconPath": "Sprite/Icon/Tower_01_Icon"
+    "IconPath": "Sprite/Icon/Tower_Cheese_Icon"
   },
   {
-    "Id": "Tower_02",
+    "Id": "Tower_Pepper_Level1",
     "Name": "후추 기관총 타워",
     "Description": "후추 기관총 타워다",
     "EntityType": "Tower",
-    "IconPath": "Sprite/Icon/Tower_02_Icon"
+    "IconPath": "Sprite/Icon/Tower_Pepper_Icon"
   },
   {
-    "Id": "Tower_03",
+    "Id": "Tower_Salt_Level1",
     "Name": "소금 타워",
     "Description": "소금 타워다",
     "EntityType": "Tower",
-    "IconPath": "Sprite/Icon/Tower_03_icon"
+    "IconPath": "Sprite/Icon/Tower_Salt_Icon"
   },
   {
-    "Id": "Tower_04",
+    "Id": "Tower_Ketchup_Level1",
     "Name": "케찹타워 ",
     "Description": "케찹 타워다",
     "EntityType": "Tower",
-    "IconPath": "Sprite/Icon/Tower_04_icon"
+    "IconPath": "Sprite/Icon/Tower_Ketchup_Icon"
   },
   {
-    "Id": "Tower_05",
+    "Id": "Tower_Oil_Level1",
     "Name": "기름타워",
     "Description": "기름 타워다",
     "EntityType": "Tower",
-    "IconPath": "Sprite/Icon/Tower_05_icon"
+    "IconPath": "Sprite/Icon/Tower_Oil_Icon"
   },
   {
-    "Id": "Enemy_01",
+    "Id": "Enemy_Normal",
     "Name": "일반 노움",
     "Description": "일반",
     "EntityType": "Enemy",
-    "IconPath": "Sprite/Icon/Enemy_01_icon"
+    "IconPath": "Sprite/Icon/Enemy_Noraml_Icon"
   },
   {
-    "Id": "Enemy_02",
+    "Id": "Enemy_Cup",
     "Name": "컵 노움",
     "Description": "체력이 많은 적 ",
     "EntityType": "Enemy",
-    "IconPath": "Sprite/Icon/Enemy_02_icon"
+    "IconPath": "Sprite/Icon/Enemy_Cup_Icon"
   },
   {
-    "Id": "Enemy_03",
+    "Id": "Enemy_Crazgy",
     "Name": "미친 노움",
     "Description": "이속 빠른 적",
     "EntityType": "Enemy",
-    "IconPath": "Sprite/Icon/Enemy_03_icon"
+    "IconPath": "Sprite/Icon/Enemy_Crazy_Icon"
   },
   {
-    "Id": "Enemy_04",
+    "Id": "Enemy_Doctor",
     "Name": "약사 노움",
     "Description": "죽으면 노움에게 이로운 버프 설치 적",
     "EntityType": "Enemy",
-    "IconPath": "Sprite/Icon/Enemy_04_icon"
+    "IconPath": "Sprite/Icon/Enemy_Doctor_Icon"
   },
   {
-    "Id": "Enemy_05",
+    "Id": "Enemy_Special",
     "Name": "특수부대 노움",
     "Description": "출발점이 아닌 중간에 내림",
     "EntityType": "Enemy",
-    "IconPath": "Sprite/Icon/Enemy_05_icon"
+    "IconPath": "Sprite/Icon/Enemy_Special_Icon"
   }
 ]

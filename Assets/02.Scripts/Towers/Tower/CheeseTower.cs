@@ -8,27 +8,45 @@ public class CheeseTower : TowerBase
     [SerializeField] private Transform _headBase;
     [SerializeField] private Transform _firePoint;
     [SerializeField] private float _rotationSpeed = 360f;
-    [SerializeField] private float _upgradeScaleMultiplier = 1.2f;
     [SerializeField] private Transform _cheeseHead;
-
-
-
-
-
     [SerializeField] private string _testTowerId; // 동작 테스트용
 
     private GameObject _projectilePrefab;
     private float _damage;
     private float _projectileSpeed;
-
-    private TowerData _currentData;
     private float _lastFireTime;
     private float _fireCoolTime = 1.0f;
 
-    private void Start() // 동작 테스트용, 매니저 연동후 삭제
+    public override void Init(string towerId)
     {
-        Initialize(_testTowerId);
+        _data = GameDataManager.Instance.GetData<TowerData>(towerId);
+
+        if (_data != null)
+        {
+            _damage = _data.AttackDamage;
+            _projectileSpeed = _data.ProjectileSpeed;
+
+            if (_data.AttackSpeed > 0)
+            {
+                _fireCoolTime = (1f / _data.AttackSpeed);
+            }
+
+            if (!string.IsNullOrEmpty(_data.ProjectilePath))
+            {
+                ResourceManager.Instance.LoadAsset<GameObject>(_data.ProjectilePath, OnProjectileLoaded);
+            }
+        }
+        else
+        {
+            Debug.LogError($"[{nameof(CheeseTower)} 에러] GameDataManager에서 ID [{towerId}]에 해당하는 TowerData를 찾지 못했습니다.");
+        }
     }
+
+    protected override void Start() 
+    {
+        base.Start();
+    }
+
     protected override void Update()
     {
         base.Update();
@@ -60,67 +78,8 @@ public class CheeseTower : TowerBase
         _cheeseHead.DOPunchScale(Vector3.one * 0.1f, 0.2f);
     }
 
-    
-    public void Initialize(string towerId)
-    {
-        _currentData = GameDataManager.Instance.GetData<TowerData>(towerId);
-
-        if (_currentData != null)
-        {
-            _damage = _currentData.AttackDamage;
-            _projectileSpeed = _currentData.ProjectileSpeed;
-            _detector.DetectionRange = _currentData.AttackRange;
-
-            if (_currentData.AttackSpeed > 0)
-            {
-                _fireCoolTime = (1f / _currentData.AttackSpeed);
-            }
-
-            // 임시 ProjectilePath 하드코딩, 엑셀 데이터 채워지면 삭제해야함
-            if (string.IsNullOrEmpty(_currentData.ProjectilePath))
-            {
-                _currentData.ProjectilePath = "Prefab/Projectile/cheese";
-            }
-
-            if (!string.IsNullOrEmpty(_currentData.ProjectilePath))
-            {
-                ResourceManager.Instance.LoadAsset<GameObject>(_currentData.ProjectilePath, OnProjectileLoaded);
-            }
-        }
-    }
-
     private void OnProjectileLoaded(GameObject loadedPrefab)
     {
         _projectilePrefab = loadedPrefab;
-    }
-
-    public void Upgrade()
-    {
-        if(_currentData == null)
-        {
-            return;
-        }
-
-        string nextId = _currentData.UpgradeId;
-        if (string.IsNullOrEmpty(nextId))
-        {
-            Debug.Log("이미 최대 강화상태임");
-            return;
-        }
-
-        Initialize(nextId);
-        ApplyUpgradeVisual();
-        Debug.LogWarning($"강화 후 데미지{_currentData.AttackDamage}, 사거리 {_currentData.AttackRange}");
-    }
-
-    private void ApplyUpgradeVisual()
-    {
-        if (_headBase == null)
-        {
-            return;
-        }
-
-        _headBase.localScale *= _upgradeScaleMultiplier;
-                   
     }
 }

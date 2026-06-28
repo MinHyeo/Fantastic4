@@ -84,7 +84,7 @@ public class UIManager : MonoBehaviour
         if (_createdUIDic.ContainsKey(uiType) == false)
         {
             string path = this.GetUIPath(uiRootType, uiType);
-            GameObject loadedObj = (GameObject)Resources.Load(path);
+            GameObject loadedObj = Resources.Load<GameObject>(path);
             Transform root = GetRootTransform(uiRootType);
             GameObject gObj = Instantiate(loadedObj, root);
             if (gObj != null)
