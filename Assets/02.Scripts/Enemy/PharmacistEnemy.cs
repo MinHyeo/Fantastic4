@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-public class PharmacistEnemy : NormalEnemy
+public class PharmacistEnemy : EnemyBase
 {
     private AbilityBase _ability;
 
-    public new void Init(string enemyId)
+    public void Init(string enemyId)
     {
         base.Init(enemyId);
         _ability = new HealAbility();
