@@ -5,7 +5,7 @@ public class HealAbility : MountedAbility
 {
     public override void Employ(string abilityId)
     {
-        base.Employ();
+        base.Employ(abilityId);
 
         GameObjectManager.Instance.CreateAbilityObject(abilityId, Vector3.zero).Forget();
     }
