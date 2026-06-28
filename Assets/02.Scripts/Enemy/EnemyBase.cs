@@ -10,6 +10,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected EnemyData _enemyData;
     protected float _currentHp;
+    protected float _damageBonus;
 
     [SerializeField] private float _arriveDistance = 0.4f; // 도착판정범위
     [SerializeField] private float _rotateSpeed = 360f; // 초당 회전 각도
@@ -26,6 +27,7 @@ public abstract class EnemyBase : MonoBehaviour
 
         _enemyData = enemyData;
         _currentHp = _enemyData.MaxHp;
+        _damageBonus = 0f;
         _targetPosition = StageManager.Instance.GetCoursePosition(_courseIndex);
 
         bool isCourseEnd = StageManager.Instance.CheckEndCourse(_courseIndex);
@@ -99,6 +101,11 @@ public abstract class EnemyBase : MonoBehaviour
         {
             Die();
         }
+    }
+
+    public void ApplyDamageAmplificationDebuff()
+    {
+
     }
 
     protected virtual void Die()
