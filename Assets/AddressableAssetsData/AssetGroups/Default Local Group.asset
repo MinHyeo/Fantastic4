@@ -50,6 +50,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f87bf30f986303b4cbc5b8c1ca5a130d
+    m_Address: Assets/Sounds/Sound_uhhuh
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fbada98694b1858419548d1b7b8aed00
     m_Address: Prefabs/Enemy/Enemy_Crazy
     m_ReadOnly: 0

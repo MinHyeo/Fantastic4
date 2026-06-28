@@ -24,6 +24,7 @@ public class LobbyUI : UIBase
     }
     private void OnClickInformationButton()
     {
+        SoundManager.Instance.PlaySFX("Assets/Sounds/Sound_uhhuh");
         // UIManager.Instance.OpenContentUI(UIType.InformationUI);
     }
 

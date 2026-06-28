@@ -7,9 +7,22 @@ public class SoundManager : MonoBehaviour
 
     public static SoundManager Instance { get; set; }
 
+    public float BGMVolume => BGMSourcePlayer.volume;
+    public float SFXVolume => AudioSourcePlayer.volume;
+
     private void Awake()
     {
         Instance = this;
+    }
+
+    public void SetBGMVolume(float volume)
+    {
+        BGMSourcePlayer.volume = Mathf.Clamp01(volume);
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        AudioSourcePlayer.volume = Mathf.Clamp01(volume);
     }
 
     public string GetSoundPath(string soundDataId)
@@ -23,7 +36,6 @@ public class SoundManager : MonoBehaviour
     // 효과음 재생 (겹쳐서 재생 가능)
     public void PlaySFX(string soundDataId)
     {
-
         GameUtil.LoadAndPlayAudioClip(AudioSourcePlayer, soundDataId).Forget();
     }
 
