@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 1108333471924021806}
   - component: {fileID: 4795026197874928898}
   m_Layer: 0
-  m_Name: Jiwon_PepperProjectile
+  m_Name: PepperProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

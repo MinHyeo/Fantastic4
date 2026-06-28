@@ -6,7 +6,6 @@ public class KetchupTower : RangeTower
 
     [SerializeField] private KetchupProjectile _projectilePrefab;
 
-
     private float _currentFireTimer;
 
 
@@ -14,22 +13,21 @@ public class KetchupTower : RangeTower
     protected override void Awake()
     {
         base.Awake();
-
-        
     }
 
     protected override void Start()
     {
         base.Start();
 
-        // _data = GameDataManager.Instance.GetData<TowerData>(_data.Id);
+        // 처음 포탑이 생성될 때, 바로 사격 가능하도록
+        _currentFireTimer = _data.AttackSpeed;
     }
 
     protected override void Update()
     {
         base.Update();
 
-        // Attack();
+        Attack();
         Rotate();
     }
 

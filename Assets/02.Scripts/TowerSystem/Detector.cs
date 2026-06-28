@@ -1,50 +1,93 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class Detector
+
+public class Detector : MonoBehaviour
 {
-    [SerializeField] protected Transform _ownerTransform;
     [SerializeField] protected float _detectionRange;
     [SerializeField] protected LayerMask _enemyLayer;
+    [SerializeField] private SphereCollider _rangeCollider;
 
-    public Detector() { }
+    private List<Collider> _enemiesInRange = new List<Collider>();
 
-    public float DetectionRange
-    {
-        get { return _detectionRange; }
-        set { _detectionRange = value; }
-    }
+
+    public float DetectionRange => _detectionRange;
+
 
     public Collider[] FindEnemiesInRange()
     {
-        Collider[] enemyColliders = Physics.OverlapSphere(_ownerTransform.position, _detectionRange, _enemyLayer);
-
-        return enemyColliders;
+        // 방식 변경시 삭제필요
+        //Collider[] enemyColliders = Physics.OverlapSphere(_ownerTransform.position, _detectionRange, _enemyLayer);
+        //return enemyColliders;
+        RemoveDeadEnemies();
+        return _enemiesInRange.ToArray();
     }
 
     public Transform FindClosestEnemy()
     {
-        Collider[] enemyColliders = FindEnemiesInRange();
+        Collider[] enemiesInRange = FindEnemiesInRange();
+        GameObject leadEnemy = BattleManager.Instance.GetBeInTheLead(enemiesInRange);
 
-        Transform closestEnemy = null;
-        float closestDistance = float.MaxValue;
 
-        for(int i = 0; i < enemyColliders.Length; i++)
+        if (leadEnemy == null)
         {
-            Transform enemyTransform = enemyColliders[i].transform;
-            float distanceToEnemy = Vector3.Distance(_ownerTransform.position, enemyTransform.position);
-
-            if(distanceToEnemy < closestDistance)
-            {
-                closestDistance = distanceToEnemy;
-                closestEnemy = enemyTransform;
-            }
+            return null;
         }
-
-        return closestEnemy;
+        return leadEnemy.transform;
     }
 
-  
+    public void SetRange(float range)
+    {
+        _detectionRange = range;
+        _rangeCollider.radius = range;
+    }
+
+    private void AddEnemy(Collider enemy)
+    {
+        if (IsEnemyLayer(enemy.gameObject.layer) == false)
+        {
+            return;
+        }
+        _enemiesInRange.Add(enemy);
+    }
+
+    private void RemoveEnemy(Collider enemy)
+    {
+        _enemiesInRange.Remove(enemy);
+    }
+
+    private bool IsEnemyLayer(int layer)
+    {
+        int layerBit = (1 << layer);
+        if ((layerBit & _enemyLayer.value) == 0)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    private void RemoveDeadEnemies()
+    {
+        for (int i = _enemiesInRange.Count - 1; i >= 0; i--)
+        {
+            Collider enemy = _enemiesInRange[i];
+            if (enemy == null || enemy.gameObject.activeSelf == false)
+            {
+                _enemiesInRange.RemoveAt(i);
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        AddEnemy(other);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        RemoveEnemy(other);
+    }
 
 }

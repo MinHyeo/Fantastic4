@@ -26,16 +26,20 @@ public class KetchupProjectile : Projectile
     ///<summary>
     /// 충돌 시 호출됩니다.
     ///</summary>
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collider)
     {
-        // 충돌한 오브젝트가 바닥 레이어인지 검사
-        // 케찹 데칼 생성
-        if (CheckIsGrounded(collision))
+        if (CheckIsEnemyCollider(collider))
         {
-            _decalSpawner.Spawn(collision.gameObject.transform.position, Vector3.up);
             Destroy(gameObject);
+            // TODO : 적에 대한 공격 판정
+
             return;
         }
+    }
+
+    private bool CheckIsEnemyCollider(Collider collider)
+    {
+        return ((1 << collider.gameObject.layer) & _targetLayerMask) != 0;
     }
 
     private bool CheckIsGrounded(Collision collision)
