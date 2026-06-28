@@ -28,6 +28,33 @@ public class GameDataManager : MonoBehaviour
 
     private Dictionary<string, object> _dataList = new Dictionary<string, object>();
 
+    private List<string> GetAllId<T>() where T : GameDataBase
+    {
+        string type = typeof(T).FullName;
+        object dictObj = null;
+        if (_dataList.TryGetValue(type, out dictObj))
+        {
+            var dict = dictObj as Dictionary<string, T>;
+            return dict.Keys.ToList();
+        }
+        return null;
+    }
+
+    public List<string> GetAllTowerIds()
+    {
+        return GetAllId<TowerData>();
+    }
+    public List<string> GetEntityIds()
+    {
+        return GetAllId<EntityData>();
+    }
+
+    public List<string> GetEnemyIds()
+    {
+        return GetAllId<EnemyData>();
+    }
+
+
     private Dictionary<string, T> LoadJsonData<T>(string tableName) where T : GameDataBase
     {
         // 1. 경로 설정 (확장자 .json 제외!)
