@@ -76,6 +76,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Entity
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 4ddc9f26fbc8a424abe471d20b907322, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 215a2c55a4ca79b40a936eb8fc4690e4, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 4ddc9f26fbc8a424abe471d20b907322, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -8,6 +8,7 @@ public abstract class EnemyBase : MonoBehaviour
         get { return _courseIndex; }
     }
 
+    protected Animator _animator;
     protected EnemyData _enemyData;
     protected float _currentHp;
     protected float _damageBonus;
@@ -19,6 +20,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     public void Init(string enemyId)
     {
+        _animator = GetComponent<Animator>();
         EnemyData enemyData = GameDataManager.Instance.GetData<EnemyData>(enemyId);
         if (enemyData == null)
         {
@@ -35,6 +37,8 @@ public abstract class EnemyBase : MonoBehaviour
         {
             return;
         }
+
+        _animator.SetBool("IsMove", true); 
     }
 
     protected void Update()
@@ -44,6 +48,9 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected void FixedUpdate()
     {
+        if (_targetPosition == null)
+            return;
+
         RotateTowardsTarget(_targetPosition);
         MoveToPosition(_targetPosition);
     }
@@ -110,6 +117,8 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected virtual void Die()
     {
+        _animator.SetBool("IsMove", false);
+        _animator.SetTrigger("IsDead");
         //GameObjectManager.Instance.ReturnObjectPool(gameObject);
         //StageManager에서 해야하는 일
     }

@@ -84,6 +84,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Entity
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 570287c9b9776504da56da96c6e9bfcb, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: c2bc211010754d04e9240dbec34daa40, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 570287c9b9776504da56da96c6e9bfcb, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6810392539306255705, guid: 570287c9b9776504da56da96c6e9bfcb, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
