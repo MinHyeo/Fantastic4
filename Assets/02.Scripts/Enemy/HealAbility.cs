@@ -17,6 +17,6 @@ public class HealAbility : MountedAbility
         GameObject healObject = Resources.Load<GameObject>("HealField");
         if (healObject == null)
             return;
-        Instantiate(healObject);
+        Instantiate(healObject, transform.position, Quaternion.identity);
     }
 }
