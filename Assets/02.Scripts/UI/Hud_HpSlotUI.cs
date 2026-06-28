@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class HudSlotUI : MonoBehaviour
+public class Hud_HpSlotUI : MonoBehaviour
 {
     [SerializeField] private int slotOffsetX;
     [SerializeField] private int slotOffsetY;

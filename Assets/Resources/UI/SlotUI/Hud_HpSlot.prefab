@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 2390805740567932850}
   - component: {fileID: 3492309255926105576}
   m_Layer: 5
-  m_Name: Hud_Slot
+  m_Name: Hud_HpSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
