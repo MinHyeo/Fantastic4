@@ -677,7 +677,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa05d56793f5de64c8d0017a90e7b40c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StageManager
-  _splineContainer: {fileID: 0}
 --- !u!4 &2021641750
 Transform:
   m_ObjectHideFlags: 0
