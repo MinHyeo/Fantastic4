@@ -40,8 +40,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 60e900270fc2400449b4c5f5fbabedfd
+    m_Address: Prefabs/Stage/Stage_03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 706fdb0c1cd4f1046bfd12310761efe9
     m_Address: Prefab/Enemy/Enemy_05
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8e354ca9d2d0866459f9eef48c646990
+    m_Address: Prefabs/Stage/Stage_02
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
