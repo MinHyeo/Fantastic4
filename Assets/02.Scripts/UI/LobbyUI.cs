@@ -14,13 +14,13 @@ public class LobbyUI : UIBase
         Button_Information.BindOnClickButtonEvent(OnClickInformationButton);
         Button_Setting.BindOnClickButtonEvent(OnClickSettingButton);
         Button_End.BindOnClickButtonEvent(OnClickEndButton);
-
-
     }
 
     private void OnClickStartButton()
     {
-        // UIManager.Instance.OpenContentUI(UIType.StageUI);
+        UIManager.Instance.OpenContentUI(UIType.StageUI);
+        UIManager.Instance.CloseUI(UIRootType.MainUI, UIType.LobbyUI);
+        UIManager.Instance.CloseUI(UIRootType.BackgroundUI, UIType.LobbyBackgroundUI);
     }
     private void OnClickInformationButton()
     {

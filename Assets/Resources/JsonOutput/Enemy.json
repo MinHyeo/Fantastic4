@@ -5,7 +5,7 @@
     "MoveSpeed": 2.5,
     "AbilityId": null,
     "RewardGold": 50,
-    "PrefabPath": "Prefab/Enemy/Enemy_Normal"
+    "PrefabPath": "Prefabs/Enemy/Enemy_Normal"
   },
   {
     "Id": "Enemy_Cup",
@@ -13,7 +13,7 @@
     "MoveSpeed": 2,
     "AbilityId": null,
     "RewardGold": 75,
-    "PrefabPath": "Prefab/Enemy/Enemy_Cup"
+    "PrefabPath": "Prefabs/Enemy/Enemy_Cup"
   },
   {
     "Id": "Enemy_Crazgy",
@@ -21,7 +21,7 @@
     "MoveSpeed": 5,
     "AbilityId": null,
     "RewardGold": 75,
-    "PrefabPath": "Prefab/Enemy/Enemy_Crazy"
+    "PrefabPath": "Prefabs/Enemy/Enemy_Crazy"
   },
   {
     "Id": "Enemy_Doctor",
@@ -29,7 +29,7 @@
     "MoveSpeed": 3,
     "AbilityId": "Ability_04",
     "RewardGold": 75,
-    "PrefabPath": "Prefab/Enemy/Enemy_Doctor"
+    "PrefabPath": "Prefabs/Enemy/Enemy_Doctor"
   },
   {
     "Id": "Enemy_Special",
@@ -37,6 +37,6 @@
     "MoveSpeed": 4,
     "AbilityId": null,
     "RewardGold": 150,
-    "PrefabPath": "Prefab/Enemy/Enemy_Special"
+    "PrefabPath": "Prefabs/Enemy/Enemy_Special"
   }
 ]

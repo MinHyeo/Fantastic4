@@ -5,7 +5,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; set; }
 
-    public int CurrentUnlockedStage { get; private set; } = 1;
+    private int _currentUnlockedStage = 1;
+    public int CurrentUnlockedStage => _currentUnlockedStage;
 
     private void Awake()
     {
@@ -14,9 +15,9 @@ public class GameManager : MonoBehaviour
 
     public void UnlockStage(int stageNumber)
     {
-        if (stageNumber > CurrentUnlockedStage)
+        if (stageNumber > _currentUnlockedStage)
         {
-            CurrentUnlockedStage = stageNumber;
+            _currentUnlockedStage = stageNumber;
         }
     }
 }

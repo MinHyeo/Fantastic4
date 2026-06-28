@@ -53,10 +53,11 @@ public class StageUI : UIBase
 
     public void OnClickStageOpen(int stageNumber)
     {
-        string stageId = $"stage_{stageNumber:D2}";
+        string stageId = $"Stage_{stageNumber:D2}";
 
         StageManager.Instance.LoadStage(stageId);
 
+        //UIManager.Instance.OpenUI(UIRootType.MainUI, UIType.MainUI);
         UIManager.Instance.CloseContentUI(UIType.StageUI);
     }
 
