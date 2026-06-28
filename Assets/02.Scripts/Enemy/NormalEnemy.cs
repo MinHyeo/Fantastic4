@@ -20,6 +20,8 @@ public class NormalEnemy : EnemyBase
         }
 
         _moveSpeed = enemyData.MoveSpeed;
+        _maxHp = enemyData.MaxHp;
+        _currentHp = _maxHp;
         _targetPosition = StageManager.Instance.GetCoursePosition(_courseIndex);
 
         bool isCourseEnd = StageManager.Instance.CheckEndCourse(_courseIndex);
