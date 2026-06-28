@@ -7,15 +7,19 @@ public class NormalEnemy : EnemyBase
     [SerializeField] private float _rotateSpeed = 360f; // 초당 회전 각도
 
     private float _moveSpeed;
-    private int _courseIndex = 0;
     private Vector3 _targetPosition;
     private bool _isMoveEnd = false; // 임시
 
     public void Init(string enemyId)
     {
         EnemyData enemyData = GameDataManager.Instance.GetData<EnemyData>(enemyId);
-        //_moveSpeed = enemyData.MoveSpeed;
-        _moveSpeed = 5f;
+
+        if (enemyData == null)
+        {
+            return;
+        }
+
+        _moveSpeed = enemyData.MoveSpeed;
         _targetPosition = StageManager.Instance.GetCoursePosition(_courseIndex);
 
         bool isCourseEnd = StageManager.Instance.CheckEndCourse(_courseIndex);
