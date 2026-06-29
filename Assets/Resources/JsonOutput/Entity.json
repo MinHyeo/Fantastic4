@@ -49,7 +49,7 @@
     "IconPath": "Sprite/Icon/Enemy_Cup_Icon"
   },
   {
-    "Id": "Enemy_Crazgy",
+    "Id": "Enemy_Crazy",
     "Name": "미친 노움",
     "Description": "이속 빠른 적",
     "EntityType": "Enemy",
