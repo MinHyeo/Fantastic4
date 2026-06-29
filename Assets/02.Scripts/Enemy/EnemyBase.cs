@@ -156,6 +156,6 @@ public abstract class EnemyBase : MonoBehaviour
         _animator.SetTrigger("IsDead");
 
         //GameObjectManager.Instance.ReturnObjectPool(gameObject);
-        StageManager.Instance.RemoveActivatedEnemy(this);
+        StageManager.Instance.RemoveActivatedEnemy();
     }
 }
