@@ -2,11 +2,10 @@
 using TMPro;
 using System.Collections.Generic;
 using Unity.Collections;
+using System;
 
 public class MainUI : UIBase
 {
-    public static MainUI Instance { get; private set; }
-
     [SerializeField] private UIButton Button_Pause;
     [SerializeField] private TextMeshProUGUI Text_Wave;
     [SerializeField] private TextMeshProUGUI Text_Gold;
@@ -47,7 +46,18 @@ public class MainUI : UIBase
             foreach (var slotKv in _deckList)
             {
                 var slot = slotKv.Value;
-                DestroyImmediate(slot.gameObject);
+
+                if (slot != null)
+                {
+                    var towerUIcomponent = slot.GetComponent<TowerDragUI>();
+                    if (towerUIcomponent != null)
+                    {
+                        towerUIcomponent.OnCheckCanAfford -= HandleCheckCanAffor;
+                        towerUIcomponent.OnTowerPlacedSpendGold -= HandleTowerPlaced;
+                    }
+
+                    DestroyImmediate(slot.gameObject);
+                }
             }
 
             _deckList.Clear();
@@ -141,9 +151,21 @@ public class MainUI : UIBase
 
         var towerUIComponent = gObj.GetComponent<TowerDragUI>();
         towerUIComponent.SetTowerID(towerId);
+        towerUIComponent.OnCheckCanAfford += HandleCheckCanAffor;
+        towerUIComponent.OnTowerPlacedSpendGold += HandleTowerPlaced;
 
         slotComponent.InitTowerDeck(towerId);
         _deckList.Add(towerId, slotComponent);
+    }
+
+    private bool HandleCheckCanAffor(int cost)
+    {
+        return _stageGold >= cost;
+    }
+
+    private void HandleTowerPlaced(int cost)
+    {
+        DecreaseGold(cost);
     }
 
     // 타이머 설정 부분
