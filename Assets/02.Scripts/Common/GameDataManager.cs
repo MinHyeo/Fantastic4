@@ -54,6 +54,10 @@ public class GameDataManager : MonoBehaviour
         return GetAllId<EnemyData>();
     }
 
+    public List<string> GetStageIds()
+    {
+        return GetAllId<StageData>();
+    }
 
     private Dictionary<string, T> LoadJsonData<T>(string tableName) where T : GameDataBase
     {

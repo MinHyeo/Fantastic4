@@ -14,9 +14,11 @@ public class MainUI : UIBase
     [SerializeField] private GameObject Prefab_TowerDeck;
     [SerializeField] private Transform Transform_TowerDeckRoot;
     private Dictionary<string, TowerDeck> _deckList = new Dictionary<string, TowerDeck>();
-    
+
+    private int _stageGold = 0;
+
     // 타이머 변수
-    private float _currentTimer;
+    private float _currentTimer = 40.0f;
     private bool _isTimerRunning = false;
 
     private void OnEnable()
@@ -47,10 +49,42 @@ public class MainUI : UIBase
     private void InitMainUI()
     {
         ReadTowerListAndCreateSlot();
+        SetStageGoldData();
 
-        _currentTimer = 40.0f;
+        Text_Gold.text = $"{_stageGold}";
         _isTimerRunning = true;
         UpdateTimerText();
+    }
+
+    // 골드 부분
+    private void SetStageGoldData()
+    {
+        var stageIdList = GameDataManager.Instance.GetStageIds();
+        foreach (var stageId in stageIdList)
+        {
+            if (stageId == null)
+            {
+                continue;
+            }
+
+            GetStageGoldData(stageId);
+        }
+    }
+
+    private void GetStageGoldData(string stageId)
+    {
+        var stagedata = GameDataManager.Instance.GetData<StageData>(stageId);
+        _stageGold = stagedata.StartGold;
+    }
+
+    public void IncreseGold(int gold)
+    {
+        _stageGold += gold;
+    }
+
+    public void DecreaseGold(int gold)
+    {
+        _stageGold -= gold;
     }
 
     // 타워덱 생성 부분
@@ -99,6 +133,11 @@ public class MainUI : UIBase
     {
         UIManager.Instance.OpenPopupUI(UIType.PauseUI);
         Time.timeScale = 0f;
+    }
+
+    public void SetTimerTime(float time)
+    {
+        _currentTimer = time;
     }
 
     private void FinalTimeUpdate()
