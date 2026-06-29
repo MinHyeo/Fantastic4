@@ -20,12 +20,16 @@ public class TowerInfoPopupUI : UIBase
     [SerializeField] private TextMeshProUGUI Text_AttackRange;
     [SerializeField] private TextMeshProUGUI Text_AttackSpeed;
 
+   
+
+
     [SerializeField] private UIButton Button_Close;
 
     [Header("슬롯 리스트 영역")]
     [SerializeField] private Transform Transform_TowerSlotUIRoot;
 
     private Dictionary<string, TowerSlotUI> _slotList = new Dictionary<string, TowerSlotUI>();
+    private string _currentBaseId;
 
     private void OnEnable()
     {
@@ -77,12 +81,11 @@ public class TowerInfoPopupUI : UIBase
         {
             foreach (var towerId in TowerList)
             {
-                if (towerId == null)
+                if (towerId.Contains("Level1"))
                 {
-                    continue;
+                    CreateNomalSlot(towerId);
                 }
 
-                CreateNomalSlot(towerId);
             }
             if (_slotList != null && _slotList.Count > 0)
             {
