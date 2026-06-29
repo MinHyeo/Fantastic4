@@ -12,6 +12,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected EnemyData _enemyData;
     protected float _currentHp;
     protected float _damageBonus;
+    protected bool _isDamageAmplified;
 
     [SerializeField] private float _arriveDistance = 0.4f; // 도착판정범위
     [SerializeField] private float _rotateSpeed = 360f; // 초당 회전 각도
@@ -103,16 +104,33 @@ public abstract class EnemyBase : MonoBehaviour
 
     public void OnDamaged(float damage)
     {
-        _currentHp -= damage;
+        _currentHp -= (damage + _damageBonus);
         if (_currentHp <= 0f)
         {
             Die();
         }
     }
 
-    public void ApplyDamageAmplificationDebuff()
+    public void ApplyDamageAmplificationDebuff(object[] parameters)
     {
+        if (_isDamageAmplified == true)
+        {
+            return;
+        }
 
+        float damageBonusAmount = (float)parameters[0];
+        float duration = (float)parameters[1];
+
+        _damageBonus = damageBonusAmount;
+        _isDamageAmplified = true;
+
+        Invoke(nameof(ResetDamageAmplificationDebuff), duration);
+    }
+
+    private void ResetDamageAmplificationDebuff()
+    {
+        _damageBonus = 0f;
+        _isDamageAmplified = false;
     }
 
     protected virtual void Die()
