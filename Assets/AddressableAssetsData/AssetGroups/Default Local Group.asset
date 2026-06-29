@@ -25,6 +25,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2064e1605511d70418087bdd530f9614
+    m_Address: Prefabs/Ability/OilField
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 353500b7cc3756e46af619e4960fd292
     m_Address: Prefab/Enemy/Enemy_02
     m_ReadOnly: 0
@@ -50,6 +55,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 60e900270fc2400449b4c5f5fbabedfd
+    m_Address: Prefabs/Stage/Stage_03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 706fdb0c1cd4f1046bfd12310761efe9
     m_Address: Prefab/Enemy/Enemy_05
     m_ReadOnly: 0
@@ -65,13 +75,28 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8e354ca9d2d0866459f9eef48c646990
+    m_Address: Prefabs/Stage/Stage_02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8fe33deaba8604e4f80d3b58b4aaec1a
     m_Address: Prefab/Enemy/Enemy_01
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a2eda7a44ba212343a358baf6bf0ad1d
+    m_Address: Prefabs/Ability/HealField
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b1e4d11b483f50d45b406b2fe2d2020a
     m_Address: Prefab/Enemy/Enemy_04
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d6aaa3615fb4acb4bb40d5a89bf899f2
+    m_Address: Prefabs/Ability/KetchupField
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
