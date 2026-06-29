@@ -89,7 +89,12 @@ public class StageManager : MonoBehaviour
         var leadEnemyScript = leadEnemy.GetComponent<EnemyBase>();
         var comparisonEnemyScript = comparisonEnemy.GetComponent<EnemyBase>();
         if (leadEnemyScript == null || comparisonEnemyScript == null)
-            return null;
+            return leadEnemy;
+
+        if (comparisonEnemyScript.IsDead)
+            return leadEnemy;
+        if(leadEnemyScript.IsDead)
+            return comparisonEnemy;
 
         int comparisonIndex = comparisonEnemyScript.CourseIndex;
         int leadIndex = leadEnemyScript.CourseIndex;

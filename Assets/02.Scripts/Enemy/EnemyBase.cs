@@ -21,6 +21,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     private Vector3 _targetPosition;
     private bool _isDead = false;
+    public bool IsDead => _isDead;
 
     public void Init(string enemyId)
     {
