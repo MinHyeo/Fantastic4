@@ -12,6 +12,6 @@ public static class AttackSystem
             Debug.LogWarning($"{projectile.name}에 Projectile 스크립트 없음");
             return;
         }
-        projectileScript.Initialize(damage, targetTransform, projectileSpeed);
+        projectileScript.Init(damage, targetTransform, projectileSpeed);
     }
 }

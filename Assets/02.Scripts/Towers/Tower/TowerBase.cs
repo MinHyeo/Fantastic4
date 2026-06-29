@@ -19,6 +19,8 @@ public abstract partial class TowerBase : MonoBehaviour, IPointerClickHandler
 
     [SerializeField, ReadOnly] protected RangeVisualizer _rangeVisualizer;
 
+    [SerializeField] protected Transform _firePoint;
+
     [SerializeField] protected LayerMask _placementLayerMask;
 
     [SerializeField] protected Dragger _dragger;
@@ -48,7 +50,6 @@ public abstract partial class TowerBase : MonoBehaviour, IPointerClickHandler
         _data = GameDataManager.Instance.GetData<TowerData>(towerId);
 
         _detector.SetRange(_data.AttackRange);
-
         _rangeVisualizer.SetRadius(_data.AttackRange);
         _rangeVisualizer.SetVisible(false);
         _isToggleRangeVisualizer = false;

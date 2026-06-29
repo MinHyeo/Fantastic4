@@ -7,7 +7,7 @@ public class HeeJun_SaltProjectile : Projectile
 
     private DebuffAbility _debuffAbility;
 
-    public override void Initialize(float damage, Transform targetTransform, float projectileSpeed)
+    public override void Init(float damage, Transform targetTransform, float projectileSpeed)
     {
         _damage = damage;
         _targetTransform = targetTransform;

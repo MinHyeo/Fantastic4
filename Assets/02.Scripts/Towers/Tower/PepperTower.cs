@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 
-public class PepperTower : RangeTower
+public class PepperTower : TowerBase
 {
     [Header(nameof(PepperTower))]
 
@@ -20,9 +21,6 @@ public class PepperTower : RangeTower
     protected override void Start()
     {
         base.Start();
-
-        // 처음 포탑이 생성될 때, 바로 사격 가능하도록
-        _currentFireTimer = _data.AttackSpeed;
     }
 
     protected override void Update()
@@ -31,6 +29,14 @@ public class PepperTower : RangeTower
 
         Attack();
         Rotate();
+    }
+
+    public override void Init(string towerId)
+    {
+        base.Init(towerId);
+
+        // 처음 포탑이 생성될 때, 바로 사격 가능하도록
+        _currentFireTimer = _data.AttackSpeed;
     }
 
     private void Attack()
@@ -58,8 +64,11 @@ public class PepperTower : RangeTower
 
         // 발사
         var projectile = Instantiate(_projectilePrefab, _firePoint.position, Quaternion.identity);
-        projectile.Initialize(0f, enemy, _data.ProjectileSpeed);
+        projectile.Init(0f, enemy, _data.ProjectileSpeed);
         _currentFireTimer = 0f;
+
+        // 발사 시 애니메이션
+        _pepperHead.DOPunchScale(Vector3.one * 0.1f, 0.2f);
     }
 
     private void Rotate()

@@ -12,7 +12,7 @@ public class HeeJun_KetchupProjectile : Projectile
     ///</summary>
     [SerializeField] private LayerMask _targetLayerMask;
 
-    public override void Initialize(float damage, Transform targetTransform, float projectileSpeed)
+    public override void Init(float damage, Transform targetTransform, float projectileSpeed)
     {
         _damage = damage;
         _targetTransform = targetTransform;

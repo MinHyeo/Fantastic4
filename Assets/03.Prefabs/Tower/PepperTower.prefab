@@ -128,7 +128,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2972930694467998619, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.474
+      value: 0.501
       objectReference: {fileID: 0}
     - target: {fileID: 4878298870918252115, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
       propertyPath: m_LocalPosition.z
@@ -243,10 +243,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PepperTower
   _renderer: {fileID: 0}
   _animator: {fileID: 0}
+  _detector: {fileID: 9111366082359087870}
+  _rangeVisualizer: {fileID: 0}
   _placementLayerMask:
     serializedVersion: 2
     m_Bits: 128
-  _detector: {fileID: 9111366082359087870}
   _dragger:
     _ownerTransform: {fileID: 186343366539075919}
     _fallbackDistance: 15
@@ -271,11 +272,9 @@ MonoBehaviour:
     UpgradePrice: 
     PrefabPath: 
     ProjectilePath: 
-  _rangeVisualizer:
-    _attackRange: 0
-    _rangeCylinder: {fileID: 0}
   _firePoint: {fileID: 8731957495115959070}
   _projectilePrefab: {fileID: 1108333471924021806, guid: cb0d8b7a7fa286145b137ff116702be7, type: 3}
+  _pepperHead: {fileID: 2998218094796901883}
 --- !u!4 &8731957495115959070 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2972930694467998619, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}
