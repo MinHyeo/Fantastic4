@@ -120,12 +120,6 @@ public class HeeJun_SaltTower : TowerBase
 
     public override void ToggleRangeVisualizer()
     {
-        if (_rangeVisualizer == null)
-        {
-            return;
-        }
-
-        _isToggleRangeVisualizer = _isToggleRangeVisualizer ? false : true;
-        _rangeVisualizer.SetVisible(_isToggleRangeVisualizer);
+        base.ToggleRangeVisualizer();
     }
 }

@@ -103,4 +103,16 @@ public class StageManager : MonoBehaviour
             return leadEnemy;
         return comparisonEnemy;
     }
+
+    public void RemoveActivatedEnemy(EnemyBase enemy)
+    {
+        foreach (var activatedEnemy in _activeEnemyList)
+        {
+            if (activatedEnemy == enemy)
+            {
+                _activeEnemyList.Remove(activatedEnemy);
+                Destroy(enemy);
+            }
+        }
+    }
 }

@@ -14,37 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
   m_GroupName: Default Local Group
   m_GUID: 2a619742e7a30db46935034b2717f3df
-  m_SerializeEntries:
-  - m_GUID: 394d89cb81ed86f48802295bf9dadf6b
-    m_Address: Sprite/Icon/Enemy_04_icon
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3c2010665dcc1224492ef36876ae9d14
-    m_Address: Sprite/Icon/Enemy_05_icon
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3cf7664c27874aa4e9149aa99813b7a2
-    m_Address: Assets/04.Images/UI/CheezeTower.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7d631f2f148e53c438cbc751638bc79f
-    m_Address: Sprite/Icon/Enemy_01_icon
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7d8bf37a7d05aed42b3aebc4db97d626
-    m_Address: Sprite/Icon/Enemy_03_icon
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f8156f65d9217084db6c743b26cfaaac
-    m_Address: Sprite/Icon/Enemy_02_icon
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 94b85e6b53665a848b256af421902c70, type: 2}
   m_SchemaSet:

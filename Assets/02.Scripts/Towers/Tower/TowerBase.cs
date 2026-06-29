@@ -51,8 +51,7 @@ public abstract partial class TowerBase : MonoBehaviour, IPointerClickHandler
 
         _detector.SetRange(_data.AttackRange);
         _rangeVisualizer.SetRadius(_data.AttackRange);
-        _rangeVisualizer.SetVisible(false);
-        _isToggleRangeVisualizer = false;
+        SetRangeVisualizerVisible(false);
     }
 
     protected virtual void Start() { }
@@ -61,12 +60,24 @@ public abstract partial class TowerBase : MonoBehaviour, IPointerClickHandler
 
     protected virtual void OnEnable() { }
 
-    protected virtual void OnDisable() { }
+    protected virtual void OnDisable()
+    {
+        if (TowerManager.Instance != null)
+        {
+            TowerManager.Instance.ClearSelectedTower(this);
+        }
+    }
 
     protected virtual void OnDrawGizmos() { }
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (TowerManager.Instance != null)
+        {
+            eventData.Use();
+            return;
+        }
+
         ToggleRangeVisualizer();
     }
 
@@ -91,12 +102,26 @@ public abstract partial class TowerBase : MonoBehaviour, IPointerClickHandler
 
     public virtual void ToggleRangeVisualizer()
     {
+        if (TowerManager.Instance != null)
+        {
+            TowerManager.Instance.ToggleTowerRangeVisualizer(this);
+            return;
+        }
+
+        SetRangeVisualizerVisible(!_isToggleRangeVisualizer);
+    }
+
+    /// <summary>
+    /// 사거리 표시 오브젝트와 내부 선택 상태를 함께 갱신합니다.
+    /// </summary>
+    public void SetRangeVisualizerVisible(bool isVisible)
+    {
         if (_rangeVisualizer == null)
         {
             return;
         }
 
-        _isToggleRangeVisualizer = _isToggleRangeVisualizer ? false : true;
+        _isToggleRangeVisualizer = isVisible;
         _rangeVisualizer.SetVisible(_isToggleRangeVisualizer);
     }
 }
