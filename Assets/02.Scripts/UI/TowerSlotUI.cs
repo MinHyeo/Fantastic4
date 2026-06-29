@@ -6,7 +6,7 @@ using System;
 
 public class TowerSlotUI : MonoBehaviour
 {
-    [Header("노움 정보")]
+    [Header("타워 정보")]
     [SerializeField] private Image Image_Portrait;
     [SerializeField] private TextMeshProUGUI Text_TowerName;
     [SerializeField] private GameObject GObj_Selected;
