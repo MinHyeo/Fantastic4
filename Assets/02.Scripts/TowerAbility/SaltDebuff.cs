@@ -12,7 +12,7 @@ public class SaltDebuff : DebuffAbility
         if (data != null)
         {
             _duration = data.ActiveTime;
-            _percentValue = data.PrecentValue;
+            _percentValue = data.PercentValue;
         }
     }
 
