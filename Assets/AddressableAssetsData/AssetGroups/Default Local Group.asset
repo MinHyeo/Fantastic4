@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 2a619742e7a30db46935034b2717f3df
   m_SerializeEntries:
+  - m_GUID: 1449fb0de1e67d34ab8b6965b285f105
+    m_Address: Prefabs/Tower/PepperTower
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 205fac7720aecc34490b2c743497e998
     m_Address: Prefabs/Stage/Stage_01
     m_ReadOnly: 0
@@ -40,6 +45,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4cc9d48d7250bd042b60ae15f2074946
+    m_Address: Prefabs/Tower/KetchupTower
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 706fdb0c1cd4f1046bfd12310761efe9
     m_Address: Prefab/Enemy/Enemy_05
     m_ReadOnly: 0
@@ -60,18 +70,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ac26233ee63586a4e82d109736f1362a
-    m_Address: Prefab/Tower/KetchupTower
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b1e4d11b483f50d45b406b2fe2d2020a
     m_Address: Prefab/Enemy/Enemy_04
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e648566afdc8399489f431c7f3d584f0
-    m_Address: Prefab/Tower/PepperTower
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
