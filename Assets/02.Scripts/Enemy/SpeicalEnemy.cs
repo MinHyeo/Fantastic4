@@ -1,18 +1,32 @@
 ﻿using UnityEngine;
 
-public class PharmacistEnemy : EnemyBase
+public class SpeicalEnemy : EnemyBase
 {
-    private AbilityBase _ability;
+    private bool _isAppear;
 
-    public void Init(string enemyId)
+    public override void Init(string enemyId)
     {
         base.Init(enemyId);
-        _ability = new HealAbility();
+
+        _isAppear = true;
+
+        _animator.SetBool("IsMove", false);
+        _animator.SetBool("IsAppear", true);
     }
 
-    protected override void Die()
+    public void AppearEnd()
     {
-        _ability.Employ(_enemyData.AbilityId);
-        base.Die();
+        _isAppear = false;
+
+        _animator.SetBool("IsMove", true);
+        _animator.SetBool("IsAppear", false);
+    }
+
+    protected override void FixedUpdate()
+    {
+        if (_isAppear == true)
+            return;
+
+        base.FixedUpdate();
     }
 }

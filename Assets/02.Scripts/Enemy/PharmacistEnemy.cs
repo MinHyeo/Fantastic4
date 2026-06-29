@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class SpecialEnemy : EnemyBase
+public class PharmcistEnemy : EnemyBase
 {
     private AbilityBase _ability;
 
