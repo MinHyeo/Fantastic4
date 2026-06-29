@@ -10,38 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Default Local Group
+  m_Name: Enemy
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
-  m_GroupName: Default Local Group
-  m_GUID: 2a619742e7a30db46935034b2717f3df
+  m_GroupName: Enemy
+  m_GUID: b101a51e23f22334fb87a35f1d8e0e15
   m_SerializeEntries:
-  - m_GUID: 394d89cb81ed86f48802295bf9dadf6b
-    m_Address: Sprite/Icon/Enemy_04_icon
+  - m_GUID: 5c2ef8390ee111943bb94aef3527a73d
+    m_Address: Prefabs/Enemy/Enemy_Pharmacist
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3c2010665dcc1224492ef36876ae9d14
-    m_Address: Sprite/Icon/Enemy_05_icon
+  - m_GUID: 6137e1685502c47478118957f8d6ecc8
+    m_Address: Prefabs/Enemy/Enemy_Cup
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3cf7664c27874aa4e9149aa99813b7a2
-    m_Address: Assets/04.Images/UI/CheezeTower.png
+  - m_GUID: 9f27fa7814aea9d4c82cf93a46d67fd6
+    m_Address: Prefabs/Enemy/Enemy_Crazy
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7d631f2f148e53c438cbc751638bc79f
-    m_Address: Sprite/Icon/Enemy_01_icon
+  - m_GUID: b4724fef587aab04b95dc0fc698fa736
+    m_Address: Prefabs/Enemy/Enemy_Normal
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7d8bf37a7d05aed42b3aebc4db97d626
-    m_Address: Sprite/Icon/Enemy_03_icon
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f8156f65d9217084db6c743b26cfaaac
-    m_Address: Sprite/Icon/Enemy_02_icon
+  - m_GUID: e87f06a00fd10244186695eb4f1cab7d
+    m_Address: Prefabs/Enemy/Enemy_Special
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -49,5 +44,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 94b85e6b53665a848b256af421902c70, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 063eab240a5a1af43b52a60a0c3b3619, type: 2}
-    - {fileID: 11400000, guid: bf22a0e868da18c44a646378917ab1fb, type: 2}
+    - {fileID: 11400000, guid: 199c223052f6662488329472aee71173, type: 2}
+    - {fileID: 11400000, guid: 62758bb9083b3b24baf15e9405a32029, type: 2}
