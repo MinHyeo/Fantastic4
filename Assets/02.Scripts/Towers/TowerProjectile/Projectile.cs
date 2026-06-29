@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] protected float _projectileSpeed;
     [SerializeField] protected GameObject _areaEffectPrefab;
 
-    public virtual void Initialize(float damage, Transform targetTransform, float projectileSpeed)
+    public virtual void Init(float damage, Transform targetTransform, float projectileSpeed)
     {
         transform.DORotate(new Vector3(0, 360, 0), 0.3f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Incremental).SetEase(Ease.Linear).SetLink(gameObject);
 
@@ -38,7 +38,8 @@ public class Projectile : MonoBehaviour
             {
                 Instantiate(_areaEffectPrefab, transform.position, Quaternion.identity);
             }
-            Debug.LogWarning("투사체 피격"); // TODO 희준 TakeDamage 필요
+
+            BattleManager.Instance.AttackToEnemy(_targetTransform.gameObject, _damage);
             Destroy(gameObject);
         }
     }

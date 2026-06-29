@@ -2,6 +2,7 @@
 using TMPro;
 using System.Collections.Generic;
 using Unity.Collections;
+using System;
 
 public class MainUI : UIBase
 {
@@ -16,10 +17,16 @@ public class MainUI : UIBase
     private Dictionary<string, TowerDeck> _deckList = new Dictionary<string, TowerDeck>();
 
     private int _stageGold = 0;
+    public int CurrentGold => _stageGold;
 
     // 타이머 변수
     private float _currentTimer = 40.0f;
     private bool _isTimerRunning = false;
+
+    private void Awake()
+    {
+        
+    }
 
     private void OnEnable()
     {
@@ -39,7 +46,18 @@ public class MainUI : UIBase
             foreach (var slotKv in _deckList)
             {
                 var slot = slotKv.Value;
-                DestroyImmediate(slot.gameObject);
+
+                if (slot != null)
+                {
+                    var towerUIcomponent = slot.GetComponent<TowerDragUI>();
+                    if (towerUIcomponent != null)
+                    {
+                        towerUIcomponent.OnCheckCanAfford -= HandleCheckCanAffor;
+                        towerUIcomponent.OnTowerPlacedSpendGold -= HandleTowerPlaced;
+                    }
+
+                    DestroyImmediate(slot.gameObject);
+                }
             }
 
             _deckList.Clear();
@@ -80,11 +98,21 @@ public class MainUI : UIBase
     public void IncreseGold(int gold)
     {
         _stageGold += gold;
+        UpdateGoldText();
     }
 
     public void DecreaseGold(int gold)
     {
         _stageGold -= gold;
+        UpdateGoldText();
+    }
+
+    private void UpdateGoldText()
+    {
+        if (Text_Gold != null)
+        {
+            Text_Gold.text = $"{_stageGold}";
+        }
     }
 
     // 타워덱 생성 부분
@@ -123,9 +151,21 @@ public class MainUI : UIBase
 
         var towerUIComponent = gObj.GetComponent<TowerDragUI>();
         towerUIComponent.SetTowerID(towerId);
+        towerUIComponent.OnCheckCanAfford += HandleCheckCanAffor;
+        towerUIComponent.OnTowerPlacedSpendGold += HandleTowerPlaced;
 
         slotComponent.InitTowerDeck(towerId);
         _deckList.Add(towerId, slotComponent);
+    }
+
+    private bool HandleCheckCanAffor(int cost)
+    {
+        return _stageGold >= cost;
+    }
+
+    private void HandleTowerPlaced(int cost)
+    {
+        DecreaseGold(cost);
     }
 
     // 타이머 설정 부분

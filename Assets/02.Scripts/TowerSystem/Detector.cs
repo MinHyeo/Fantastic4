@@ -24,7 +24,7 @@ public class Detector : MonoBehaviour
         return _enemiesInRange.ToArray();
     }
 
-    public Transform FindClosestEnemy()
+    public Transform FindLeadEnemy()
     {
         Collider[] enemiesInRange = FindEnemiesInRange();
         GameObject leadEnemy = BattleManager.Instance.GetBeInTheLead(enemiesInRange);

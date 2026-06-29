@@ -1,15 +1,13 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class OilTower : TowerBase
 {
-    [Header("3D Range Visualizer Element")]
-    [SerializeField] private GameObject _rangeObject; // 범위 표시용 실린더 오브젝트
-    [SerializeField] private Transform _firePoint; // 투사체가 발사될 정확한 포지션
+    [Header(nameof(OilTower))]
 
-    [Header("Projectile Settings")]
-    [SerializeField] private GameObject _projectilePrefab;
-
-    [SerializeField] private string _testTowerId;
+    private GameObject _projectilePrefab;
+    [SerializeField] private Transform _oilHead;
 
     //private OilSlickAura _oilSlickAura; // 기름 타워 전용 지속 데미지(DoT) 장판/디버프 능력 컴포넌트
 
@@ -20,6 +18,8 @@ public class OilTower : TowerBase
 
     public override void Init(string towerId)
     {
+        base.Init(towerId);
+
         _data = GameDataManager.Instance.GetData<TowerData>(towerId);
 
         if (_data != null)
@@ -38,6 +38,11 @@ public class OilTower : TowerBase
             //    _oilSlickAura = gameObject.AddComponent<OilSlickAura>();
             //    _oilSlickAura.Init(_data.AbilityId);
             //}
+
+            if (!string.IsNullOrEmpty(_data.ProjectilePath))
+            {
+                ResourceManager.Instance.LoadAsset<GameObject>(_data.ProjectilePath, OnProjectileLoaded);
+            }
         }
         else
         {
@@ -61,7 +66,7 @@ public class OilTower : TowerBase
             return;
         }
 
-        Transform targetEnemy = _detector.FindClosestEnemy();
+        Transform targetEnemy = _detector.FindLeadEnemy();
 
         // Rotator 클래스에게 실시간 타겟을 세팅하고 회전 연산 위임
         _rotator.SetLookAt(targetEnemy);
@@ -70,10 +75,10 @@ public class OilTower : TowerBase
 
     private void TryAttackTarget()
     {
-        Transform targetEnemy = _detector.FindClosestEnemy();
+        Collider[] targetEnemies = _detector.FindEnemiesInRange();
 
-        // 사거리 내에 조준된 대상이 없으면 공격 로직 중단
-        if (targetEnemy == null)
+        // 사거리 내에 공격할 대상이 없으면 공격 로직 중단
+        if (targetEnemies.Length == 0)
         {
             return;
         }
@@ -92,10 +97,39 @@ public class OilTower : TowerBase
 
         // 발사 위치 예외 처리 (인스펙터 미지정 시 타워 본체 포지션 사용)
         Transform launchPoint = _firePoint != null ? _firePoint : transform;
+        HashSet<GameObject> firedTargets = new HashSet<GameObject>();
 
-        AttackSystem.Attack(_projectilePrefab, launchPoint, targetEnemy,
-            _damage,
-            _projectileSpeed
-        );
+        foreach (Collider targetEnemy in targetEnemies)
+        {
+            if (targetEnemy == null)
+            {
+                continue;
+            }
+
+            // 적 하나에 콜라이더가 여러 개 잡혀도 투사체는 한 번만 발사합니다.
+            if (firedTargets.Add(targetEnemy.gameObject) == false)
+            {
+                continue;
+            }
+
+            GameObject spawnedProjectile = Instantiate(_projectilePrefab, launchPoint.position, launchPoint.rotation);
+            Projectile projectile = spawnedProjectile.GetComponent<Projectile>();
+            if (projectile == null)
+            {
+                Debug.LogWarning($"{_projectilePrefab.name}에 Projectile 스크립트 없음");
+                Destroy(spawnedProjectile);
+                continue;
+            }
+
+            projectile.Init(_damage, targetEnemy.transform, _projectileSpeed);
+        }
+
+        // 공격 시 애님
+        _oilHead.DOPunchScale(Vector3.one * 0.1f, 0.2f);
+    }
+
+    private void OnProjectileLoaded(GameObject loadedPrefab)
+    {
+        _projectilePrefab = loadedPrefab;
     }
 }

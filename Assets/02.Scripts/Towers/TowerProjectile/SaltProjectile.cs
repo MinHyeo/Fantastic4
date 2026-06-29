@@ -1,15 +1,25 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 
 public class SaltProjectile : Projectile
 {
+    [SerializeField] private GameObject _burstEffect;
+
     private DebuffAbility _debuffAbility;
 
     public bool IsInitialized => _debuffAbility != null;
 
-    public new void Initialize(float damage, Transform targetTransform, float projectileSpeed)
+    public override void Init(float damage, Transform targetTransform, float projectileSpeed)
     {
-        // 부모의 Initialize를 실행하여 _targetTransform을 안전하게 채우기
-        base.Initialize(damage, targetTransform, projectileSpeed);
+        _damage = damage;
+        _targetTransform = targetTransform;
+        _projectileSpeed = projectileSpeed;
+
+        // 소금 투사체는 전방 축 기준으로 회전하는 이펙트를 사용
+        transform.DORotate(new Vector3(0, 0, 360), 0.3f, RotateMode.FastBeyond360)
+            .SetLoops(-1, LoopType.Incremental)
+            .SetEase(Ease.Linear)
+            .SetLink(gameObject);
     }
 
     public void SetupSaltAbility(DebuffAbility debuffAbility)
@@ -17,27 +27,32 @@ public class SaltProjectile : Projectile
         _debuffAbility = debuffAbility;
     }
 
-    private void Update()
+    protected override void Move()
     {
         if (_targetTransform == null)
         {
+            Destroy(gameObject);
             return;
         }
 
-        // 데이터가 유효하고 적이 살아있을 때만 부모의 이동(Move) 및 기본 피격 연산 실행
-        base.Update();
-
-        // 적이 필드 상에서 안전하게 살아있을 때만 거리 계산 진행
+        transform.position = Vector3.MoveTowards(transform.position, _targetTransform.position, (_projectileSpeed * Time.deltaTime));
         float distance = Vector3.Distance(_targetTransform.position, transform.position);
 
         if (distance < 0.1f)
         {
-            if (_debuffAbility == null)
+            BattleManager.Instance.AttackToEnemy(_targetTransform.gameObject, _damage);
+
+            if (_debuffAbility != null)
             {
-                return;
+                _debuffAbility.ApplyDebuff(_targetTransform.gameObject);
             }
 
-            _debuffAbility.ApplyDebuff(_targetTransform.gameObject);
+            if (_burstEffect != null)
+            {
+                Instantiate(_burstEffect, transform.position, Quaternion.identity);
+            }
+
+            Destroy(gameObject);
         }
     }
 }

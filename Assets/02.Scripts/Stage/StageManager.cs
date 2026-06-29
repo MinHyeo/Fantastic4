@@ -12,7 +12,8 @@ public class StageManager : MonoBehaviour
     public static StageManager Instance;
 
     private EnemyRouteManager _enemyRouteManager;
-    private List<EnemyBase> _activeEnemyList = new List<EnemyBase>();
+    private int _activeEnemyCount = 0;
+    //private List<EnemyBase> _activeEnemyList = new List<EnemyBase>();
 
     private void Awake()
     {
@@ -25,6 +26,7 @@ public class StageManager : MonoBehaviour
     public void LoadStage(string stageId)
     {
         Vector3 spawnSpot = Vector3.zero;
+        _activeEnemyCount = 0;
         GameObjectManager.Instance.CreateStageObject(stageId, spawnSpot).Forget();
     }
 
@@ -62,7 +64,8 @@ public class StageManager : MonoBehaviour
         int spawnCount = waveData.Count;
         float interval = waveData.Interval;
         string enemyId = waveData.EnemyId;
-        for(int i = 0; i < spawnCount; i++)
+        _activeEnemyCount += spawnCount;
+        for (int i = 0; i < spawnCount; i++)
         {
             await UniTask.Delay(TimeSpan.FromSeconds(interval), cancellationToken: cancellationToken);
 
@@ -86,7 +89,12 @@ public class StageManager : MonoBehaviour
         var leadEnemyScript = leadEnemy.GetComponent<EnemyBase>();
         var comparisonEnemyScript = comparisonEnemy.GetComponent<EnemyBase>();
         if (leadEnemyScript == null || comparisonEnemyScript == null)
-            return null;
+            return leadEnemy;
+
+        if (comparisonEnemyScript.IsDead)
+            return leadEnemy;
+        if(leadEnemyScript.IsDead)
+            return comparisonEnemy;
 
         int comparisonIndex = comparisonEnemyScript.CourseIndex;
         int leadIndex = leadEnemyScript.CourseIndex;
@@ -102,5 +110,25 @@ public class StageManager : MonoBehaviour
         if (leadDist < comparisionDist)
             return leadEnemy;
         return comparisonEnemy;
+    }
+
+    public void RemoveActivatedEnemy()
+    {
+        _activeEnemyCount -= 1;
+
+        if(_activeEnemyCount <= 0)
+        {
+            ClearStage();
+        }
+    }
+
+    private void ClearStage()
+    {
+        // UI 호출
+    }
+
+    public void FaildStage()
+    {
+        // UI 호출
     }
 }

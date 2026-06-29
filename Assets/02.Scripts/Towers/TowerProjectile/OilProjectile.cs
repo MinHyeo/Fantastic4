@@ -2,55 +2,103 @@
 
 public class OilProjectile : Projectile
 {
-    [Header("Ketchup Decal Settings")]
-    [SerializeField] private KetchupDecalSpawner _decalSpawner;
+    [SerializeField] private GameObject _burstEffect;
     [SerializeField] private LayerMask _targetLayerMask;
+    [SerializeField] private float _arcHeight = 3f;
+    [SerializeField] private float _impactDistance = 0.1f;
 
-    private AbilityData _ketchupAbility;
+    private AbilityData _oilAbility;
+    private Vector3 _startPosition;
+    private float _elapsedTime;
+    private float _flightDuration;
+    private bool _isHit;
 
-    public bool IsInitialized => _ketchupAbility != null;
+    public bool IsInitialized => _oilAbility != null;
 
-    public new void Initialize(float damage, Transform targetTransform, float projectileSpeed)
+    public override void Init(float damage, Transform targetTransform, float projectileSpeed)
     {
-        base.Initialize(damage, targetTransform, projectileSpeed);
+        base.Init(damage, targetTransform, projectileSpeed);
+
+        _startPosition = transform.position;
+        _elapsedTime = 0f;
+        _isHit = false;
+
+        float distance = _targetTransform != null ? Vector3.Distance(_startPosition, _targetTransform.position) : 0f;
+        _flightDuration = Mathf.Max(distance / Mathf.Max(_projectileSpeed, 0.01f), 0.01f);
     }
 
     public void SetupKetchupAbility(AbilityData abilityData)
     {
-        _ketchupAbility = abilityData;
+        _oilAbility = abilityData;
     }
 
     protected override void Update()
     {
-        // 1프레임 초기화 타이밍 예외 방지 가드 코드
+        Move();
+    }
+
+    protected override void Move()
+    {
         if (_targetTransform == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        _elapsedTime += Time.deltaTime;
+
+        float progress = Mathf.Clamp01(_elapsedTime / _flightDuration);
+        Vector3 targetPosition = _targetTransform.position;
+        Vector3 nextPosition = Vector3.Lerp(_startPosition, targetPosition, progress);
+
+        // 위로 솟은 뒤 내려찍히는 화산 분출형 궤적입니다.
+        nextPosition.y += Mathf.Sin(progress * Mathf.PI) * _arcHeight;
+        transform.position = nextPosition;
+
+        if (progress >= 1f || Vector3.Distance(transform.position, targetPosition) < _impactDistance)
+        {
+            Hit(_targetTransform.gameObject);
+        }
+    }
+
+    ///<summary>
+    /// 충돌 시 호출됩니다.
+    ///</summary>
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (CheckIsEnemyCollider(collider))
+        {
+            Hit(collider.gameObject);
+
+            return;
+        }
+    }
+
+    private bool CheckIsEnemyCollider(Collider collider)
+    {
+        return ((1 << collider.gameObject.layer) & _targetLayerMask) != 0;
+    }
+
+    private void Hit(GameObject target)
+    {
+        if (_isHit)
         {
             return;
         }
 
-        // 부모의 Move()와 거리 판정 흐름을 그대로 수행
-        base.Update();
+        _isHit = true;
+        BattleManager.Instance.AttackToEnemy(target, _damage);
+        SpawnBurstEffect();
+        Destroy(gameObject);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void SpawnBurstEffect()
     {
-        // 충돌한 오브젝트가 바닥 레이어인지 검사
-        if (CheckIsGrounded(collision))
+        if (_burstEffect == null)
         {
-            if (_ketchupAbility == null)
-            {
-                return;
-            }
-
-            // 데칼 스패너에 기획 테이블에서 가져온 반경(Radius) 및 능력 정보 등을 함께 전달하여 장판 능력 발동
-            _decalSpawner.Spawn(collision.gameObject.transform.position, Vector3.up);
-
-            Destroy(gameObject);
+            return;
         }
-    }
 
-    private bool CheckIsGrounded(Collision collision)
-    {
-        return ((1 << collision.gameObject.layer) & _targetLayerMask) != 0;
+        Instantiate(_burstEffect, transform.position, Quaternion.identity);
     }
 }

@@ -1,5 +1,7 @@
+﻿using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEngine.LowLevelPhysics2D.PhysicsShape;
 
 /// <summary>
 /// UI 타워 버튼의 드래그 입력과 타워 배치를 처리합니다.
@@ -15,9 +17,15 @@ public class TowerDragUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
     /// </summary>
     private GameObject _tower;
 
+    private int _towerBuildPrice = 0;
+
+    public event Func<int, bool> OnCheckCanAfford;
+    public event Action<int> OnTowerPlacedSpendGold;
+
     public void Start()
     {
         var towerData = GameDataManager.Instance.GetData<TowerData>(_towerId);
+        _towerBuildPrice = towerData.BuildPrice;
         ResourceManager.Instance.LoadAsset<GameObject>(towerData.PrefabPath, tower => _tower = tower);
     }
 
@@ -26,6 +34,11 @@ public class TowerDragUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
     /// </summary>
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (OnCheckCanAfford != null && !OnCheckCanAfford.Invoke(_towerBuildPrice))
+        {
+            return;
+        }
+
         TowerManager.Instance.ShowTowerPlacementIndicator(_tower);
     }
 
@@ -39,12 +52,23 @@ public class TowerDragUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
     /// </summary>
     public void OnEndDrag(PointerEventData eventData)
     {
-        TowerBase tower = _tower.GetComponent<TowerBase>();
+        if (_tower == null)
+        {
+            TowerManager.Instance.HideTowerPlacementIndicator();
+            return;
+        }
+
+        if (OnCheckCanAfford != null && !OnCheckCanAfford.Invoke(_towerBuildPrice))
+        {
+            TowerManager.Instance.HideTowerPlacementIndicator();
+            return;
+        }
 
         // UI_TODO : 여기서 돈 부족하다? 설치할 수 없다 notice 열어야함
         if (TowerManager.Instance.CanPlaceTower(out Vector3 worldPos))
         {
             TowerManager.Instance.SpawnTower(_towerId, worldPos);
+            OnTowerPlacedSpendGold?.Invoke(_towerBuildPrice);
         }
 
         TowerManager.Instance.HideTowerPlacementIndicator();

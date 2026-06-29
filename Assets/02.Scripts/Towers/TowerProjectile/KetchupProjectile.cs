@@ -12,6 +12,12 @@ public class KetchupProjectile : Projectile
     ///</summary>
     [SerializeField] private LayerMask _targetLayerMask;
 
+    public override void Init(float damage, Transform targetTransform, float projectileSpeed)
+    {
+        _damage = damage;
+        _targetTransform = targetTransform;
+        _projectileSpeed = projectileSpeed;
+    }
 
     protected override void Update()
     {
@@ -20,30 +26,26 @@ public class KetchupProjectile : Projectile
 
     protected override void Move()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _targetTransform.position, (_projectileSpeed * Time.deltaTime));
-    }
-
-    ///<summary>
-    /// 충돌 시 호출됩니다.
-    ///</summary>
-    private void OnTriggerEnter(Collider collider)
-    {
-        if (CheckIsEnemyCollider(collider))
+        Debug.LogWarning("케찹 Move호출");
+        if (_targetTransform == null)
         {
             Destroy(gameObject);
-            // TODO : 적에 대한 공격 판정
-
             return;
         }
-    }
-
-    private bool CheckIsEnemyCollider(Collider collider)
-    {
-        return ((1 << collider.gameObject.layer) & _targetLayerMask) != 0;
-    }
-
-    private bool CheckIsGrounded(Collision collision)
-    {
-        return ((1 << collision.gameObject.layer) & _targetLayerMask) != 0;
+        transform.position = Vector3.MoveTowards(transform.position, _targetTransform.position, (_projectileSpeed * Time.deltaTime));
+        float distance = Vector3.Distance(_targetTransform.position, transform.position);
+        Debug.Log($"케찹 distance: {distance}");
+        if (distance < 0.1f)
+        {
+            float groundY = _targetTransform.position.y;
+            Vector3 decalPosition = transform.position;
+            decalPosition.y = groundY;   // 적 발밑 높이
+            if (_decalSpawner != null)
+            {
+                _decalSpawner.Spawn(decalPosition, Vector3.up);
+            }
+            Debug.LogWarning("투사체 피격");
+            Destroy(gameObject);
+        }
     }
 }

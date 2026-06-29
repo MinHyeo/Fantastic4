@@ -21,7 +21,7 @@ public class ProjectileEffectTest : MonoBehaviour
 
         GameObject proj = Instantiate(_projectilePrefab, transform.position, Quaternion.identity);
         Projectile p = proj.GetComponent<Projectile>();
-        p.Initialize(10f, _target, 3f);   // 데미지, 타겟, 속도
+        p.Init(10f, _target, 3f);   // 데미지, 타겟, 속도
     }
 
 }

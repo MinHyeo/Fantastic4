@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class PepperProjectile : Projectile
+public class CheeseProjectile : Projectile
 {
     [SerializeField] private GameObject _burstEffect;
 
@@ -49,7 +49,7 @@ public class PepperProjectile : Projectile
             BattleManager.Instance.AttackToEnemy(collider.gameObject, _damage);
             SpawnBurstEffect();
             Destroy(gameObject);
-            
+
             return;
         }
     }

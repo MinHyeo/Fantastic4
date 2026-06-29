@@ -5,7 +5,6 @@ public class HeeJun_SaltTower : TowerBase
 {
     [Header("3D Range Visualizer Element")]
     //[SerializeField] private GameObject _rangeObject; // 범위 표시용 실린더 오브젝트
-    [SerializeField] private Transform _firePoint; // 투사체가 발사될 정확한 포지션
     [SerializeField] private Transform _saltHead; // 반동효과 줄 머리부분
 
     [Header("Projectile Settings")]
@@ -71,7 +70,7 @@ public class HeeJun_SaltTower : TowerBase
             return;
         }
 
-        Transform targetEnemy = _detector.FindClosestEnemy();
+        Transform targetEnemy = _detector.FindLeadEnemy();
 
         // Rotator 클래스에게 실시간 타겟을 세팅하고 회전 연산 위임
         _rotator.SetLookAt(targetEnemy);
@@ -80,7 +79,7 @@ public class HeeJun_SaltTower : TowerBase
 
     private void TryAttackTarget()
     {
-        Transform targetEnemy = _detector.FindClosestEnemy();
+        Transform targetEnemy = _detector.FindLeadEnemy();
 
         // 사거리 내에 조준된 대상이 없으면 공격 로직 중단
         if (targetEnemy == null)
@@ -103,7 +102,15 @@ public class HeeJun_SaltTower : TowerBase
         // 발사 위치 예외 처리 (인스펙터 미지정 시 타워 본체 포지션 사용)
         Transform launchPoint = _firePoint != null ? _firePoint : transform;
 
-        AttackSystem.Attack(_projectilePrefab, launchPoint, targetEnemy, _damage, _projectileSpeed);
+        GameObject spawnedProjectile = Instantiate(_projectilePrefab, launchPoint.position, launchPoint.rotation);
+        Projectile projectile = spawnedProjectile.GetComponent<Projectile>();
+        if (projectile == null)
+        {
+            Debug.LogWarning($"{_projectilePrefab.name}에 Projectile 스크립트 없음");
+            return;
+        }
+
+        projectile.Init(_damage, targetEnemy, _projectileSpeed);
 
         if (_saltHead != null)  
         {
@@ -113,12 +120,6 @@ public class HeeJun_SaltTower : TowerBase
 
     public override void ToggleRangeVisualizer()
     {
-        if (_rangeVisualizer == null)
-        {
-            return;
-        }
-
-        _isToggleRangeVisualizer = _isToggleRangeVisualizer ? false : true;
-        _rangeVisualizer.SetVisible(_isToggleRangeVisualizer);
+        base.ToggleRangeVisualizer();
     }
 }

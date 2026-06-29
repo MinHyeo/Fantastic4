@@ -1,17 +1,13 @@
 ﻿using DG.Tweening;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class CheeseTower : TowerBase
 {
-    [SerializeField] private Transform _headBase;
-    [SerializeField] private Transform _firePoint;
-    [SerializeField] private float _rotationSpeed = 360f;
-    [SerializeField] private Transform _cheeseHead;
-    [SerializeField] private string _testTowerId; // 동작 테스트용
+    [Header(nameof(CheeseTower))]
 
     private GameObject _projectilePrefab;
+    [SerializeField] private Transform _cheeseHead;
+
     private float _damage;
     private float _projectileSpeed;
     private float _lastFireTime;
@@ -19,6 +15,8 @@ public class CheeseTower : TowerBase
 
     public override void Init(string towerId)
     {
+        base.Init(towerId);
+
         _data = GameDataManager.Instance.GetData<TowerData>(towerId);
 
         if (_data != null)
@@ -51,16 +49,14 @@ public class CheeseTower : TowerBase
     {
         base.Update();
 
-        Transform targetTransform = _detector.FindClosestEnemy();
+        Rotate();
+
+        Transform targetTransform = _detector.FindLeadEnemy();
 
         if (targetTransform == null)
         {
             return;
         }
-
-        Vector3 direction = targetTransform.position - _headBase.position;
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-        _headBase.rotation = Quaternion.RotateTowards(_headBase.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
 
         if (Time.time - _lastFireTime < _fireCoolTime)
         {
@@ -72,10 +68,29 @@ public class CheeseTower : TowerBase
             return;
         }
 
-        AttackSystem.Attack(_projectilePrefab, _firePoint, targetTransform, _damage, _projectileSpeed);
         _lastFireTime = Time.time;
 
+        // 공격
+        GameObject spawnedProjectile = Instantiate(_projectilePrefab, _firePoint.position, _firePoint.rotation);
+        CheeseProjectile projectile = spawnedProjectile.GetComponent<CheeseProjectile>();
+        projectile.Init(_damage, targetTransform, _projectileSpeed);
+
+        // 공격 시 애님
         _cheeseHead.DOPunchScale(Vector3.one * 0.1f, 0.2f);
+    }
+
+    private void Rotate()
+    {
+        // 최선두 적이 있는지?
+        Transform enemy = _detector.FindLeadEnemy();
+        if (!enemy)
+        {
+            return;
+        }
+
+        // 최선두 대상을 향해 회전
+        _rotator.SetLookAt(enemy);
+        _rotator.Rotate(Time.deltaTime);
     }
 
     private void OnProjectileLoaded(GameObject loadedPrefab)
