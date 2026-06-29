@@ -20,7 +20,7 @@ public class KetchupField : FieldBase
                 if (enemyScript == null)
                     continue;
 
-                float slowPercent = _abilityData.PrecentValue;
+                float slowPercent = _abilityData.PercentValue;
                 //enemyScript.Slowe(slowPercent);
             }
             yield return _tickRate;
