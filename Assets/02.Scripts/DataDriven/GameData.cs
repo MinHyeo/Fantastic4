@@ -44,7 +44,7 @@ public class EnemyData : GameDataBase
 [System.Serializable]
 public class AbilityData : GameDataBase
 {
-    public float PrecentValue;
+    public float PercentValue;
     public float NumbericalValue;
     public float ActiveTime;
     public float EffectRound;
