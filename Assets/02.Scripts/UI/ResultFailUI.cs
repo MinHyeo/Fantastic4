@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class ResultFailUI : UIBase
 {
@@ -15,18 +15,19 @@ public class ResultFailUI : UIBase
 
     private void Onclick_Stage()
     {
-        Debug.Log("½ºÅ×ÀÌÁö ¹öÆ°ÀÌ ´­·È¾î¿ä");
+        UIManager.Instance.OpenContentUI(UIType.StageUI);
+        UIManager.Instance.ClosePopupUI(UIType.ResultFailUI);
     }
 
     private void Onclick_Main()
     {
-        Debug.Log("¸Ş´º ¹öÆ°ÀÌ ´­·È¾î¿ä");
-
+        UIManager.Instance.OpenUI(UIRootType.MainUI, UIType.LobbyUI);
+        UIManager.Instance.ClosePopupUI(UIType.ResultFailUI);
     }
 
     private void Onclick_Retry()
     {
-        Debug.Log("Àç½Ãµµ ¹öÆ°ÀÌ ´­·È¾î¿ä");
+        Debug.Log("ì¬ì‹œë„ ë²„íŠ¼ì´ ëˆŒë ¸ì–´ìš”");
 
     }
 }
