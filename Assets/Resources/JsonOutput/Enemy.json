@@ -16,7 +16,7 @@
     "PrefabPath": "Prefabs/Enemy/Enemy_Cup"
   },
   {
-    "Id": "Enemy_Crazgy",
+    "Id": "Enemy_Crazy",
     "MaxHp": 75,
     "MoveSpeed": 5,
     "AbilityId": null,
