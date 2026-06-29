@@ -30,11 +30,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 353500b7cc3756e46af619e4960fd292
-    m_Address: Prefabs/Enemy/Enemy_Cup
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 394d89cb81ed86f48802295bf9dadf6b
     m_Address: Sprite/Icon/Enemy_04_icon
     m_ReadOnly: 0
@@ -55,13 +50,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5c2ef8390ee111943bb94aef3527a73d
+    m_Address: Assets/03.Prefabs/Enemy/Enemy_Pharmacist.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 60e900270fc2400449b4c5f5fbabedfd
     m_Address: Prefabs/Stage/Stage_03
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 706fdb0c1cd4f1046bfd12310761efe9
-    m_Address: Prefabs/Enemy/Enemy_Special
+  - m_GUID: 6137e1685502c47478118957f8d6ecc8
+    m_Address: Assets/03.Prefabs/Enemy/Enemy_Cup.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -80,8 +80,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8fe33deaba8604e4f80d3b58b4aaec1a
-    m_Address: Prefabs/Enemy/Enemy_Normal
+  - m_GUID: 9f27fa7814aea9d4c82cf93a46d67fd6
+    m_Address: Assets/03.Prefabs/Enemy/Enemy_Crazy.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -90,8 +90,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b1e4d11b483f50d45b406b2fe2d2020a
-    m_Address: Prefabs/Enemy/Enemy_Pharmacist
+  - m_GUID: b4724fef587aab04b95dc0fc698fa736
+    m_Address: Prefabs/Enemy/Enemy_Normal
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -100,13 +100,13 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f8156f65d9217084db6c743b26cfaaac
-    m_Address: Sprite/Icon/Enemy_02_icon
+  - m_GUID: e87f06a00fd10244186695eb4f1cab7d
+    m_Address: Assets/03.Prefabs/Enemy/Enemy_Special.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: fbada98694b1858419548d1b7b8aed00
-    m_Address: Prefabs/Enemy/Enemy_Crazy
+  - m_GUID: f8156f65d9217084db6c743b26cfaaac
+    m_Address: Sprite/Icon/Enemy_02_icon
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
