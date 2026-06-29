@@ -51,7 +51,7 @@ MonoBehaviour:
   _targetTransform: {fileID: 0}
   _projectileSpeed: 0
   _areaEffectPrefab: {fileID: 0}
-  _burstEffect: {fileID: 0}
+  _burstEffect: {fileID: 1861129635245575837, guid: 002a975ac4d68424d829290711ffd983, type: 3}
   _targetLayerMask:
     serializedVersion: 2
     m_Bits: 64
