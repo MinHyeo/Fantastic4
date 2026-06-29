@@ -12,8 +12,12 @@ public class KetchupProjectile : Projectile
     ///</summary>
     [SerializeField] private LayerMask _targetLayerMask;
 
-    private bool _isHit;
-
+    public override void Init(float damage, Transform targetTransform, float projectileSpeed)
+    {
+        _damage = damage;
+        _targetTransform = targetTransform;
+        _projectileSpeed = projectileSpeed;
+    }
 
     protected override void Update()
     {
@@ -22,68 +26,26 @@ public class KetchupProjectile : Projectile
 
     protected override void Move()
     {
+        Debug.LogWarning("케찹 Move호출");
         if (_targetTransform == null)
         {
             Destroy(gameObject);
             return;
         }
-
         transform.position = Vector3.MoveTowards(transform.position, _targetTransform.position, (_projectileSpeed * Time.deltaTime));
-
         float distance = Vector3.Distance(_targetTransform.position, transform.position);
+        Debug.Log($"케찹 distance: {distance}");
         if (distance < 0.1f)
         {
-            Hit(transform.position, _targetTransform.gameObject);
+            float groundY = _targetTransform.position.y;
+            Vector3 decalPosition = transform.position;
+            decalPosition.y = groundY;   // 적 발밑 높이
+            if (_decalSpawner != null)
+            {
+                _decalSpawner.Spawn(decalPosition, Vector3.up);
+            }
+            Debug.LogWarning("투사체 피격");
+            Destroy(gameObject);
         }
-    }
-
-    ///<summary>
-    /// 충돌 시 호출됩니다.
-    ///</summary>
-    private void OnTriggerEnter(Collider collider)
-    {
-        if (CheckIsEnemyCollider(collider))
-        {
-            Hit(transform.position, collider.gameObject);
-
-            return;
-        }
-    }
-
-    private bool CheckIsEnemyCollider(Collider collider)
-    {
-        return ((1 << collider.gameObject.layer) & _targetLayerMask) != 0;
-    }
-
-    private bool CheckIsGrounded(Collision collision)
-    {
-        return ((1 << collision.gameObject.layer) & _targetLayerMask) != 0;
-    }
-
-    private void Hit(Vector3 position, GameObject enemyTarget)
-    {
-        if (_isHit)
-        {
-            return;
-        }
-
-        _isHit = true;
-        BattleManager.Instance.AttackToEnemy(enemyTarget, _damage);
-        SpawnDecal(position);
-        Destroy(gameObject);
-    }
-
-    private void SpawnDecal(Vector3 position)
-    {
-        if (_decalSpawner == null)
-        {
-            return;
-        }
-
-        float groundY = _targetTransform != null ? _targetTransform.position.y : position.y;
-        Vector3 decalPosition = position;
-        decalPosition.y = groundY;
-
-        _decalSpawner.Spawn(decalPosition, Vector3.up);
     }
 }

@@ -5,7 +5,7 @@ public class CheeseTower : TowerBase
 {
     [Header(nameof(CheeseTower))]
 
-    [SerializeField] private GameObject _projectilePrefab;
+    private GameObject _projectilePrefab;
     [SerializeField] private Transform _cheeseHead;
 
     private float _damage;
@@ -51,7 +51,7 @@ public class CheeseTower : TowerBase
 
         Rotate();
 
-        Transform targetTransform = _detector.FindClosestEnemy();
+        Transform targetTransform = _detector.FindLeadEnemy();
 
         if (targetTransform == null)
         {
@@ -72,29 +72,29 @@ public class CheeseTower : TowerBase
 
         // 공격
         GameObject spawnedProjectile = Instantiate(_projectilePrefab, _firePoint.position, _firePoint.rotation);
-        Projectile projectile = spawnedProjectile.GetComponent<Projectile>();
+        CheeseProjectile projectile = spawnedProjectile.GetComponent<CheeseProjectile>();
         projectile.Init(_damage, targetTransform, _projectileSpeed);
 
         // 공격 시 애님
         _cheeseHead.DOPunchScale(Vector3.one * 0.1f, 0.2f);
     }
 
-    private void OnProjectileLoaded(GameObject loadedPrefab)
-    {
-        _projectilePrefab = loadedPrefab;
-    }
-
     private void Rotate()
     {
-        // 가장 가까운 대상이 없다면?
-        Transform enemy = _detector.FindClosestEnemy();
+        // 최선두 적이 있는지?
+        Transform enemy = _detector.FindLeadEnemy();
         if (!enemy)
         {
             return;
         }
 
-        // 가까운 대상을 향해 회전
+        // 최선두 대상을 향해 회전
         _rotator.SetLookAt(enemy);
         _rotator.Rotate(Time.deltaTime);
+    }
+
+    private void OnProjectileLoaded(GameObject loadedPrefab)
+    {
+        _projectilePrefab = loadedPrefab;
     }
 }

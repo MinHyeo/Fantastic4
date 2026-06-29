@@ -159,6 +159,7 @@ MonoBehaviour:
   _animator: {fileID: 0}
   _detector: {fileID: 0}
   _rangeVisualizer: {fileID: 0}
+  _firePoint: {fileID: 7648837351974858284}
   _placementLayerMask:
     serializedVersion: 2
     m_Bits: 128
@@ -186,11 +187,7 @@ MonoBehaviour:
     UpgradePrice: 
     PrefabPath: 
     ProjectilePath: 
-  _headBase: {fileID: 6670764378867879534}
-  _firePoint: {fileID: 7648837351974858284}
-  _rotationSpeed: 360
-  _cheeseHead: {fileID: 2021163382368053540}
-  _testTowerId: 
+  _cheeseHead: {fileID: 6670764378867879534}
 --- !u!4 &6670764378867879534 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2302616385002566617, guid: 9ef2e5de8cdb8e34697cc7bdd81f9a08, type: 3}

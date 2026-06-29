@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7080327ae2f47f64ca20033755e0355a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KetchupDecalSpawner
-  _decalPrefab: {fileID: 1394017124307398981, guid: cda41d8a240b34246874a53691d53a69, type: 3}
+  _decalPrefab: {fileID: 1394017124307398981, guid: 5e2be6d4c3daa2b47b937711cd2471af, type: 3}
   _surfaceOffset: 0.01
-  _minScale: 0.6
-  _maxScale: 1.1
+  _minScale: 4
+  _maxScale: 4

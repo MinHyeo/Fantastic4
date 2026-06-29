@@ -5,7 +5,7 @@ public class SaltTower : TowerBase
 {
     [Header(nameof(SaltTower))]
 
-    [SerializeField] private GameObject _projectilePrefab;
+    private GameObject _projectilePrefab;
     [SerializeField] private Transform _saltHead;
 
     private SaltDebuff _saltDebuff;
@@ -38,6 +38,11 @@ public class SaltTower : TowerBase
             if (_data.AttackSpeed > 0)
             {
                 _fireCoolTime = 1f / _data.AttackSpeed;
+            }
+
+            if (!string.IsNullOrEmpty(_data.ProjectilePath))
+            {
+                ResourceManager.Instance.LoadAsset<GameObject>(_data.ProjectilePath, OnProjectileLoaded);
             }
 
             // 특수능력 ID를 기반으로 소금 디버프 데이터 로드
@@ -77,7 +82,7 @@ public class SaltTower : TowerBase
             return;
         }
 
-        Transform targetEnemy = _detector.FindClosestEnemy();
+        Transform targetEnemy = _detector.FindLeadEnemy();
 
         // Rotator 클래스에게 실시간 타겟을 세팅하고 회전 연산 위임
         _rotator.SetLookAt(targetEnemy);
@@ -86,7 +91,7 @@ public class SaltTower : TowerBase
 
     private void TryAttackTarget()
     {
-        Transform targetEnemy = _detector.FindClosestEnemy();
+        Transform targetEnemy = _detector.FindLeadEnemy();
 
         // 사거리 내에 조준된 대상이 없으면 공격 로직 중단
         if (targetEnemy == null)
@@ -106,25 +111,16 @@ public class SaltTower : TowerBase
 
         _lastFireTime = Time.time;
 
-        // 발사 위치 예외 처리 (인스펙터 미지정 시 타워 본체 포지션 사용)
-        Transform launchPoint = _firePoint != null ? _firePoint : transform;
-
-        GameObject spawnedProjectile = Instantiate(_projectilePrefab, launchPoint.position, launchPoint.rotation);
-        Projectile projectile = spawnedProjectile.GetComponent<Projectile>();
-        if (projectile == null)
-        {
-            Debug.LogWarning($"{_projectilePrefab.name}에 Projectile 스크립트 없음");
-            return;
-        }
-
-        projectile.Init(_damage, targetEnemy, _projectileSpeed);
-
-        if (projectile is SaltProjectile saltProjectile)
-        {
-            // 소금 투사체가 적중 시 디버프를 적용할 수 있도록 타워 능력을 전달
-            saltProjectile.SetupSaltAbility(_saltDebuff);
-        }
+        GameObject projectileInst = Instantiate(_projectilePrefab, _firePoint.position, _firePoint.rotation);
+        SaltProjectile saltProjectile = projectileInst.GetComponent<SaltProjectile>();
+        saltProjectile.Init(_damage, targetEnemy, _projectileSpeed);
+        saltProjectile.SetupSaltAbility(_saltDebuff);
 
         _saltHead.DOPunchScale(Vector3.one * 0.1f, 0.2f);
+    }
+
+    private void OnProjectileLoaded(GameObject loadedPrefab)
+    {
+        _projectilePrefab = loadedPrefab;
     }
 }

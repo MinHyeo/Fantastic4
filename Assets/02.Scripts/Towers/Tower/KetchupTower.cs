@@ -5,7 +5,7 @@ public class KetchupTower : TowerBase
 {
     [Header(nameof(KetchupTower))]
 
-    [SerializeField] private KetchupProjectile _projectilePrefab;
+    private GameObject _projectilePrefab;
     [SerializeField] private Transform _ketchupHead;
 
 
@@ -37,6 +37,11 @@ public class KetchupTower : TowerBase
 
         // 처음 포탑이 생성될 때, 바로 사격 가능하도록
         _currentFireTimer = _data.AttackSpeed;
+
+        if (!string.IsNullOrEmpty(_data.ProjectilePath))
+        {
+            ResourceManager.Instance.LoadAsset<GameObject>(_data.ProjectilePath, OnProjectileLoaded);
+        }
     }
 
     private void Attack()
@@ -44,7 +49,7 @@ public class KetchupTower : TowerBase
         _currentFireTimer += Time.deltaTime;
 
         // 가장 가까운 대상이 없다면?
-        Transform enemy = _detector.FindClosestEnemy();
+        Transform enemy = _detector.FindLeadEnemy();
         if (!enemy)
         {
             return;
@@ -57,29 +62,38 @@ public class KetchupTower : TowerBase
         }
 
         // 아직 발사 쿨타임이라면?
-        if (_currentFireTimer < _data.AttackSpeed)
+        float fireInterval = 1f / _data.AttackSpeed;
+        if (_currentFireTimer < fireInterval)
         {
             return;
         }
 
         // 발사
-        var projectile = Instantiate(_projectilePrefab, _firePoint.position, Quaternion.identity);
-        projectile.Init(0f, enemy, _data.ProjectileSpeed);
+        var projectileInst = Instantiate(_projectilePrefab, _firePoint.position, Quaternion.identity);
+        var ketchupProjectile = projectileInst.GetComponent<KetchupProjectile>();
+        ketchupProjectile.Init(0f, enemy, _data.ProjectileSpeed);
         _currentFireTimer = 0f;
+
+        // 발사 애님
         _ketchupHead.DOPunchScale(Vector3.one * 0.1f, 0.2f);
     }
 
     private void Rotate()
     {
-        // 가장 가까운 대상이 없다면?
-        Transform enemy = _detector.FindClosestEnemy();
+        // 최선두 적이 있는지?
+        Transform enemy = _detector.FindLeadEnemy();
         if (!enemy)
         {
             return;
         }
 
-        // 가까운 대상을 향해 회전
+        // 최선두 대상을 향해 회전
         _rotator.SetLookAt(enemy);
         _rotator.Rotate(Time.deltaTime);
+    }
+
+    private void OnProjectileLoaded(GameObject loadedPrefab)
+    {
+        _projectilePrefab = loadedPrefab;
     }
 }
