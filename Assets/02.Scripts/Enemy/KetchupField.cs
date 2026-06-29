@@ -21,7 +21,7 @@ public class KetchupField : FieldBase
                     continue;
 
                 float slowPercent = _abilityData.PercentValue;
-                //enemyScript.Slowe(slowPercent);
+                enemyScript.ApplySlowDebuff(slowPercent);
             }
             yield return _tickRate;
 
