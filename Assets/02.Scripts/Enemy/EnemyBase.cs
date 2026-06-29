@@ -20,6 +20,7 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] private float _slowDebuffBufferTime = 1.3f; // 대충 1초(틱)보다 살짝 길게
 
     private Vector3 _targetPosition;
+    private bool _isDead = false;
 
     public void Init(string enemyId)
     {
@@ -30,6 +31,7 @@ public abstract class EnemyBase : MonoBehaviour
             return;
         }
 
+        _isDead = false;
         _enemyData = enemyData;
         _currentHp = _enemyData.MaxHp;
         _damageBonus = 0f;
@@ -51,7 +53,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected void FixedUpdate()
     {
-        if (_targetPosition == null)
+        if (_isDead == true)
             return;
 
         RotateTowardsTarget(_targetPosition);
@@ -60,7 +62,6 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected void MoveToPosition(Vector3 targetPosition)
     {
-
         float slowedMoveSpeed = _enemyData.MoveSpeed * (1f - (_slowPercent / 100f));
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, (_enemyData.MoveSpeed * Time.deltaTime));
     }
@@ -108,6 +109,9 @@ public abstract class EnemyBase : MonoBehaviour
 
     public void OnDamaged(float damage)
     {
+        if (_isDead == true)
+            return;
+
         _currentHp -= (damage + _damageBonus);
         if (_currentHp <= 0f)
         {
@@ -156,6 +160,14 @@ public abstract class EnemyBase : MonoBehaviour
         _animator.SetTrigger("IsDead");
 
         //GameObjectManager.Instance.ReturnObjectPool(gameObject);
+        _isDead = true;
         StageManager.Instance.RemoveActivatedEnemy();
+
+        Invoke("OnDeathAnimationComplete", 5f);   
+    }
+
+    protected void OnDeathAnimationComplete()
+    {
+        GameObjectManager.Instance.ReturnObjectPool(gameObject);
     }
 }
