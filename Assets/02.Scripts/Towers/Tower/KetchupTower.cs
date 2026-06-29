@@ -1,3 +1,4 @@
+﻿using DG.Tweening;
 using UnityEngine;
 
 public class KetchupTower : RangeTower
@@ -5,6 +6,8 @@ public class KetchupTower : RangeTower
     [Header(nameof(KetchupTower))]
 
     [SerializeField] private KetchupProjectile _projectilePrefab;
+    [SerializeField] private Transform _ketchupHead;
+
 
     private float _currentFireTimer;
 
@@ -58,6 +61,7 @@ public class KetchupTower : RangeTower
         var projectile = Instantiate(_projectilePrefab, _firePoint.position, Quaternion.identity);
         projectile.Initialize(0f, enemy, _data.ProjectileSpeed);
         _currentFireTimer = 0f;
+        _ketchupHead.DOPunchScale(Vector3.one * 0.1f, 0.2f);
     }
 
     private void Rotate()

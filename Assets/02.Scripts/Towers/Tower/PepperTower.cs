@@ -1,10 +1,12 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PepperTower : RangeTower
 {
     [Header(nameof(PepperTower))]
 
     [SerializeField] private PepperProjectile _projectilePrefab;
+    [SerializeField] private Transform _pepperHead;
+
 
     private float _currentFireTimer;
 
