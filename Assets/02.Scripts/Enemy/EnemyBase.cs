@@ -23,7 +23,7 @@ public abstract class EnemyBase : MonoBehaviour
     private bool _isDead = false;
     public bool IsDead => _isDead;
 
-    public void Init(string enemyId)
+    public virtual void Init(string enemyId)
     {
         _animator = GetComponent<Animator>();
         EnemyData enemyData = GameDataManager.Instance.GetData<EnemyData>(enemyId);
