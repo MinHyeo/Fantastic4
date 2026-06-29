@@ -27,7 +27,7 @@ public abstract partial class TowerBase : MonoBehaviour, IPointerClickHandler
 
     [SerializeField] protected TowerData _data;
 
-    private bool _isToggleRangeVisualizer = false;
+    protected bool _isToggleRangeVisualizer = false;
 
 
     public TowerData Data => _data;
@@ -88,7 +88,7 @@ public abstract partial class TowerBase : MonoBehaviour, IPointerClickHandler
         Debug.LogWarning($"강화 후 데미지{_data.AttackDamage}, 사거리 {_data.AttackRange}, 공속 {_data.AttackSpeed}, 투사체 속도 {_data.ProjectileSpeed}");
     }
 
-    public void ToggleRangeVisualizer()
+    public virtual void ToggleRangeVisualizer()
     {
         if (_rangeVisualizer == null)
         {

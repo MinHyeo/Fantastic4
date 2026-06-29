@@ -4,11 +4,11 @@ using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
 using System;
 
-public class NomalKnomeSlotUI : MonoBehaviour
+public class TowerSlotUI : MonoBehaviour
 {
-    [Header("노움 정보")]
+    [Header("타워 정보")]
     [SerializeField] private Image Image_Portrait;
-    [SerializeField] private TextMeshProUGUI Text_KnomeName;
+    [SerializeField] private TextMeshProUGUI Text_TowerName;
     [SerializeField] private GameObject GObj_Selected;
     [SerializeField] private UIButton Button_SlotClick;
 
@@ -38,7 +38,7 @@ public class NomalKnomeSlotUI : MonoBehaviour
     public void InitSlot(string dataId, Action<string> onClickCallback)
     {
         var entityData = GameDataManager.Instance.GetData<EntityData>(dataId);
-        if(entityData == null)
+        if (entityData == null)
         {
             return;
         }
@@ -50,7 +50,7 @@ public class NomalKnomeSlotUI : MonoBehaviour
         }
         GameUtil.LoadAndSetSpriteImage(Image_Portrait, iconPath).Forget();
 
-        Text_KnomeName.text = entityData.Name;
+        Text_TowerName.text = entityData.Name;
 
         _slotDataId = dataId;
         _onClickSlot += onClickCallback;
@@ -61,5 +61,5 @@ public class NomalKnomeSlotUI : MonoBehaviour
     {
         GObj_Selected.SetActive(isSelect);
     }
-    
+
 }
