@@ -10,13 +10,13 @@ public class BattleManager : MonoBehaviour
         Instance = this; 
     }
 
-    public void AttackToEnemy(GameObject enemy)
+    public void AttackToEnemy(GameObject enemy, float damage)
     {
         var enemyScript = enemy.GetComponent<EnemyBase>();
         if (enemyScript == null)
             return;
 
-        //enemyScript.OnDamaged();
+        enemyScript.OnDamaged(damage);
     }
 
     public GameObject GetBeInTheLead(Collider[] enemyArray)
