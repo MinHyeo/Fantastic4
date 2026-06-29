@@ -5,6 +5,8 @@ using Unity.Collections;
 
 public class MainUI : UIBase
 {
+    public static MainUI Instance { get; private set; }
+
     [SerializeField] private UIButton Button_Pause;
     [SerializeField] private TextMeshProUGUI Text_Wave;
     [SerializeField] private TextMeshProUGUI Text_Gold;
@@ -16,10 +18,16 @@ public class MainUI : UIBase
     private Dictionary<string, TowerDeck> _deckList = new Dictionary<string, TowerDeck>();
 
     private int _stageGold = 0;
+    public int CurrentGold => _stageGold;
 
     // 타이머 변수
     private float _currentTimer = 40.0f;
     private bool _isTimerRunning = false;
+
+    private void Awake()
+    {
+        
+    }
 
     private void OnEnable()
     {
@@ -80,11 +88,21 @@ public class MainUI : UIBase
     public void IncreseGold(int gold)
     {
         _stageGold += gold;
+        UpdateGoldText();
     }
 
     public void DecreaseGold(int gold)
     {
         _stageGold -= gold;
+        UpdateGoldText();
+    }
+
+    private void UpdateGoldText()
+    {
+        if (Text_Gold != null)
+        {
+            Text_Gold.text = $"{_stageGold}";
+        }
     }
 
     // 타워덱 생성 부분
