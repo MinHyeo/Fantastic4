@@ -32,8 +32,7 @@ public class SaltTower : TowerBase
             if (_rangeVisualizer != null)
             {
                 _rangeVisualizer.SetRadius(_data.AttackRange);
-                _rangeVisualizer.SetVisible(false);
-                _isToggleRangeVisualizer = false;
+                SetRangeVisualizerVisible(false);
             }
 
             if (_data.AttackSpeed > 0)

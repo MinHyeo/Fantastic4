@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2693440590664532197}
   - component: {fileID: 2743280792933553930}
   m_Layer: 0
-  m_Name: HeeJun_PepperBurst
+  m_Name: PepperBurst
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

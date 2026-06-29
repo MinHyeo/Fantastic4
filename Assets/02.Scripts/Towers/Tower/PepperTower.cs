@@ -43,31 +43,36 @@ public class PepperTower : TowerBase
     {
         _currentFireTimer += Time.deltaTime;
 
-        // 가장 가까운 대상이 없다면?
+        // 가장 가까운 적을 찾습니다.
         Transform enemy = _detector.FindClosestEnemy();
         if (!enemy)
         {
             return;
         }
 
-        // 투사체가 없다면?
+        // 투사체 프리팹이 없으면 발사하지 않습니다.
         if (!_projectilePrefab)
         {
             return;
         }
 
-        // 아직 발사 쿨타임이라면?
-        if (_currentFireTimer < _data.AttackSpeed)
+        // AttackSpeed를 초당 발사 수로 사용합니다.
+        float fireInterval = 1f / _data.AttackSpeed;
+
+        // 아직 발사 쿨타임이 끝나지 않았으면 발사하지 않습니다.
+        if (_currentFireTimer < fireInterval)
         {
             return;
         }
 
-        // 발사
+        // 투사체를 생성합니다.
         var projectile = Instantiate(_projectilePrefab, _firePoint.position, Quaternion.identity);
-        projectile.Init(0f, enemy, _data.ProjectileSpeed);
-        _currentFireTimer = 0f;
+        projectile.Init(_data.AttackDamage, enemy, _data.ProjectileSpeed);
 
-        // 발사 시 애니메이션
+        // 누적 오차를 줄이기 위해 0으로 초기화하지 않고 발사 간격만큼 뺍니다.
+        _currentFireTimer = 0;
+
+        // 발사 시 머리 애니메이션을 재생합니다.
         _pepperHead.DOPunchScale(Vector3.one * 0.1f, 0.2f);
     }
 

@@ -154,7 +154,8 @@ public abstract class EnemyBase : MonoBehaviour
     {
         _animator.SetBool("IsMove", false);
         _animator.SetTrigger("IsDead");
+
         //GameObjectManager.Instance.ReturnObjectPool(gameObject);
-        //StageManager에서 해야하는 일
+        StageManager.Instance.RemoveActivatedEnemy(this);
     }
 }
