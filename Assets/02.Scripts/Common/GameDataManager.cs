@@ -44,6 +44,16 @@ public class GameDataManager : MonoBehaviour
     {
         return GetAllId<TowerData>();
     }
+    public List<string> GetEntityIds()
+    {
+        return GetAllId<EntityData>();
+    }
+
+    public List<string> GetEnemyIds()
+    {
+        return GetAllId<EnemyData>();
+    }
+
 
     private Dictionary<string, T> LoadJsonData<T>(string tableName) where T : GameDataBase
     {
@@ -93,6 +103,7 @@ public class GameDataManager : MonoBehaviour
         }
         _dataList[dataName] = LoadJsonData<T>(tableName);
     }
+
 
     public T GetData<T>(string id) where T : GameDataBase
     {
