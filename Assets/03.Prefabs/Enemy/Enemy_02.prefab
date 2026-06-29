@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: dc1177ebcc11b4148a83781612b52265, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc1177ebcc11b4148a83781612b52265, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc1177ebcc11b4148a83781612b52265, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc1177ebcc11b4148a83781612b52265, type: 3}
       propertyPath: m_LocalPosition.x
@@ -72,6 +72,22 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dc1177ebcc11b4148a83781612b52265, type: 3}
+      propertyPath: m_TagString
+      value: Entity
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879528566716807029, guid: dc1177ebcc11b4148a83781612b52265, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879528566716807029, guid: dc1177ebcc11b4148a83781612b52265, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879528566716807029, guid: dc1177ebcc11b4148a83781612b52265, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -103,8 +119,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3846059572922067371}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: dc1177ebcc11b4148a83781612b52265, type: 3}
+  m_Controller: {fileID: 22100000, guid: 35fde6f44c2afde4fb491750e666c7fb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -149,10 +165,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.2
-  m_Height: 1
+  m_Radius: 0.5
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!54 &-14704669349999627
 Rigidbody:
   m_ObjectHideFlags: 0

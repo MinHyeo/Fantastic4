@@ -5,9 +5,13 @@ public class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance;
 
-    public void Awake()
+    public void AttackToEnemy(GameObject enemy)
     {
-        Instance = this;
+        var enemyScript = enemy.GetComponent<EnemyBase>();
+        if (enemyScript == null)
+            return;
+
+        //enemyScript.OnDamaged();
     }
 
     public GameObject GetBeInTheLead(Collider[] enemyArray)
@@ -16,7 +20,7 @@ public class BattleManager : MonoBehaviour
             return null;
 
         GameObject leadEnemy = enemyArray[0].gameObject;
-        foreach (var enemyCollider in enemyArray)
+        foreach(var enemyCollider in enemyArray)
         {
             leadEnemy = StageManager.Instance.CompareLeadEnemy(leadEnemy, enemyCollider.gameObject);
         }

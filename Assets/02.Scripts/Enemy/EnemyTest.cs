@@ -20,6 +20,6 @@ public class EnemyTest : MonoBehaviour
 
     private void Dead()
     {
-        _ability.Employ();
+        _ability.Employ("dd");
     }
 }
