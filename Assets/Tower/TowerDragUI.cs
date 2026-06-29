@@ -49,4 +49,12 @@ public class TowerDragUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
 
         TowerManager.Instance.HideTowerPlacementIndicator();
     }
+
+    /// <summary>
+    /// 타워 ID 설정
+    /// </summary>
+    public void SetTowerID(string towerId)
+    {
+        _towerId = towerId;
+    }
 }

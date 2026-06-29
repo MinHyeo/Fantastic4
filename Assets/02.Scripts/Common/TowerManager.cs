@@ -7,8 +7,6 @@ public class TowerManager : MonoBehaviour
 
     [Header("3D 배치 설정")]
 
-    [SerializeField] private SerializableDictionary<string, GameObject> towerPrefabs = new();
-
     [SerializeField] private GameObject _TowerPlacementIndicatorPrefab = null;
 
     [SerializeField] private float _gridSize = 1f;
@@ -66,7 +64,7 @@ public class TowerManager : MonoBehaviour
         {
             if (hitCollider.GetComponentInParent<TowerBase>() != null)
             {
-                return false;
+                continue;
             }
         }
 

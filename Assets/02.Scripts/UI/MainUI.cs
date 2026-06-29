@@ -64,11 +64,16 @@ public class MainUI : UIBase
                 continue;
             }
 
+            if (!towerId.Contains("Level1"))
+            {
+                continue;
+            }
+
             CreateTowerDeckSlot(towerId);
         }
     }
 
-    private void CreateTowerDeckSlot(string dataId)
+    private void CreateTowerDeckSlot(string towerId)
     {
         var gObj = Instantiate(Prefab_TowerDeck, Transform_TowerDeckRoot);
         if (gObj == null)
@@ -82,8 +87,11 @@ public class MainUI : UIBase
             return;
         }
 
-        slotComponent.InitTowerDeck(dataId);
-        _deckList.Add(dataId, slotComponent);
+        var towerUIComponent = gObj.GetComponent<TowerDragUI>();
+        towerUIComponent.SetTowerID(towerId);
+
+        slotComponent.InitTowerDeck(towerId);
+        _deckList.Add(towerId, slotComponent);
     }
 
     // 타이머 설정 부분

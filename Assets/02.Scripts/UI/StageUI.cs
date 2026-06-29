@@ -57,7 +57,7 @@ public class StageUI : UIBase
 
         StageManager.Instance.LoadStage(stageId);
 
-        //UIManager.Instance.OpenUI(UIRootType.MainUI, UIType.MainUI);
+        UIManager.Instance.OpenUI(UIRootType.MainUI, UIType.MainUI);
         UIManager.Instance.CloseContentUI(UIType.StageUI);
     }
 
