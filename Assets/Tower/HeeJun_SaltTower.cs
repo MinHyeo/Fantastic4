@@ -70,7 +70,7 @@ public class HeeJun_SaltTower : TowerBase
             return;
         }
 
-        Transform targetEnemy = _detector.FindClosestEnemy();
+        Transform targetEnemy = _detector.FindLeadEnemy();
 
         // Rotator 클래스에게 실시간 타겟을 세팅하고 회전 연산 위임
         _rotator.SetLookAt(targetEnemy);
@@ -79,7 +79,7 @@ public class HeeJun_SaltTower : TowerBase
 
     private void TryAttackTarget()
     {
-        Transform targetEnemy = _detector.FindClosestEnemy();
+        Transform targetEnemy = _detector.FindLeadEnemy();
 
         // 사거리 내에 조준된 대상이 없으면 공격 로직 중단
         if (targetEnemy == null)

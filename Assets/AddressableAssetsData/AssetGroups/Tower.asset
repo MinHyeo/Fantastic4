@@ -30,8 +30,33 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 80835d9274b0c024bb4cb2f45db07f5b
+    m_Address: Prefabs/TowerProjectile/SaltProjectile
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aed9d5131ff1a4b46a650c1871f56336
+    m_Address: Prefabs/TowerProjectile/CheeseProjectile
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c0c20907ac190774e8b467a6406b1f0e
     m_Address: Prefabs/Tower/SaltTower
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cb0d8b7a7fa286145b137ff116702be7
+    m_Address: Prefabs/TowerProjectile/PepperProjectile
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e2685cb419604de4a8436b5316daa6e4
+    m_Address: Prefabs/TowerProjectile/OilProjectile
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e69f5a14556b5e843814f7f16ac21da5
+    m_Address: Prefabs/TowerProjectile/KetchupProjectile
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
