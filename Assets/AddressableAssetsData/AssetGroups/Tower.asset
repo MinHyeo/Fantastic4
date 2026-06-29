@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Tower
   m_GUID: 0db688949fb477b449d852edb61efa3f
   m_SerializeEntries:
+  - m_GUID: 0e76a7a624cc4ad47b8041e5ab022bc6
+    m_Address: Prefabs/Tower/CheeseTower
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1449fb0de1e67d34ab8b6965b285f105
     m_Address: Prefabs/Tower/PepperTower
     m_ReadOnly: 0
@@ -22,6 +27,16 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4cc9d48d7250bd042b60ae15f2074946
     m_Address: Prefabs/Tower/KetchupTower
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c0c20907ac190774e8b467a6406b1f0e
+    m_Address: Prefabs/Tower/SaltTower
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea15d6eea42aa384ab8259ed05676345
+    m_Address: Prefabs/Tower/OilTower
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

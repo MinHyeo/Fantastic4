@@ -5,7 +5,7 @@ public class HeeJun_PepperProjectile : Projectile
 {
     [SerializeField] private GameObject _burstEffect;
 
-    public override void Initialize(float damage, Transform targetTransform, float projectileSpeed)
+    public override void Init(float damage, Transform targetTransform, float projectileSpeed)
     {
         _damage = damage;
         _targetTransform = targetTransform;

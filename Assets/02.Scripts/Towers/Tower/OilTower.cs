@@ -1,15 +1,12 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 
 public class OilTower : TowerBase
 {
-    [Header("3D Range Visualizer Element")]
-    [SerializeField] private GameObject _rangeObject; // 범위 표시용 실린더 오브젝트
-    [SerializeField] private Transform _firePoint; // 투사체가 발사될 정확한 포지션
+    [Header(nameof(OilTower))]
 
-    [Header("Projectile Settings")]
     [SerializeField] private GameObject _projectilePrefab;
-
-    [SerializeField] private string _testTowerId;
+    [SerializeField] private Transform _oilHead;
 
     //private OilSlickAura _oilSlickAura; // 기름 타워 전용 지속 데미지(DoT) 장판/디버프 능력 컴포넌트
 
@@ -20,6 +17,8 @@ public class OilTower : TowerBase
 
     public override void Init(string towerId)
     {
+        base.Init(towerId);
+
         _data = GameDataManager.Instance.GetData<TowerData>(towerId);
 
         if (_data != null)
@@ -93,9 +92,17 @@ public class OilTower : TowerBase
         // 발사 위치 예외 처리 (인스펙터 미지정 시 타워 본체 포지션 사용)
         Transform launchPoint = _firePoint != null ? _firePoint : transform;
 
-        AttackSystem.Attack(_projectilePrefab, launchPoint, targetEnemy,
-            _damage,
-            _projectileSpeed
-        );
+        GameObject spawnedProjectile = Instantiate(_projectilePrefab, launchPoint.position, launchPoint.rotation);
+        Projectile projectile = spawnedProjectile.GetComponent<Projectile>();
+        if (projectile == null)
+        {
+            Debug.LogWarning($"{_projectilePrefab.name}에 Projectile 스크립트 없음");
+            return;
+        }
+
+        projectile.Init(_damage, targetEnemy, _projectileSpeed);
+
+        // 공격 시 애님
+        _oilHead.DOPunchScale(Vector3.one * 0.1f, 0.2f);
     }
 }

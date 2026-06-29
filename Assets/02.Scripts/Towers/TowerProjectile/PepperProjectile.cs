@@ -1,11 +1,27 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class PepperProjectile : Projectile
 {
+    [SerializeField] private GameObject _burstEffect;
+
     ///<summary>
     /// 충돌 시 효과를 일으킬 레이어
     ///</summary>
     [SerializeField] private LayerMask _targetLayerMask;
+
+    public override void Init(float damage, Transform targetTransform, float projectileSpeed)
+    {
+        _damage = damage;
+        _targetTransform = targetTransform;
+        _projectileSpeed = projectileSpeed;
+
+        // 후추 투사체는 전방 축 기준으로 회전하는 이펙트를 사용
+        transform.DORotate(new Vector3(0, 0, 360), 0.3f, RotateMode.FastBeyond360)
+            .SetLoops(-1, LoopType.Incremental)
+            .SetEase(Ease.Linear)
+            .SetLink(gameObject);
+    }
 
     protected override void Update()
     {
@@ -14,6 +30,12 @@ public class PepperProjectile : Projectile
 
     protected override void Move()
     {
+        if (_targetTransform == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         transform.position = Vector3.MoveTowards(transform.position, _targetTransform.position, (_projectileSpeed * Time.deltaTime));
     }
 
@@ -24,8 +46,9 @@ public class PepperProjectile : Projectile
     {
         if (CheckIsEnemyCollider(collider))
         {
+            BattleManager.Instance.AttackToEnemy(collider.gameObject, _damage);
+            SpawnBurstEffect();
             Destroy(gameObject);
-            // TODO : 적에 대한 공격 판정
             
             return;
         }
@@ -34,5 +57,15 @@ public class PepperProjectile : Projectile
     private bool CheckIsEnemyCollider(Collider collider)
     {
         return ((1 << collider.gameObject.layer) & _targetLayerMask) != 0;
+    }
+
+    private void SpawnBurstEffect()
+    {
+        if (_burstEffect == null)
+        {
+            return;
+        }
+
+        Instantiate(_burstEffect, transform.position, Quaternion.identity);
     }
 }

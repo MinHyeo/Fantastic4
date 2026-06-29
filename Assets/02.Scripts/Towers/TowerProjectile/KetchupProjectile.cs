@@ -12,6 +12,8 @@ public class KetchupProjectile : Projectile
     ///</summary>
     [SerializeField] private LayerMask _targetLayerMask;
 
+    private bool _isHit;
+
 
     protected override void Update()
     {
@@ -20,7 +22,19 @@ public class KetchupProjectile : Projectile
 
     protected override void Move()
     {
+        if (_targetTransform == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         transform.position = Vector3.MoveTowards(transform.position, _targetTransform.position, (_projectileSpeed * Time.deltaTime));
+
+        float distance = Vector3.Distance(_targetTransform.position, transform.position);
+        if (distance < 0.1f)
+        {
+            Hit(transform.position, _targetTransform.gameObject);
+        }
     }
 
     ///<summary>
@@ -30,8 +44,7 @@ public class KetchupProjectile : Projectile
     {
         if (CheckIsEnemyCollider(collider))
         {
-            Destroy(gameObject);
-            // TODO : 적에 대한 공격 판정
+            Hit(transform.position, collider.gameObject);
 
             return;
         }
@@ -45,5 +58,32 @@ public class KetchupProjectile : Projectile
     private bool CheckIsGrounded(Collision collision)
     {
         return ((1 << collision.gameObject.layer) & _targetLayerMask) != 0;
+    }
+
+    private void Hit(Vector3 position, GameObject enemyTarget)
+    {
+        if (_isHit)
+        {
+            return;
+        }
+
+        _isHit = true;
+        BattleManager.Instance.AttackToEnemy(enemyTarget, _damage);
+        SpawnDecal(position);
+        Destroy(gameObject);
+    }
+
+    private void SpawnDecal(Vector3 position)
+    {
+        if (_decalSpawner == null)
+        {
+            return;
+        }
+
+        float groundY = _targetTransform != null ? _targetTransform.position.y : position.y;
+        Vector3 decalPosition = position;
+        decalPosition.y = groundY;
+
+        _decalSpawner.Spawn(decalPosition, Vector3.up);
     }
 }

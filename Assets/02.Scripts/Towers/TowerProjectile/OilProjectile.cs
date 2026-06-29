@@ -12,7 +12,7 @@ public class OilProjectile : Projectile
 
     public new void Initialize(float damage, Transform targetTransform, float projectileSpeed)
     {
-        base.Initialize(damage, targetTransform, projectileSpeed);
+        base.Init(damage, targetTransform, projectileSpeed);
     }
 
     public void SetupKetchupAbility(AbilityData abilityData)
