@@ -24,12 +24,12 @@
     "PrefabPath": "Prefabs/Enemy/Enemy_Crazy"
   },
   {
-    "Id": "Enemy_Doctor",
+    "Id": "Enemy_Pharmacist",
     "MaxHp": 75,
     "MoveSpeed": 3,
     "AbilityId": "Ability_04",
     "RewardGold": 75,
-    "PrefabPath": "Prefabs/Enemy/Enemy_Doctor"
+    "PrefabPath": "Prefabs/Enemy/Enemy_Pharmacist"
   },
   {
     "Id": "Enemy_Special",

@@ -5,6 +5,11 @@ public class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance;
 
+    private void Awake()
+    {
+        Instance = this; 
+    }
+
     public void AttackToEnemy(GameObject enemy)
     {
         var enemyScript = enemy.GetComponent<EnemyBase>();

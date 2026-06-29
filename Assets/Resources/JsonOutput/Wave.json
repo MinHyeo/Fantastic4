@@ -58,7 +58,7 @@
   {
     "Id": "Wave3_02",
     "WaveGroup": 1,
-    "EnemyId": "Enemy_Doctor",
+    "EnemyId": "Enemy_Pharmacist",
     "Count": 3,
     "Interval": 0.25,
     "PreDelay": 6
