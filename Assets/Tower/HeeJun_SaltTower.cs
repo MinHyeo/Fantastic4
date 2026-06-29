@@ -34,10 +34,10 @@ public class HeeJun_SaltTower : TowerBase
         {
             _damage = _currentData.AttackDamage;
             _projectileSpeed = _currentData.ProjectileSpeed;
-            _detector.DetectionRange = _currentData.AttackRange;
+            _detector.SetRange(_currentData.AttackRange);
             if (_rangeVisualizer != null) 
             {
-                _rangeVisualizer.SetRange(_currentData.AttackRange);
+                _rangeVisualizer.SetRadius(_currentData.AttackRange);
             }
             if (_currentData.AttackSpeed > 0)
             {
@@ -111,20 +111,14 @@ public class HeeJun_SaltTower : TowerBase
         }
     }
 
-    public void ToggleRangeVisualizer(bool show)
+    public override void ToggleRangeVisualizer()
     {
         if (_rangeVisualizer == null)
         {
             return;
         }
 
-        if (show)
-        {
-            _rangeVisualizer.ShowRange();
-        }
-        else
-        {
-            _rangeVisualizer.HideRange();
-        }
+        _isToggleRangeVisualizer = _isToggleRangeVisualizer ? false : true;
+        _rangeVisualizer.SetVisible(_isToggleRangeVisualizer);
     }
 }
