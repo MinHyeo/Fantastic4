@@ -56,11 +56,11 @@
     "IconPath": "Sprite/Icon/Enemy_Crazy_Icon"
   },
   {
-    "Id": "Enemy_Doctor",
+    "Id": "Enemy_Pharmacist",
     "Name": "약사 노움",
     "Description": "죽으면 노움에게 이로운 버프 설치 적",
     "EntityType": "Enemy",
-    "IconPath": "Sprite/Icon/Enemy_Doctor_Icon"
+    "IconPath": "Sprite/Icon/Enemy_Pharmacist_Icon"
   },
   {
     "Id": "Enemy_Special",
