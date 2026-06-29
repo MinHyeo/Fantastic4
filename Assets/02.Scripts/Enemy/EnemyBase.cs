@@ -13,9 +13,11 @@ public abstract class EnemyBase : MonoBehaviour
     protected float _currentHp;
     protected float _damageBonus;
     protected bool _isDamageAmplified;
+    private float _slowPercent; //이속감소 비율
 
     [SerializeField] private float _arriveDistance = 0.4f; // 도착판정범위
     [SerializeField] private float _rotateSpeed = 360f; // 초당 회전 각도
+    [SerializeField] private float _slowDebuffBufferTime = 1.3f; // 대충 1초(틱)보다 살짝 길게
 
     private Vector3 _targetPosition;
 
@@ -58,6 +60,8 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected void MoveToPosition(Vector3 targetPosition)
     {
+
+        float slowedMoveSpeed = _enemyData.MoveSpeed * (1f - (_slowPercent / 100f));
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, (_enemyData.MoveSpeed * Time.deltaTime));
     }
 
@@ -131,6 +135,19 @@ public abstract class EnemyBase : MonoBehaviour
     {
         _damageBonus = 0f;
         _isDamageAmplified = false;
+    }
+
+    public void ApplySlowDebuff(float slowPercent)
+    {
+        _slowPercent = slowPercent;
+
+        CancelInvoke(nameof(ResetSlowDebuff));
+        Invoke(nameof(ResetSlowDebuff), _slowDebuffBufferTime);
+    }
+
+    private void ResetSlowDebuff()
+    {
+        _slowPercent = 0f;
     }
 
     protected virtual void Die()
