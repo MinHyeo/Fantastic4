@@ -63,7 +63,7 @@ public class GameObjectManager : MonoBehaviour
     {
         _objectInstanceKeyGenerator++;
         var generatedInstanceId = _objectInstanceKeyGenerator;
-        var enemyObject = createdObject.GetComponent<NormalEnemy>();
+        var enemyObject = createdObject.GetComponent<EnemyBase>();
 
         if (enemyObject != null)
         {

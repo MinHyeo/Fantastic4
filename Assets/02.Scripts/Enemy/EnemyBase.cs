@@ -13,7 +13,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected float _currentHp;
     protected float _damageBonus;
     protected bool _isDamageAmplified;
-    private float _slowPercent; //이속감소 비율
+    private float _slowPercent = 0; //이속감소 비율
 
     [SerializeField] private float _arriveDistance = 0.4f; // 도착판정범위
     [SerializeField] private float _rotateSpeed = 360f; // 초당 회전 각도
@@ -52,7 +52,7 @@ public abstract class EnemyBase : MonoBehaviour
         CheckArriveAndSetNextTarget();
     }
 
-    protected void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (_isDead == true)
             return;
@@ -64,7 +64,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected void MoveToPosition(Vector3 targetPosition)
     {
         float slowedMoveSpeed = _enemyData.MoveSpeed * (1f - (_slowPercent / 100f));
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, (_enemyData.MoveSpeed * Time.deltaTime));
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, (slowedMoveSpeed * Time.deltaTime));
     }
 
     protected void RotateTowardsTarget(Vector3 targetPosition)
@@ -132,7 +132,7 @@ public abstract class EnemyBase : MonoBehaviour
 
         _damageBonus = damageBonusAmount;
         _isDamageAmplified = true;
-
+     
         Invoke(nameof(ResetDamageAmplificationDebuff), duration);
     }
 
