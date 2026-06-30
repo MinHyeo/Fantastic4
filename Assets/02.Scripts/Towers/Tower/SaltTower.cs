@@ -50,10 +50,9 @@ public class SaltTower : TowerBase
             {
                 if (_saltDebuff == null)
                 {
-                    _saltDebuff = gameObject.AddComponent<SaltDebuff>();
+                    //_saltDebuff = gameObject.AddComponent<SaltDebuff>();
+                    _saltDebuff = new SaltDebuff();
                 }
-
-                _saltDebuff.Initialize(_data.AbilityId);
             }
             else
             {

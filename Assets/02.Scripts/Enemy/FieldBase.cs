@@ -14,6 +14,9 @@ public abstract class FieldBase : MonoBehaviour
     {
         if (other.CompareTag("Entity"))
         {
+            if (other == null)
+                return;
+
             _onFieldEntityList.Add(other.gameObject);
         }
     }
@@ -22,6 +25,9 @@ public abstract class FieldBase : MonoBehaviour
     {
         if (other.CompareTag("Entity"))
         {
+            if (other == null)
+                return;
+
             _onFieldEntityList.Remove(other.gameObject);
         }
     }

@@ -16,12 +16,8 @@ public class OilField : FieldBase
         {
             foreach (var entity in _onFieldEntityList)
             {
-                var enemyScript = entity.GetComponent<EnemyBase>();
-                if (enemyScript == null)
-                    continue;
-
                 float damageValue = _abilityData.NumbericalValue;
-                enemyScript.OnDamaged(damageValue);
+                BattleManager.Instance.AttackToEnemy(entity, damageValue);
             }
             yield return _tickRate;
 

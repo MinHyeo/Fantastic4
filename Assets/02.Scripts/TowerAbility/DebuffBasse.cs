@@ -21,7 +21,7 @@ public abstract class DebuffBase : AbilityBase
         }
     }
 
-    public override void Employ(string abilityId)
+    public override void Employ(string abilityId, Transform spawnSpot = null)
     {
         AbilityData data = GameDataManager.Instance.GetData<AbilityData>(abilityId);
 

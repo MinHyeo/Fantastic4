@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 
-public abstract class MountedAbility : AbilityBase
+public class FieldAbility : AbilityBase
 {
-    protected string _targetTag;
-
     public override void Employ(string abilityId, Transform spawnSpot = null)
     {
 
