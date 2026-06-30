@@ -125,10 +125,11 @@ public class StageManager : MonoBehaviour
     private void ClearStage()
     {
         // UI 호출
+        UIManager.Instance.OpenUI(UIRootType.PopupUI, UIType.ResultSuccessUI);
     }
 
     public void FaildStage()
     {
-        // UI 호출
+        UIManager.Instance.OpenUI(UIRootType.PopupUI, UIType.ResultFailUI);
     }
 }
