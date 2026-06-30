@@ -28,7 +28,7 @@ public class SaltDebuff : DebuffBase
         float baseBonusFactor = 10.0f;
         float finalSaltBonusDamage = baseBonusFactor * _percentValue;
 
-        BattleManager.Instance.ApplySaltBonusDamage(targetEnemy, finalSaltBonusDamage);
+        BattleManager.Instance.DamageAmplificationToEnemy(targetEnemy, finalSaltBonusDamage, _durationTimer);
     }
 
     public void UpdateDebuff(float deltaTime)
