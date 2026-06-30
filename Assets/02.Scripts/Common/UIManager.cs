@@ -104,6 +104,10 @@ public class UIManager : MonoBehaviour
         return _createdUIDic[uiType];
     }
 
+    public UIBase GetOpenUI(UIRootType uiRootType, UIType uiType)
+    {
+        return GetCreatedUI(uiRootType, uiType);
+    }
 
     public UIBase OpenContentUI(UIType uiType)
     {

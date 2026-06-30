@@ -16,6 +16,7 @@ public enum UIType
     LobbyBackgroundUI,
     MainUI,
     LobbyUI,
+    HudMainUI,
     StageUI,
     ResultFailUI,
     ResultSuccessUI,
@@ -50,4 +51,25 @@ public static class UIManagerExtension
     // 신규UI추가 3) 이렇게 어떤 팝업을 열고, 열때 전달해야하는 파라미터가 있다면 이렇게 전달한다.
     // 추가하기 편하게 그냥 빼둔 확장 메서드이므로, uiManager과 this는 우선 넘어가자
 
+    public static void AddHudSlot(this UIManager uIManager, int instanceId, Transform targetTransform)
+    {
+        var uiBase = uIManager.GetOpenUI(UIRootType.MainUI, UIType.HudMainUI);
+        if (uiBase == null) return;
+
+        if (uiBase is HudMainUI hudMainUI)
+        {
+            hudMainUI.AddHudHpSlot(instanceId, targetTransform);
+        }
+    }
+
+    public static void RemoveHudSlot(this UIManager uIManager, int instanceId)
+    {
+        var uiBase = uIManager.GetOpenUI(UIRootType.MainUI, UIType.HudMainUI);
+        if (uiBase == null) return;
+
+        if (uiBase is HudMainUI hudMainUI)
+        {
+            hudMainUI.RemoveHudHpSlot(instanceId);
+        }
+    }
 }
