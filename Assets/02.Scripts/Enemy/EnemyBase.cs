@@ -156,6 +156,20 @@ public abstract class EnemyBase : MonoBehaviour
         _slowPercent = 0f;
     }
 
+    public void HealHealth(float healValue)
+    {
+        if(_isDead == true)
+        {
+            return;
+        }
+
+        _currentHp += healValue;
+        if(_currentHp > _enemyData.MaxHp)
+        {
+            _currentHp = _enemyData.MaxHp;
+        }
+    }
+
     protected virtual void Die()
     {
         _animator.SetBool("IsMove", false);

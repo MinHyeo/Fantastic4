@@ -20,6 +20,10 @@ public class TowerUpgradeUI : UIBase
     [SerializeField] private List<TextMeshProUGUI> _attackRangeTextList = new List<TextMeshProUGUI>();
     [SerializeField] private List<TextMeshProUGUI> _attackSpeedTextList = new List<TextMeshProUGUI>();
     [SerializeField] private List<TextMeshProUGUI> _projectileSpeedTextList = new List<TextMeshProUGUI>();
+    [SerializeField] private TextMeshProUGUI Text_TowerName;
+    [SerializeField] private TextMeshProUGUI Text_UpgradePrice;
+
+    private TowerBase _towerBase;
 
     private void OnEnable()
     {
@@ -33,15 +37,25 @@ public class TowerUpgradeUI : UIBase
         UIManager.Instance.ClosePopupUI(UIType.TowerUpgradeUI);
     }
 
-    public void InitUpgradeInfo(string towerId)
+    public void InitUpgradeInfo(TowerBase towerbase)
     {
-        var towerData = GameDataManager.Instance.GetData<TowerData>(towerId);
+        _towerBase = towerbase;
+
+        var towerData = towerbase.Data;
         if (towerData == null)
         {
             return;
         }
 
+        Text_UpgradePrice.text = $"{towerData.UpgradePrice}";
         ChangeText(towerData, TowerUpgradeState.Before);
+
+        var entityData = GameDataManager.Instance.GetData<EntityData>(towerData.Id);
+        if (entityData == null) 
+        { 
+            return; 
+        }
+        Text_TowerName.text = entityData.Name;
 
         string nextTowerId = towerData.UpgradeId;
         var nextTowerData = GameDataManager.Instance.GetData<TowerData>(nextTowerId);
@@ -50,23 +64,22 @@ public class TowerUpgradeUI : UIBase
             MaxUpgradeLeve();
             return;
         }
-        ChangeText(nextTowerData, TowerUpgradeState.After);
 
+        ChangeText(nextTowerData, TowerUpgradeState.After);
     }
 
     private void ChangeText(TowerData towerData, TowerUpgradeState tower)
     {
         int index = (int)tower;
-        _damgeTextList[index].text = towerData.AttackDamage.ToString();
-        _attackRangeTextList[index].text = towerData.AttackRange.ToString();
-        _attackSpeedTextList[index].text = towerData.AttackSpeed.ToString();
-        _projectileSpeedTextList[index].text = towerData.ProjectileSpeed.ToString();
+        _damgeTextList[index].text = $"데미지 : {towerData.AttackDamage.ToString()}";
+        _attackRangeTextList[index].text = $"사거리 : {towerData.AttackRange.ToString()}";
+        _attackSpeedTextList[index].text = $"공격속도 : {towerData.AttackSpeed.ToString()}";
+        _projectileSpeedTextList[index].text = $"투사체속도 : {towerData.ProjectileSpeed.ToString()}";
     }
 
     private void MaxUpgradeLeve()
     {
         int afterIndex = (int)TowerUpgradeState.After;
-
 
         if (_damgeTextList.Count > afterIndex) _damgeTextList[afterIndex].text = "MAX";
         if (_attackRangeTextList.Count > afterIndex) _attackRangeTextList[afterIndex].text = "MAX";
@@ -83,6 +96,7 @@ public class TowerUpgradeUI : UIBase
 
     private void UpdateTowerUpgradeInfo()
     {
-
+        _towerBase.Upgrade();
+        InitUpgradeInfo(_towerBase);
     }
 }
