@@ -37,11 +37,25 @@ public class TowerUpgradeUI : UIBase
         UIManager.Instance.ClosePopupUI(UIType.TowerUpgradeUI);
     }
 
+    private string GetEntityId(string towerId)
+    {
+        int levelIndex = towerId.IndexOf("_Level");
+        string entityId = string.Empty;
+        if (levelIndex != -1)
+        {
+            string baseId = towerId.Substring(0, levelIndex);
+
+            entityId = $"{baseId}_Level1";
+        }
+
+        return entityId;
+    }
+
     public void InitUpgradeInfo(TowerBase towerbase)
     {
         _towerBase = towerbase;
 
-        Button_Upgrade.gameObject.SetActive(true);
+        // Button_Upgrade.gameObject.SetActive(true);
 
         var towerData = towerbase.Data;
         if (towerData == null)
@@ -51,10 +65,11 @@ public class TowerUpgradeUI : UIBase
 
         ChangeText(towerData, TowerUpgradeLocate.Before);
 
-        var entityData = GameDataManager.Instance.GetData<EntityData>(towerData.Id);
+        string entityId = GetEntityId(towerData.Id);
+        var entityData = GameDataManager.Instance.GetData<EntityData>(entityId);
         if (entityData == null) 
         { 
-            return; 
+            return;
         }
 
         Text_TowerName.text = entityData.Name;
@@ -66,6 +81,7 @@ public class TowerUpgradeUI : UIBase
         }
 
         var nextTowerData = GameDataManager.Instance.GetData<TowerData>(towerData.UpgradeId);
+        Debug.Log(nextTowerData);
         if (nextTowerData == null) 
         { 
             return;
