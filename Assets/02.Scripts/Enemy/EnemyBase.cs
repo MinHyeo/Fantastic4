@@ -117,6 +117,7 @@ public abstract class EnemyBase : MonoBehaviour
         if (_currentHp <= 0f)
         {
             Die();
+            StageManager.Instance.IncreseGold(_enemyData.RewardGold);
         }
     }
 

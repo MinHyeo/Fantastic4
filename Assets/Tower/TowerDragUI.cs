@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using static UnityEngine.LowLevelPhysics2D.PhysicsShape;
 
 /// <summary>
 /// UI 타워 버튼의 드래그 입력과 타워 배치를 처리합니다.
@@ -65,7 +64,9 @@ public class TowerDragUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
         }
 
         // UI_TODO : 여기서 돈 부족하다? 설치할 수 없다 notice 열어야함
-        if (TowerManager.Instance.CanPlaceTower(out Vector3 worldPos))
+        var towerBase = _tower.GetComponent<TowerBase>();
+        if (TowerManager.Instance.CanPlaceTower(out Vector3 worldPos) && 
+            StageManager.Instance.CurrentStageGold >= int.Parse(towerBase.Data.UpgradePrice))
         {
             TowerManager.Instance.SpawnTower(_towerId, worldPos);
             OnTowerPlacedSpendGold?.Invoke(_towerBuildPrice);
