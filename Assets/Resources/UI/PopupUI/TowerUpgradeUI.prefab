@@ -1648,6 +1648,7 @@ MonoBehaviour:
   _projectileSpeedTextList:
   - {fileID: 3589151832567088576}
   - {fileID: 6133982209653574177}
+  Text_UpgradePrice: {fileID: 951236230229487608}
 --- !u!1 &5233881216345012713
 GameObject:
   m_ObjectHideFlags: 0

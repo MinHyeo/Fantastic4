@@ -20,6 +20,7 @@ public class TowerUpgradeUI : UIBase
     [SerializeField] private List<TextMeshProUGUI> _attackRangeTextList = new List<TextMeshProUGUI>();
     [SerializeField] private List<TextMeshProUGUI> _attackSpeedTextList = new List<TextMeshProUGUI>();
     [SerializeField] private List<TextMeshProUGUI> _projectileSpeedTextList = new List<TextMeshProUGUI>();
+    [SerializeField] private TextMeshProUGUI Text_UpgradePrice;
 
     private void OnEnable()
     {
@@ -41,6 +42,7 @@ public class TowerUpgradeUI : UIBase
             return;
         }
 
+        Text_UpgradePrice.text = $"{towerData.UpgradePrice}";
         ChangeText(towerData, TowerUpgradeState.Before);
 
         string nextTowerId = towerData.UpgradeId;
