@@ -33,9 +33,9 @@ public class TowerInfoPopupUI : UIBase
 
     private void OnEnable()
     {
-        //ReadNomalKnomeInfoListAndCreateSlot();
+        ReadTowerInfoListAndCreateSlot();
         Button_EnemyInfo.BindOnClickButtonEvent(OnClick_EnemyInfo);
-        StartReadTowerInfoListAndCreateSlot();
+        //StartReadTowerInfoListAndCreateSlot();
 
         Button_Close.BindOnClickButtonEvent(Onclick_Clsoe);
     }
@@ -64,61 +64,64 @@ public class TowerInfoPopupUI : UIBase
     {
         UIManager.Instance.OpenPopupUI(UIType.EnemyInfoPopupUI);
     }
+    
 
-    private void StartReadTowerInfoListAndCreateSlot()
-    {
-        StartCoroutine(ReadNomalTowerInfoListAndCreateSlotCoroutine());
-    }
 
-    private IEnumerator ReadNomalTowerInfoListAndCreateSlotCoroutine()
-    {
-
-        yield return new WaitForSeconds(1.0f);
-
-        var TowerList = GameDataManager.Instance.GetAllTowerIds();
-
-        if (TowerList != null)
-        {
-            foreach (var towerId in TowerList)
-            {
-                if (towerId.Contains("Level1"))
-                {
-                    CreateNomalSlot(towerId);
-                }
-
-            }
-            if (_slotList != null && _slotList.Count > 0)
-            {
-                var firstSlot = _slotList.Values.GetEnumerator();
-                if (firstSlot.MoveNext())
-                {
-                    firstSlot.Current.OnClick_Slot();
-                }
-            }
-        }
-    }
-    //private void ReadTowerInfoListAndCreateSlot()
+    //동적생성 테스트 전용 코루틴 로직
+    //private void StartReadTowerInfoListAndCreateSlot()
     //{
+    //    StartCoroutine(ReadNomalTowerInfoListAndCreateSlotCoroutine());
+    //}
+
+    //private IEnumerator ReadNomalTowerInfoListAndCreateSlotCoroutine()
+    //{
+
+    //    yield return new WaitForSeconds(1.0f);
+
     //    var TowerList = GameDataManager.Instance.GetAllTowerIds();
-    //    foreach (var enemyId in NomalKnomeList)
-    //    {
 
-    //        if (towerId == null)
+    //    if (TowerList != null)
+    //    {
+    //        foreach (var towerId in TowerList)
     //        {
-    //            continue;
+    //            if (towerId.Contains("Level1"))
+    //            {
+    //                CreateNomalSlot(towerId);
+    //            }
+
     //        }
-
-    //        CreateNomalSlot(towerId);
-    //    }
-    //    if (_slotList.Count > 0)
-    //    {
-    //        foreach (var slotKv in _slotList)
+    //        if (_slotList != null && _slotList.Count > 0)
     //        {
-    //            var slot = slotKv.Value;
-    //            slot.OnClick_Slot();
+    //            var firstSlot = _slotList.Values.GetEnumerator();
+    //            if (firstSlot.MoveNext())
+    //            {
+    //                firstSlot.Current.OnClick_Slot();
+    //            }
     //        }
     //    }
     //}
+
+    private void ReadTowerInfoListAndCreateSlot()
+    {
+        var TowerList = GameDataManager.Instance.GetAllTowerIds();
+        foreach (var towerId in TowerList)
+        {
+
+            if (towerId.Contains("Level1"))
+            {
+                CreateNomalSlot(towerId);
+            }
+
+        }
+        if (_slotList != null && _slotList.Count > 0)
+        {
+            var firstSlot = _slotList.Values.GetEnumerator();
+            if (firstSlot.MoveNext())
+            {
+                firstSlot.Current.OnClick_Slot();
+            }
+        }
+    }
 
 
     private void CreateNomalSlot(string dataId)

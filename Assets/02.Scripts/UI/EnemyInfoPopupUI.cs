@@ -29,9 +29,9 @@ public class EnemyInfoPopupUI : UIBase
 
     private void OnEnable()
     {
-        //ReadNomalKnomeInfoListAndCreateSlot();
+        ReadNomalKnomeInfoListAndCreateSlot();
         Button_TowerInfo.BindOnClickButtonEvent(OnClick_TowerInfo);
-        StartCoroutineForNomalKnome();
+        //StartCoroutineForNomalKnome();
 
         Button_Close.BindOnClickButtonEvent(Onclick_Clsoe);
     }
@@ -61,61 +61,62 @@ public class EnemyInfoPopupUI : UIBase
         UIManager.Instance.OpenPopupUI(UIType.TowerInfoPopupUI);
     }
 
-    private void StartCoroutineForNomalKnome()
-    {
-        StartCoroutine(ReadNomalKnomeInfoListAndCreateSlotCoroutine());
-    }
-
-    private IEnumerator ReadNomalKnomeInfoListAndCreateSlotCoroutine()
-    {
-        
-        yield return new WaitForSeconds(1.0f);
-
-        var NomalKnomeList = GameDataManager.Instance.GetEnemyIds();
-
-        if (NomalKnomeList != null)
-        {
-            foreach (var enemyId in NomalKnomeList)
-            {
-                if (enemyId == null)
-                {
-                    continue;
-                }
-
-                CreateNomalSlot(enemyId);
-            }
-            if (_slotList != null && _slotList.Count > 0)
-            {
-                var firstSlot = _slotList.Values.GetEnumerator();
-                if (firstSlot.MoveNext())
-                {
-                    firstSlot.Current.OnClick_Slot();
-                }
-            }
-        }
-    }
-    //private void ReadNomalKnomeInfoListAndCreateSlot()
+    //동적 생성 테스트 코루틴 코드 
+    //private void StartCoroutineForNomalKnome()
     //{
+    //    StartCoroutine(ReadNomalKnomeInfoListAndCreateSlotCoroutine());
+    //}
+
+    //private IEnumerator ReadNomalKnomeInfoListAndCreateSlotCoroutine()
+    //{
+
+    //    yield return new WaitForSeconds(1.0f);
+
     //    var NomalKnomeList = GameDataManager.Instance.GetEnemyIds();
-    //    foreach (var enemyId in NomalKnomeList)
-    //    {
 
-    //        if (enemyId == null)
+    //    if (NomalKnomeList != null)
+    //    {
+    //        foreach (var enemyId in NomalKnomeList)
     //        {
-    //            continue;
+    //            if (enemyId == null)
+    //            {
+    //                continue;
+    //            }
+
+    //            CreateNomalSlot(enemyId);
     //        }
-
-    //        CreateNomalSlot(enemyId);
-    //    }
-    //    if (_slotList.Count > 0)
-    //    {
-    //        foreach (var slotKv in _slotList)
+    //        if (_slotList != null && _slotList.Count > 0)
     //        {
-    //            var slot = slotKv.Value;
-    //            slot.OnClick_Slot();
+    //            var firstSlot = _slotList.Values.GetEnumerator();
+    //            if (firstSlot.MoveNext())
+    //            {
+    //                firstSlot.Current.OnClick_Slot();
+    //            }
     //        }
     //    }
     //}
+    private void ReadNomalKnomeInfoListAndCreateSlot()
+    {
+        var NomalKnomeList = GameDataManager.Instance.GetEnemyIds();
+        foreach (var enemyId in NomalKnomeList)
+        {
+
+            if (enemyId == null)
+            {
+                continue;
+            }
+
+            CreateNomalSlot(enemyId);
+        }
+        if (_slotList.Count > 0)
+        {
+            foreach (var slotKv in _slotList)
+            {
+                var slot = slotKv.Value;
+                slot.OnClick_Slot();
+            }
+        }
+    }
 
 
     private void CreateNomalSlot(string dataId) 
