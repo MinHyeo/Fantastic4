@@ -13,7 +13,10 @@ public class StageManager : MonoBehaviour
 
     private EnemyRouteManager _enemyRouteManager;
     private int _activeEnemyCount = 0;
+    private int _currentStageGold = 0;
     //private List<EnemyBase> _activeEnemyList = new List<EnemyBase>();
+
+    public int CurrentStageGold => _currentStageGold;
 
     private void Awake()
     {
@@ -38,6 +41,9 @@ public class StageManager : MonoBehaviour
 
         var splineContinear = stageObject.GetComponent<SplineContainer>();
         _enemyRouteManager.SetSplineCointer(splineContinear);
+
+        // 스테이지 골드 불러오기
+        InitStageGoldData();
 
         string[] waveIds = stageData.WaveId;
         foreach(string waveId in waveIds)
@@ -120,6 +126,36 @@ public class StageManager : MonoBehaviour
         {
             ClearStage();
         }
+    }
+
+    private void InitStageGoldData()
+    {
+        var stageIdList = GameDataManager.Instance.GetStageIds();
+        foreach (var stageId in stageIdList)
+        {
+            if (stageId == null)
+            {
+                continue;
+            }
+
+            GetStageGoldData(stageId);
+        }
+    }
+
+    private void GetStageGoldData(string stageId)
+    {
+        var stagedata = GameDataManager.Instance.GetData<StageData>(stageId);
+        _currentStageGold = stagedata.StartGold;
+    }
+
+    public void IncreseGold(int gold)
+    {
+        _currentStageGold += gold;
+    }
+
+    public void DecreaseGold(int gold)
+    {
+        _currentStageGold -= gold;
     }
 
     private void ClearStage()
