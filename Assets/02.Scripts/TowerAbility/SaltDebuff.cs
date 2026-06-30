@@ -1,25 +1,49 @@
 ﻿using UnityEngine;
 
-public class SaltDebuff : DebuffAbility
+public class SaltDebuff : DebuffBase
 {
-    // 자식 단계에서 비로소 데이터 매니저에 접근해 세부 수치를 로드
-    public override void Initialize(string abilityId)
+    private GameObject _targetEnemy;
+    private float _durationTimer;
+    private bool _isDebuffActive;
+
+    public bool IsDebuffActive
     {
-        AbilityId = abilityId;
-
-        AbilityData data = GameDataManager.Instance.GetData<AbilityData>(abilityId);
-
-        if (data != null)
+        get
         {
-            _duration = data.ActiveTime;
-            _percentValue = data.PercentValue;
+            return _isDebuffActive;
         }
     }
 
-    // 부모의 세부화된 기능을 활용해 소금 타워의 고유 기믹만 수행
-    public override void ApplyDebuff(GameObject enemyTarget)
+    public override void ApplyDebuff(GameObject targetEnemy)
     {
-        // 부모의 기능을 활용해 소금 타워 전용 몬스터 메서드 이름을 넘겨줌
-        SendDebuffToEnemy(enemyTarget, "ApplyDamageAmplificationDebuff");
+        if (targetEnemy == null)
+        {
+            return;
+        }
+
+        _targetEnemy = targetEnemy;
+        _durationTimer = _duration;
+        _isDebuffActive = true;
+
+        float baseBonusFactor = 10.0f;
+        float finalSaltBonusDamage = baseBonusFactor * _percentValue;
+
+        BattleManager.Instance.ApplySaltBonusDamage(targetEnemy, finalSaltBonusDamage);
+    }
+
+    public void UpdateDebuff(float deltaTime)
+    {
+        if (!_isDebuffActive)
+        {
+            return;
+        }
+
+        _durationTimer -= deltaTime;
+
+        if (_durationTimer <= 0.0f)
+        {
+            _isDebuffActive = false;
+            _targetEnemy = null;
+        }
     }
 }

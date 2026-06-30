@@ -5,7 +5,7 @@ public class HeeJun_SaltProjectile : Projectile
 {
     [SerializeField] private GameObject _burstEffect;
 
-    private DebuffAbility _debuffAbility;
+    private DebuffBasse _debuffAbility;
 
     public override void Init(float damage, Transform targetTransform, float projectileSpeed)
     {
@@ -16,7 +16,7 @@ public class HeeJun_SaltProjectile : Projectile
         transform.DORotate(new Vector3(0, 0, 360), 0.3f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Incremental).SetEase(Ease.Linear).SetLink(gameObject);
     }
 
-    public void SetupSaltAbility(DebuffAbility debuffAbility)
+    public void SetupSaltAbility(DebuffBasse debuffAbility)
     {
         _debuffAbility = debuffAbility;
     }
