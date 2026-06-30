@@ -24,13 +24,13 @@ public class LobbyUI : UIBase
     }
     private void OnClickInformationButton()
     {
-        SoundManager.Instance.PlaySFX("Assets/Sounds/Sound_uhhuh");
-        UIManager.Instance.OpenContentUI(UIType.TowerInfoPopupUI);
+        //SoundManager.Instance.PlaySFX("Assets/Sounds/Sound_uhhuh");
+        UIManager.Instance.OpenPopupUI(UIType.TowerInfoPopupUI);
     }
 
     private void OnClickSettingButton()
     {
-        UIManager.Instance.OpenContentUI(UIType.SettingUI);
+        UIManager.Instance.OpenPopupUI(UIType.SettingUI);
     }
     private void OnClickEndButton()
     {
