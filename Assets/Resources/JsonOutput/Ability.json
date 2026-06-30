@@ -9,10 +9,10 @@
   },
   {
     "Id": "Ability_02",
-    "PercentValue": 10,
-    "NumbericalValue": 0,
-    "ActiveTime": 5,
-    "EffectRound": 1,
+    "PercentValue": 30,
+    "NumbericalValue": 10,
+    "ActiveTime": 3,
+    "EffectRound": 3,
     "PrefabPath": "Prefabs/Ability/KetchupField"
   },
   {

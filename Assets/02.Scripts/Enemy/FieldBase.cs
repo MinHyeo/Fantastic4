@@ -36,6 +36,7 @@ public abstract class FieldBase : MonoBehaviour
     {
         _abilityData = abilityData;
 
+        _onFieldEntityList = new();
         _activeTime = new WaitForSeconds(_abilityData.ActiveTime);
         _tickRate = new WaitForSeconds(_tickTime);
     }

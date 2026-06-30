@@ -8,6 +8,7 @@ public class KetchupTower : TowerBase
     private GameObject _projectilePrefab;
     [SerializeField] private Transform _ketchupHead;
 
+    private string _abilityId;
 
     private float _currentFireTimer;
 
@@ -37,6 +38,8 @@ public class KetchupTower : TowerBase
 
         // 처음 포탑이 생성될 때, 바로 사격 가능하도록
         _currentFireTimer = _data.AttackSpeed;
+
+        _abilityId = Data.AbilityId;
 
         if (!string.IsNullOrEmpty(_data.ProjectilePath))
         {
@@ -71,7 +74,7 @@ public class KetchupTower : TowerBase
         // 발사
         var projectileInst = Instantiate(_projectilePrefab, _firePoint.position, Quaternion.identity);
         var ketchupProjectile = projectileInst.GetComponent<KetchupProjectile>();
-        ketchupProjectile.Init(0f, enemy, _data.ProjectileSpeed);
+        ketchupProjectile.Init(0f, enemy, _data.ProjectileSpeed, _data.AbilityId);
         _currentFireTimer = 0f;
 
         // 발사 애님

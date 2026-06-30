@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class KetchupProjectile : Projectile
@@ -12,11 +13,19 @@ public class KetchupProjectile : Projectile
     ///</summary>
     [SerializeField] private LayerMask _targetLayerMask;
 
-    public override void Init(float damage, Transform targetTransform, float projectileSpeed)
+    private string _abilityId;
+
+    public override void Init(float damage, Transform targetTransform, float projectileSpeed, string abilityId = "")
     {
         _damage = damage;
         _targetTransform = targetTransform;
         _projectileSpeed = projectileSpeed;
+
+        if (string.IsNullOrEmpty(abilityId) == false)
+        {
+            // TODO : 여기서 전달
+            _abilityId = abilityId;
+        }
     }
 
     protected override void Update()
@@ -39,11 +48,19 @@ public class KetchupProjectile : Projectile
         {
             float groundY = _targetTransform.position.y;
             Vector3 decalPosition = transform.position;
-            decalPosition.y = groundY;   // 적 발밑 높이
+            decalPosition.y = groundY + 0.01f;   // 적 발밑 높이
+
             if (_decalSpawner != null)
             {
                 _decalSpawner.Spawn(decalPosition, Vector3.up);
             }
+
+            // 케찹 어빌리티 장판 생성
+            if (string.IsNullOrEmpty(_abilityId) == false)
+            {
+                GameObjectManager.Instance.CreateAbilityObject(_abilityId, decalPosition).Forget();
+            }
+
             Debug.LogWarning("투사체 피격");
             Destroy(gameObject);
         }

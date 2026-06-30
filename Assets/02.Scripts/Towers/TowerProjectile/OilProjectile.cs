@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 public class OilProjectile : Projectile
 {
@@ -8,6 +9,7 @@ public class OilProjectile : Projectile
     [SerializeField] private float _impactDistance = 0.1f;
 
     private AbilityData _oilAbility;
+    private string _abilityId;
     private Vector3 _startPosition;
     private float _elapsedTime;
     private float _flightDuration;
@@ -15,7 +17,7 @@ public class OilProjectile : Projectile
 
     public bool IsInitialized => _oilAbility != null;
 
-    public override void Init(float damage, Transform targetTransform, float projectileSpeed)
+    public override void Init(float damage, Transform targetTransform, float projectileSpeed, string abilityId = "")
     {
         base.Init(damage, targetTransform, projectileSpeed);
 
@@ -25,6 +27,11 @@ public class OilProjectile : Projectile
 
         float distance = _targetTransform != null ? Vector3.Distance(_startPosition, _targetTransform.position) : 0f;
         _flightDuration = Mathf.Max(distance / Mathf.Max(_projectileSpeed, 0.01f), 0.01f);
+
+        if (string.IsNullOrEmpty(abilityId) == false)
+        {
+            _abilityId = abilityId;
+        }
     }
 
     public void SetupKetchupAbility(AbilityData abilityData)
@@ -88,8 +95,26 @@ public class OilProjectile : Projectile
 
         _isHit = true;
         BattleManager.Instance.AttackToEnemy(target, _damage);
+        CreateOilField(target);
         SpawnBurstEffect();
         Destroy(gameObject);
+    }
+
+    private void CreateOilField(GameObject target)
+    {
+        if (string.IsNullOrEmpty(_abilityId))
+        {
+            return;
+        }
+
+        // 오일 투사체가 맞은 위치에 장판 어빌리티를 생성합니다.
+        Vector3 fieldPosition = transform.position;
+        if (target != null)
+        {
+            fieldPosition.y = target.transform.position.y + 0.01f;
+        }
+
+        GameObjectManager.Instance.CreateAbilityObject(_abilityId, fieldPosition).Forget();
     }
 
     private void SpawnBurstEffect()

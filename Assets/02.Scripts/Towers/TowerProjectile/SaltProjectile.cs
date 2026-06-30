@@ -9,7 +9,7 @@ public class SaltProjectile : Projectile
 
     public bool IsInitialized => _debuffAbility != null;
 
-    public override void Init(float damage, Transform targetTransform, float projectileSpeed)
+    public override void Init(float damage, Transform targetTransform, float projectileSpeed, string abilityId = "")
     {
         _damage = damage;
         _targetTransform = targetTransform;

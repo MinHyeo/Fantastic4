@@ -121,7 +121,7 @@ public class OilTower : TowerBase
                 continue;
             }
 
-            projectile.Init(_damage, targetEnemy.transform, _projectileSpeed);
+            projectile.Init(_damage, targetEnemy.transform, _projectileSpeed, _data.AbilityId);
         }
 
         // 공격 시 애님

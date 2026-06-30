@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] protected float _projectileSpeed;
     [SerializeField] protected GameObject _areaEffectPrefab;
 
-    public virtual void Init(float damage, Transform targetTransform, float projectileSpeed)
+    public virtual void Init(float damage, Transform targetTransform, float projectileSpeed, string abilityId = "")
     {
         transform.DORotate(new Vector3(0, 360, 0), 0.3f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Incremental).SetEase(Ease.Linear).SetLink(gameObject);
 

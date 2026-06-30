@@ -10,7 +10,7 @@ public class PepperProjectile : Projectile
     ///</summary>
     [SerializeField] private LayerMask _targetLayerMask;
 
-    public override void Init(float damage, Transform targetTransform, float projectileSpeed)
+    public override void Init(float damage, Transform targetTransform, float projectileSpeed, string abilityId = "")
     {
         _damage = damage;
         _targetTransform = targetTransform;
