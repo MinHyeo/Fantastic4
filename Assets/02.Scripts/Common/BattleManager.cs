@@ -33,16 +33,31 @@ public class BattleManager : MonoBehaviour
         return leadEnemy;
     }
 
-    // 소금 디버프
-    public void ApplySaltBonusDamage(GameObject enemy, float bonusDamage)
+    public void HealToEnemy(GameObject enemy, float healValue)
     {
         var enemyScript = enemy.GetComponent<EnemyBase>();
-
         if (enemyScript == null)
-        {
             return;
-        }
 
-        enemyScript.OnDamaged(bonusDamage);
+        enemyScript.HealHealth(healValue);
+    }
+
+    public void DamageAmplificationToEnemy(GameObject enemy, float damageBonus, float duration)
+    {
+        var enemyScript = enemy.GetComponent<EnemyBase>();
+        if (enemyScript == null)
+            return;
+
+        enemyScript.ApplyDamageAmplificationDebuff(damageBonus, duration);
+    }
+
+
+    public void SlowToEnemy(GameObject enemy, float slowPercent, float duraction)
+    {
+        var enemyScript = enemy.GetComponent<EnemyBase>();
+        if (enemyScript == null)
+            return;
+
+        enemyScript.ApplySlowDebuff(slowPercent);
     }
 }
