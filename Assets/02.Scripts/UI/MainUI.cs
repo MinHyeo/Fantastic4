@@ -36,6 +36,7 @@ public class MainUI : UIBase
     private void Update()
     {
         FinalTimeUpdate();
+        UpdateCurrentGold();
     }
 
     private void OnDisable()
@@ -66,15 +67,23 @@ public class MainUI : UIBase
     private void InitMainUI()
     {
         ReadTowerListAndCreateSlot();
-        UpdateGoldText();
+        StageStartGold();
         _isTimerRunning = true;
         UpdateTimerText();
     }
 
-    private void UpdateGoldText()
+    private void StageStartGold()
+    {
+        var startGold = StageManager.Instance.CurrentStageGold;
+        _stageGold = startGold;
+        Text_Gold.text = $"{_stageGold}";
+    }
+
+    private void UpdateCurrentGold()
     {
         var currentGold = StageManager.Instance.CurrentStageGold;
-        Text_Gold.text = $"{currentGold}";
+        _stageGold = currentGold;
+        Text_Gold.text = $"{_stageGold}";
     }
 
     // 타워덱 생성 부분
