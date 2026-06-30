@@ -58,7 +58,7 @@ public class TowerManager : MonoBehaviour
             var upgrade = openPopup as TowerUpgradeUI;
             if (upgrade != null)
             {
-                upgrade.InitUpgradeInfo(_selectedTower.Data.Id);
+                upgrade.InitUpgradeInfo(clickedTower);
             }
             UIManager.Instance.OpenPopupUI(UIType.TowerUpgradeUI);
             return;
