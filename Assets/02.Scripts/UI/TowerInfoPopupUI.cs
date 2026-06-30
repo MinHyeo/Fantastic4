@@ -62,7 +62,9 @@ public class TowerInfoPopupUI : UIBase
 
     private void OnClick_EnemyInfo()
     {
+        UIManager.Instance.ClosePopupUI(UIType.TowerInfoPopupUI);
         UIManager.Instance.OpenPopupUI(UIType.EnemyInfoPopupUI);
+
     }
     
 
