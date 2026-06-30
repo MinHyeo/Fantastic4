@@ -17,7 +17,6 @@ public class MainUI : UIBase
     private Dictionary<string, TowerDeck> _deckList = new Dictionary<string, TowerDeck>();
 
     private int _stageGold = 0;
-    public int CurrentGold => _stageGold;
 
     // 타이머 변수
     private float _currentTimer = 40.0f;
@@ -67,52 +66,15 @@ public class MainUI : UIBase
     private void InitMainUI()
     {
         ReadTowerListAndCreateSlot();
-        SetStageGoldData();
-
-        Text_Gold.text = $"{_stageGold}";
+        UpdateGoldText();
         _isTimerRunning = true;
         UpdateTimerText();
     }
 
-    // 골드 부분
-    private void SetStageGoldData()
-    {
-        var stageIdList = GameDataManager.Instance.GetStageIds();
-        foreach (var stageId in stageIdList)
-        {
-            if (stageId == null)
-            {
-                continue;
-            }
-
-            GetStageGoldData(stageId);
-        }
-    }
-
-    private void GetStageGoldData(string stageId)
-    {
-        var stagedata = GameDataManager.Instance.GetData<StageData>(stageId);
-        _stageGold = stagedata.StartGold;
-    }
-
-    public void IncreseGold(int gold)
-    {
-        _stageGold += gold;
-        UpdateGoldText();
-    }
-
-    public void DecreaseGold(int gold)
-    {
-        _stageGold -= gold;
-        UpdateGoldText();
-    }
-
     private void UpdateGoldText()
     {
-        if (Text_Gold != null)
-        {
-            Text_Gold.text = $"{_stageGold}";
-        }
+        var currentGold = StageManager.Instance.CurrentStageGold;
+        Text_Gold.text = $"{currentGold}";
     }
 
     // 타워덱 생성 부분
@@ -165,7 +127,7 @@ public class MainUI : UIBase
 
     private void HandleTowerPlaced(int cost)
     {
-        DecreaseGold(cost);
+        StageManager.Instance.DecreaseGold(cost);
     }
 
     // 타이머 설정 부분
