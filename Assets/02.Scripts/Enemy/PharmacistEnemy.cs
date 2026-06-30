@@ -4,9 +4,9 @@ public class PharmcistEnemy : EnemyBase
 {
     private AbilityBase _ability;
 
-    public override void Init(string enemyId)
+    public override void Init(int instanceId, string enemyId)
     {
-        base.Init(enemyId);
+        base.Init(instanceId, enemyId);
         _ability = new HealAbility();
     }
 

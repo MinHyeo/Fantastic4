@@ -9,12 +9,12 @@ public class SpecialEnemy : EnemyBase
     [SerializeField] private float _fallSpeed = 25f;
     [SerializeField] private float _landingArriveDistance = 0.1f;
 
-    public override void Init(string enemyId)
+    public override void Init(int instanceId, string enemyId)
     {
         _landingPosition = transform.position;
         transform.position = _landingPosition + (Vector3.up * _fallHeight);
         
-        base.Init(enemyId);
+        base.Init(instanceId, enemyId);
 
         _isAppear = true;
 

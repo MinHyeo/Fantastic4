@@ -14,8 +14,8 @@ public class Hud_HpSlotUI : MonoBehaviour
     {
         _instanceId = instanceId;
         _targetTransform = targetTransform;
-        slotOffsetX = -45;
-        slotOffsetY = 10;
+        slotOffsetX = -960;
+        slotOffsetY = -540;
 
         TryBingStatChangedEvent(targetTransform.gameObject);
     }
@@ -23,17 +23,17 @@ public class Hud_HpSlotUI : MonoBehaviour
     private void TryBingStatChangedEvent(GameObject gObj)
     {
         // TODO : 에너미 클래스와 연동 필요
-        //var enemy = gObj.GetComponent<Enemy>();
-        //if (enemy != null)
-        //{
-        //    enemy.BindeOnStatChangedEvent(OnTargetEntitiyHpChanged);
-        //    return;
-        //}
+        var enemy = gObj.GetComponent<EnemyBase>();
+        if (enemy != null)
+        {
+            enemy.BindeOnStatChangedEvent(OnTargetEntitiyHpChanged);
+            return;
+        }
     }
 
-    private void OnTargetEntitiyHpChanged(int curHp, int maxHp)
+    private void OnTargetEntitiyHpChanged(float curHp, float maxHp)
     {
-        Slider_Hp.value = (curHp / (float)maxHp);
+        Slider_Hp.value = (curHp / maxHp);
     }
 
     private void Update()

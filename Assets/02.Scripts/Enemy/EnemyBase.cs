@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEditor;
+using UnityEngine;
 
 public abstract class EnemyBase : MonoBehaviour
 {
+    protected int _instanceId;
     protected int _courseIndex;
     public int CourseIndex
     {
@@ -19,12 +22,14 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] private float _rotateSpeed = 360f; // 초당 회전 각도
     [SerializeField] private float _slowDebuffBufferTime = 1.3f; // 대충 1초(틱)보다 살짝 길게
 
+    private event Action<float, float> _OnChangedHp;
     private Vector3 _targetPosition;
     private bool _isDead = false;
     public bool IsDead => _isDead;
 
-    public virtual void Init(string enemyId)
+    public virtual void Init(int instanceId, string enemyId)
     {
+        _instanceId = instanceId;
         _animator = GetComponent<Animator>();
         EnemyData enemyData = GameDataManager.Instance.GetData<EnemyData>(enemyId);
         if (enemyData == null)
@@ -114,6 +119,7 @@ public abstract class EnemyBase : MonoBehaviour
             return;
 
         _currentHp -= (damage + _damageBonus);
+        _OnChangedHp?.Invoke(_currentHp, _enemyData.MaxHp);
         if (_currentHp <= 0f)
         {
             Die();
@@ -170,12 +176,16 @@ public abstract class EnemyBase : MonoBehaviour
         }
     }
 
+    public void BindeOnStatChangedEvent(Action<float, float> callback)
+    {
+        _OnChangedHp += callback;
+    }
+
     protected virtual void Die()
     {
         _animator.SetBool("IsMove", false);
         _animator.SetTrigger("IsDead");
 
-        //GameObjectManager.Instance.ReturnObjectPool(gameObject);
         _isDead = true;
         StageManager.Instance.RemoveActivatedEnemy();
 
@@ -184,6 +194,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected void OnDeathAnimationComplete()
     {
+        UIManager.Instance.RemoveHudSlot(_instanceId);
         GameObjectManager.Instance.ReturnObjectPool(gameObject);
     }
 }
