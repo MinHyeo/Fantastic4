@@ -73,9 +73,14 @@ public class StageManager : MonoBehaviour
 
     public bool CheckEndCourse(int courseIndex)
     {
-        return _enemyRouteManager.CheckEndCource(courseIndex);
-    }
+        if (_enemyRouteManager.CheckEndCource(courseIndex))
+        {
+            GameObjectManager.Instance.ReturnObjectPool(gameObject);
+            return true;
+        }
 
+        return false;
+    }
     public Vector3 GetCoursePosition(int courseIndex)
     {
         return _enemyRouteManager.GetCoursePosition(courseIndex);
