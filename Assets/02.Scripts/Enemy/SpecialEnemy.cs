@@ -6,7 +6,7 @@ public class SpecialEnemy : EnemyBase
     private Vector3 _landingPosition;
 
     [SerializeField] private float _fallHeight = 15f;
-    [SerializeField] private float _fallSpeed = 15f;
+    [SerializeField] private float _fallSpeed = 25f;
     [SerializeField] private float _landingArriveDistance = 0.1f;
 
     public override void Init(string enemyId)
