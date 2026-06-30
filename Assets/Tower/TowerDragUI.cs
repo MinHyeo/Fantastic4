@@ -66,7 +66,7 @@ public class TowerDragUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
         // UI_TODO : 여기서 돈 부족하다? 설치할 수 없다 notice 열어야함
         var towerBase = _tower.GetComponent<TowerBase>();
         if (TowerManager.Instance.CanPlaceTower(out Vector3 worldPos) && 
-            StageManager.Instance.CurrentStageGold >= int.Parse(towerBase.Data.UpgradePrice))
+            StageManager.Instance.CurrentStageGold >= towerBase.Data.BuildPrice)
         {
             TowerManager.Instance.SpawnTower(_towerId, worldPos);
             OnTowerPlacedSpendGold?.Invoke(_towerBuildPrice);
