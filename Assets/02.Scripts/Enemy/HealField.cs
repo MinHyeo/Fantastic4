@@ -21,7 +21,7 @@ public class HealField : FieldBase
                     continue;
 
                 float healValue = _abilityData.NumbericalValue;
-                //enemyScript.HealHealth(healValue);
+                enemyScript.HealHealth(healValue);
             }
             yield return _tickRate;
 
