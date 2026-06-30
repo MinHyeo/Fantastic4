@@ -20,6 +20,7 @@ public class TowerUpgradeUI : UIBase
     [SerializeField] private List<TextMeshProUGUI> _attackRangeTextList = new List<TextMeshProUGUI>();
     [SerializeField] private List<TextMeshProUGUI> _attackSpeedTextList = new List<TextMeshProUGUI>();
     [SerializeField] private List<TextMeshProUGUI> _projectileSpeedTextList = new List<TextMeshProUGUI>();
+    [SerializeField] private TextMeshProUGUI Text_TowerName;
     [SerializeField] private TextMeshProUGUI Text_UpgradePrice;
 
     private TowerBase _towerBase;
@@ -48,6 +49,13 @@ public class TowerUpgradeUI : UIBase
 
         Text_UpgradePrice.text = $"{towerData.UpgradePrice}";
         ChangeText(towerData, TowerUpgradeState.Before);
+
+        var entityData = GameDataManager.Instance.GetData<EntityData>(towerData.Id);
+        if (entityData == null) 
+        { 
+            return; 
+        }
+        Text_TowerName.text = entityData.Name;
 
         string nextTowerId = towerData.UpgradeId;
         var nextTowerData = GameDataManager.Instance.GetData<TowerData>(nextTowerId);
