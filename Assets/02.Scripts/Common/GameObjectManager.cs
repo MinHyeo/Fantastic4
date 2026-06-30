@@ -67,7 +67,8 @@ public class GameObjectManager : MonoBehaviour
 
         if (enemyObject != null)
         {
-            enemyObject.Init(enemyId);
+            enemyObject.Init(generatedInstanceId, enemyId);
+            UIManager.Instance.AddHudSlot(generatedInstanceId, enemyObject.transform);
             _activeObjectList.Add(createdObject);
         }
     }
