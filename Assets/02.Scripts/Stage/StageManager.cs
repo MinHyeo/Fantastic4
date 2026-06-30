@@ -155,6 +155,11 @@ public class StageManager : MonoBehaviour
 
     public void DecreaseGold(int gold)
     {
+        if (_currentStageGold < gold)
+        {
+            return;
+        }
+
         _currentStageGold -= gold;
     }
 

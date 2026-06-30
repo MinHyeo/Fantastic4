@@ -26,7 +26,7 @@ public class TowerData : GameDataBase
     public string AbilityId;
     public int BuildPrice;
     public string UpgradeId;
-    public string UpgradePrice;
+    public int UpgradePrice;
     public string PrefabPath;
     public string ProjectilePath;
 }

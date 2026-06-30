@@ -72,4 +72,15 @@ public static class UIManagerExtension
             hudMainUI.RemoveHudHpSlot(instanceId);
         }
     }
+
+    public static void OpenTowerUpgradeUI(this UIManager uiManager, TowerBase towerbase)
+    {
+        var openPopup = UIManager.Instance.OpenPopupUI(UIType.TowerUpgradeUI);
+        if (openPopup is TowerUpgradeUI upgradeUI)
+        {
+            upgradeUI.InitUpgradeInfo(towerbase);
+        }
+
+        UIManager.Instance.OpenPopupUI(UIType.TowerUpgradeUI);
+    }
 }

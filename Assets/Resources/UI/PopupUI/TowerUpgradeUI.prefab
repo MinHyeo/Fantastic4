@@ -1332,7 +1332,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 500
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1636,7 +1636,7 @@ MonoBehaviour:
   Button_CloseBG: {fileID: 2755108853216925143}
   Button_Close: {fileID: 40617125943955999}
   Button_Upgrade: {fileID: 6015670354290762744}
-  _damgeTextList:
+  _damageTextList:
   - {fileID: 5901413750772373011}
   - {fileID: 6070715443441348785}
   _attackRangeTextList:

@@ -94,7 +94,8 @@ public abstract partial class TowerBase : MonoBehaviour, IPointerClickHandler
             Debug.Log("이미 최대 강화상태임");
             return;
         }
-
+        
+        StageManager.Instance.DecreaseGold(_data.UpgradePrice);
         Init(nextId);
 
         Debug.LogWarning($"강화 후 데미지{_data.AttackDamage}, 사거리 {_data.AttackRange}, 공속 {_data.AttackSpeed}, 투사체 속도 {_data.ProjectileSpeed}");

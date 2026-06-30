@@ -54,16 +54,10 @@ public class TowerManager : MonoBehaviour
             ToggleTowerRangeVisualizer(clickedTower);
 
             // 타워 강화창 오픈
-            var openPopup = UIManager.Instance.OpenPopupUI(UIType.TowerUpgradeUI);
-            var upgrade = openPopup as TowerUpgradeUI;
-            if (upgrade != null)
-            {
-                upgrade.InitUpgradeInfo(clickedTower);
-            }
-            UIManager.Instance.OpenPopupUI(UIType.TowerUpgradeUI);
+            UIManager.Instance.OpenTowerUpgradeUI(clickedTower);
+
             return;
         }
-
         
         ClearSelectedTower();
     }
