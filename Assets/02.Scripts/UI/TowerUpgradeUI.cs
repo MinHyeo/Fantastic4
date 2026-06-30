@@ -52,8 +52,8 @@ public class TowerUpgradeUI : UIBase
             MaxUpgradeLeve();
             return;
         }
-        ChangeText(nextTowerData, TowerUpgradeState.After);
 
+        ChangeText(nextTowerData, TowerUpgradeState.After);
     }
 
     private void ChangeText(TowerData towerData, TowerUpgradeState tower)
