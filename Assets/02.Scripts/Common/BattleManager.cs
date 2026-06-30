@@ -32,4 +32,17 @@ public class BattleManager : MonoBehaviour
 
         return leadEnemy;
     }
+
+    // 소금 디버프
+    public void ApplySaltBonusDamage(GameObject enemy, float bonusDamage)
+    {
+        var enemyScript = enemy.GetComponent<EnemyBase>();
+
+        if (enemyScript == null)
+        {
+            return;
+        }
+
+        enemyScript.OnDamaged(bonusDamage);
+    }
 }

@@ -5,7 +5,7 @@ public class SaltProjectile : Projectile
 {
     [SerializeField] private GameObject _burstEffect;
 
-    private DebuffAbility _debuffAbility;
+    private DebuffBase _debuffAbility;
 
     public bool IsInitialized => _debuffAbility != null;
 
@@ -22,7 +22,7 @@ public class SaltProjectile : Projectile
             .SetLink(gameObject);
     }
 
-    public void SetupSaltAbility(DebuffAbility debuffAbility)
+    public void SetupSaltAbility(DebuffBase debuffAbility)
     {
         _debuffAbility = debuffAbility;
     }
