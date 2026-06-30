@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 8a8b958b6dbf58f409f27cb215c8a563, type: 2}
     - target: {fileID: 919132149155446097, guid: dc1177ebcc11b4148a83781612b52265, type: 3}
       propertyPath: m_Name
-      value: Enemy_02
+      value: Enemy_Cup
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: dc1177ebcc11b4148a83781612b52265, type: 3}
       propertyPath: m_Layer
@@ -97,13 +97,13 @@ PrefabInstance:
       addedObject: {fileID: -7986249267789007407}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dc1177ebcc11b4148a83781612b52265, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -8570757303086108689}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dc1177ebcc11b4148a83781612b52265, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 8749792237203296576}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dc1177ebcc11b4148a83781612b52265, type: 3}
       insertIndex: -1
       addedObject: {fileID: -14704669349999627}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dc1177ebcc11b4148a83781612b52265, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4985121456828301041}
   m_SourcePrefab: {fileID: 100100000, guid: dc1177ebcc11b4148a83781612b52265, type: 3}
 --- !u!1 &3846059572922067371 stripped
 GameObject:
@@ -132,20 +132,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-8570757303086108689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3846059572922067371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbb9ca277c92b034489e213e7b0eddc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NormalEnemy
-  _arriveDistance: 0.4
-  _rotateSpeed: 360
 --- !u!136 &8749792237203296576
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -196,3 +182,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4985121456828301041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3846059572922067371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f142b9ed645991b47a9cce48d25abc41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CupEnemy
+  _arriveDistance: 0.4
+  _rotateSpeed: 360
+  _slowDebuffBufferTime: 1.3
