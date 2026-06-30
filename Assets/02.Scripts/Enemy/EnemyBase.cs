@@ -120,15 +120,15 @@ public abstract class EnemyBase : MonoBehaviour
         }
     }
 
-    public void ApplyDamageAmplificationDebuff(object[] parameters)
+    public void ApplyDamageAmplificationDebuff(float damageBonusAmount, float duration)
     {
         if (_isDamageAmplified == true)
         {
             return;
         }
 
-        float damageBonusAmount = (float)parameters[0];
-        float duration = (float)parameters[1];
+        _damageBonus = damageBonusAmount;
+        _isDamageAmplified = true;
 
         _damageBonus = damageBonusAmount;
         _isDamageAmplified = true;
