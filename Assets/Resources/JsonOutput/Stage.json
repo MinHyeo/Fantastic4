@@ -1,23 +1,23 @@
-[
-  {
+﻿[
+ {
     "Id": "Stage_01",
     "MaxLife": 3,
     "StartGold": 200,
-    "WaveId": ["Wave1_01", "Wave1_02", "Wave1_03"],
+    "WaveId": ["Wave1_01_01", "Wave1_01_02", "Wave1_02_01", "Wave1_02_02", "Wave1_03_01", "Wave1_03_02", "Wave1_03_03"],
     "PrefabPath": "Prefabs/Stage/Stage_01"
   },
   {
     "Id": "Stage_02",
     "MaxLife": 3,
     "StartGold": 200,
-    "WaveId": ["Wave2_01", "Wave2_02", "Wave2_03"],
+    "WaveId": [ "Wave2_01_01", "Wave2_01_02", "Wave2_01_03", "Wave2_01_04", "Wave2_02_01", "Wave2_02_02", "Wave2_02_03", "Wave2_02_04", "Wave2_03_01", "Wave2_03_02", "Wave2_03_03", "Wave2_03_04" ],
     "PrefabPath": "Prefabs/Stage/Stage_02"
   },
   {
     "Id": "Stage_03",
     "MaxLife": 3,
     "StartGold": 200,
-    "WaveId": ["Wave3_01", "Wave3_02", "Wave3_03"],
+    "WaveId": ["Wave3_01_01", "Wave3_01_02", "Wave3_01_03", "Wave3_01_04", "Wave3_01_05", "Wave3_01_06", "Wave3_02_01", "Wave3_02_02", "Wave3_02_03", "Wave3_03_01", "Wave3_03_02", "Wave3_03_03"],
     "PrefabPath": "Prefabs/Stage/Stage_03"
   },
   {

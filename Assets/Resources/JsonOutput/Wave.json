@@ -1,178 +1,252 @@
-[
-  {
-    "Id": "Wave1_01",
-    "WaveGroup": 1,
-    "EnemyId": "Enemy_Normal",
-    "Count": 3,
-    "Interval": 1,
-    "PreDelay": 0
-  },
-  {
-    "Id": "Wave1_02",
-    "WaveGroup": 1,
-    "EnemyId": "Enemy_Cup",
-    "Count": 3,
-    "Interval": 0.5,
-    "PreDelay": 5
-  },
-  {
-    "Id": "Wave1_03",
-    "WaveGroup": 1,
-    "EnemyId": "Enemy_Normal",
-    "Count": 2,
-    "Interval": 1.5,
-    "PreDelay": 8
-  },
-  {
-    "Id": "Wave2_01",
-    "WaveGroup": 1,
-    "EnemyId": "Enemy_Cup",
-    "Count": 5,
-    "Interval": 0.5,
-    "PreDelay": 0
-  },
-  {
-    "Id": "Wave2_02",
-    "WaveGroup": 1,
-    "EnemyId": "Enemy_Normal",
-    "Count": 5,
-    "Interval": 0.25,
-    "PreDelay": 3
-  },
-  {
-    "Id": "Wave2_03",
-    "WaveGroup": 1,
-    "EnemyId": "Enemy_Crazy",
-    "Count": 3,
-    "Interval": 0.25,
-    "PreDelay": 6
-  },
-  {
-    "Id": "Wave3_01",
-    "WaveGroup": 1,
-    "EnemyId": "Enemy_Normal",
-    "Count": 8,
-    "Interval": 0.25,
-    "PreDelay": 0
-  },
-  {
-    "Id": "Wave3_02",
-    "WaveGroup": 1,
-    "EnemyId": "Enemy_Pharmacist",
-    "Count": 3,
-    "Interval": 0.25,
-    "PreDelay": 6
-  },
-  {
-    "Id": "Wave3_03",
-    "WaveGroup": 2,
-    "EnemyId": "Enemy_Special",
-    "Count": 5,
-    "Interval": 0.25,
-    "PreDelay": 6
-  },
-  {
-    "Id": "Wave4_01",
-    "WaveGroup": 1,
-    "EnemyId": "Enemy_Normal",
-    "Count": 5,
-    "Interval": 0.25,
-    "PreDelay": 0
-  },
-  {
-    "Id": "Wave4_02",
-    "WaveGroup": 1,
-    "EnemyId": "Enemy_Normal",
-    "Count": 5,
-    "Interval": 0.25,
-    "PreDelay": 2
-  },
-  {
-    "Id": "Wave4_03",
-    "WaveGroup": 2,
-    "EnemyId": "Enemy_Cup",
-    "Count": 3,
-    "Interval": 0.5,
-    "PreDelay": 1
-  },
-  {
-    "Id": "Wave4_04",
-    "WaveGroup": 2,
-    "EnemyId": "Enemy_Cup",
-    "Count": 3,
-    "Interval": 0.5,
-    "PreDelay": 4
-  },
-  {
-    "Id": "Wave4_05",
-    "WaveGroup": 3,
-    "EnemyId": "Enemy_Cup",
-    "Count": 2,
-    "Interval": 0.5,
-    "PreDelay": 10
-  },
-  {
-    "Id": "Wave5_01",
-    "WaveGroup": 1,
-    "EnemyId": "Enemy_Normal",
-    "Count": 5,
-    "Interval": 0.25,
-    "PreDelay": 0
-  },
-  {
-    "Id": "Wave5_02",
-    "WaveGroup": 1,
-    "EnemyId": "Enemy_Normal",
-    "Count": 5,
-    "Interval": 0.25,
-    "PreDelay": 2
-  },
-  {
-    "Id": "Wave5_03",
-    "WaveGroup": 1,
-    "EnemyId": "Enemy_Cup",
-    "Count": 3,
-    "Interval": 0.25,
-    "PreDelay": 4
-  },
-  {
-    "Id": "Wave5_04",
-    "WaveGroup": 2,
-    "EnemyId": "Enemy_Normal",
-    "Count": 3,
-    "Interval": 0.5,
-    "PreDelay": 4
-  },
-  {
-    "Id": "Wave5_05",
-    "WaveGroup": 2,
-    "EnemyId": "Enemy_Normal",
-    "Count": 2,
-    "Interval": 0.5,
-    "PreDelay": 6
-  },
-  {
-    "Id": "Wave5_06",
-    "WaveGroup": 3,
-    "EnemyId": "Enemy_Cup",
-    "Count": 2,
-    "Interval": 0.5,
-    "PreDelay": 8
-  },
-  {
-    "Id": "Wave5_07",
-    "WaveGroup": 3,
-    "EnemyId": "Enemy_Cup",
-    "Count": 2,
-    "Interval": 0.5,
-    "PreDelay": 9
-  },
-  {
-    "Id": "Wave5_08",
-    "WaveGroup": 4,
-    "EnemyId": "Enemy_Cup",
-    "Count": 1,
-    "Interval": 0,
-    "PreDelay": 10
-  }
+﻿[
+    {
+        "Id": "Wave1_01_01",
+        "WaveGroup": 1,
+        "EnemyId": "Enemy_Normal",
+        "Count": 5,
+        "Interval": 1,
+        "PreDelay": 0
+    },
+    {
+        "Id": "Wave1_01_02",
+        "WaveGroup": 1,
+        "EnemyId": "Enemy_Normal",
+        "Count": 5,
+        "Interval": 0.5,
+        "PreDelay": 5
+    },
+    {
+        "Id": "Wave1_02_01",
+        "WaveGroup": 2,
+        "EnemyId": "Enemy_Normal",
+        "Count": 10,
+        "Interval": 0.5,
+        "PreDelay": 5
+    },
+    {
+        "Id": "Wave1_02_02",
+        "WaveGroup": 2,
+        "EnemyId": "Enemy_Cup",
+        "Count": 5,
+        "Interval": 0.5,
+        "PreDelay": 8
+    },
+    {
+        "Id": "Wave1_03_01",
+        "WaveGroup": 3,
+        "EnemyId": "Enemy_Normal",
+        "Count": 10,
+        "Interval": 0.5,
+        "PreDelay": 5
+    },
+    {
+        "Id": "Wave1_03_02",
+        "WaveGroup": 3,
+        "EnemyId": "Enemy_Crazy",
+        "Count": 2,
+        "Interval": 0.5,
+        "PreDelay": 3
+    },
+    {
+        "Id": "Wave1_03_03",
+        "WaveGroup": 3,
+        "EnemyId": "Enemy_Cup",
+        "Count": 3,
+        "Interval": 0.5,
+        "PreDelay": 6
+    },
+
+    {
+        "Id": "Wave2_01_01",
+        "WaveGroup": 1,
+        "EnemyId": "Enemy_Pharmacist",
+        "Count": 1,
+        "Interval": 0.5,
+        "PreDelay": 0
+    },
+    {
+        "Id": "Wave2_01_02",
+        "WaveGroup": 1,
+        "EnemyId": "Enemy_Normal",
+        "Count": 5,
+        "Interval": 0.5,
+        "PreDelay": 6
+    },
+    {
+        "Id": "Wave2_01_03",
+        "WaveGroup": 1,
+        "EnemyId": "Enemy_Pharmacist",
+        "Count": 1,
+        "Interval": 0.5,
+        "PreDelay": 6
+    },
+    {
+        "Id": "Wave2_01_04",
+        "WaveGroup": 1,
+        "EnemyId": "Enemy_Normal",
+        "Count": 5,
+        "Interval": 0.5,
+        "PreDelay": 6
+    },
+    {
+        "Id": "Wave2_02_01",
+        "WaveGroup": 2,
+        "EnemyId": "Enemy_Pharmacist",
+        "Count": 1,
+        "Interval": 0.5,
+        "PreDelay": 0
+    },
+    {
+        "Id": "Wave2_02_02",
+        "WaveGroup": 2,
+        "EnemyId": "Enemy_Cup",
+        "Count": 5,
+        "Interval": 0.5,
+        "PreDelay": 6
+    },
+    {
+        "Id": "Wave2_02_03",
+        "WaveGroup": 2,
+        "EnemyId": "Enemy_Pharmacist",
+        "Count": 1,
+        "Interval": 0.5,
+        "PreDelay": 6
+    },
+    {
+        "Id": "Wave2_02_04",
+        "WaveGroup": 2,
+        "EnemyId": "Enemy_Cup",
+        "Count": 5,
+        "Interval": 0.5,
+        "PreDelay": 6
+    },
+    {
+        "Id": "Wave2_03_01",
+        "WaveGroup": 3,
+        "EnemyId": "Enemy_Pharmacist",
+        "Count": 1,
+        "Interval": 0.5,
+        "PreDelay": 0
+    },
+    {
+        "Id": "Wave2_03_02",
+        "WaveGroup": 3,
+        "EnemyId": "Enemy_Crazy",
+        "Count": 5,
+        "Interval": 0.5,
+        "PreDelay": 6
+    },
+    {
+        "Id": "Wave2_03_03",
+        "WaveGroup": 3,
+        "EnemyId": "Enemy_Pharmacist",
+        "Count": 1,
+        "Interval": 0.5,
+        "PreDelay": 6
+    },
+    {
+        "Id": "Wave2_03_04",
+        "WaveGroup": 3,
+        "EnemyId": "Enemy_Crazy",
+        "Count": 5,
+        "Interval": 0.5,
+        "PreDelay": 6
+    },
+
+    {
+        "Id": "Wave3_01_01",
+        "WaveGroup": 1,
+        "EnemyId": "Enemy_Pharmacist",
+        "Count": 1,
+        "Interval": 0.5,
+        "PreDelay": 0
+    },
+    {
+        "Id": "Wave3_01_02",
+        "WaveGroup": 1,
+        "EnemyId": "Enemy_Normal",
+        "Count": 3,
+        "Interval": 0.5,
+        "PreDelay": 2
+    },
+    {
+        "Id": "Wave3_01_03",
+        "WaveGroup": 1,
+        "EnemyId": "Enemy_Cup",
+        "Count": 2,
+        "Interval": 0.5,
+        "PreDelay": 5
+    },
+    {
+        "Id": "Wave3_01_04",
+        "WaveGroup": 1,
+        "EnemyId": "Enemy_Pharmacist",
+        "Count": 1,
+        "Interval": 0.5,
+        "PreDelay": 8
+    },
+    {
+        "Id": "Wave3_01_05",
+        "WaveGroup": 1,
+        "EnemyId": "Enemy_Normal",
+        "Count": 3,
+        "Interval": 0.5,
+        "PreDelay": 2
+    },
+    {
+        "Id": "Wave3_01_06",
+        "WaveGroup": 1,
+        "EnemyId": "Enemy_Cup",
+        "Count": 2,
+        "Interval": 0.5,
+        "PreDelay": 5
+    },
+    {
+        "Id": "Wave3_02_01",
+        "WaveGroup": 2,
+        "EnemyId": "Enemy_Special",
+        "Count": 5,
+        "Interval": 0.5,
+        "PreDelay": 10
+    },
+    {
+        "Id": "Wave3_02_02",
+        "WaveGroup": 2,
+        "EnemyId": "Enemy_Normal",
+        "Count": 10,
+        "Interval": 0.5,
+        "PreDelay": 6
+    },
+    {
+        "Id": "Wave3_02_03",
+        "WaveGroup": 2,
+        "EnemyId": "Enemy_Crazy",
+        "Count": 5,
+        "Interval": 0.5,
+        "PreDelay": 6
+    },
+    {
+        "Id": "Wave3_03_01",
+        "WaveGroup": 3,
+        "EnemyId": "Enemy_Special",
+        "Count": 7,
+        "Interval": 0.5,
+        "PreDelay": 0
+    },
+    {
+        "Id": "Wave3_03_02",
+        "WaveGroup": 3,
+        "EnemyId": "Enemy_Cup",
+        "Count": 10,
+        "Interval": 0.5,
+        "PreDelay": 6
+    },
+    {
+        "Id": "Wave3_03_03",
+        "WaveGroup": 3,
+        "EnemyId": "Enemy_Crazy",
+        "Count": 10,
+        "Interval": 0.5,
+        "PreDelay": 6
+    }
 ]
