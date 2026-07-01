@@ -36,5 +36,6 @@ public class PauseUI : UIBase
 
         GameObjectManager.Instance.DestroyAllObjectPool();
         TowerManager.Instance.DestroyAllTower();
+        Time.timeScale = 1.0f;
     }
 }
