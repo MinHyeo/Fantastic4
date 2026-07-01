@@ -34,6 +34,7 @@ public class PauseUI : UIBase
         UIManager.Instance.OpenUI(UIRootType.MainUI, UIType.LobbyUI);
         UIManager.Instance.OpenUI(UIRootType.BackgroundUI, UIType.LobbyBackgroundUI);
 
+        StageManager.Instance.EndStage();
         GameObjectManager.Instance.DestroyAllObjectPool();
         TowerManager.Instance.DestroyAllTower();
         Time.timeScale = 1.0f;

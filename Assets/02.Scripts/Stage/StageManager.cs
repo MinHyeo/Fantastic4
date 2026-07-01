@@ -11,6 +11,7 @@ public class StageManager : MonoBehaviour
 {
     public static StageManager Instance;
 
+    private CancellationTokenSource _cancellationTokensSource;
     private EnemyRouteManager _enemyRouteManager;
     private int _activeEnemyCount = 0;
     private int _currentStageGold = 0;
@@ -42,6 +43,8 @@ public class StageManager : MonoBehaviour
         var splineContinear = stageObject.GetComponent<SplineContainer>();
         _enemyRouteManager.SetSplineCointer(splineContinear);
 
+        _cancellationTokensSource = new CancellationTokenSource();
+
         // 스테이지 골드 불러오기
         InitStageGoldData();
 
@@ -58,14 +61,14 @@ public class StageManager : MonoBehaviour
         if (waveData == null)
             return;
 
-        CancellationToken cancellationToken = this.GetCancellationTokenOnDestroy();
-        DelayAnSpawnWaveAsync(waveData, cancellationToken).Forget();
+        
+        DelayAnSpawnWaveAsync(waveData, _cancellationTokensSource.Token).Forget();
     }
 
     private async UniTaskVoid DelayAnSpawnWaveAsync(WaveData waveData, CancellationToken cancellationToken)
     {
         float preDelay = waveData.PreDelay;
-        await UniTask.Delay(TimeSpan.FromSeconds(preDelay), cancellationToken: cancellationToken);
+        await UniTask.Delay(TimeSpan.FromSeconds(preDelay), cancellationToken: cancellationToken, cancelImmediately: true);
 
         int spawnCount = waveData.Count;
         float interval = waveData.Interval;
@@ -73,11 +76,27 @@ public class StageManager : MonoBehaviour
         _activeEnemyCount += spawnCount;
         for (int i = 0; i < spawnCount; i++)
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(interval), cancellationToken: cancellationToken);
+            await UniTask.Delay(TimeSpan.FromSeconds(interval), cancellationToken: cancellationToken, cancelImmediately: true);
 
             Vector3 spawnPoint = GetCoursePosition(0);
             GameObjectManager.Instance.CreateEnemyObject(enemyId, spawnPoint).Forget();
         }
+    }
+
+    private void ClearSpawnDelay()
+    {
+        if (_cancellationTokensSource == null)
+            return;
+
+        _cancellationTokensSource.Cancel();
+        _cancellationTokensSource.Dispose();
+        _cancellationTokensSource = null;
+    }
+
+    public void EndStage()
+    {
+        ClearSpawnDelay();
+        _activeEnemyCount = 0;
     }
 
     public bool CheckEndCourse(int courseIndex)
