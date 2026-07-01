@@ -91,7 +91,5 @@ public static class UIManagerExtension
         {
             upgradeUI.InitUpgradeInfo(towerbase);
         }
-
-        UIManager.Instance.OpenPopupUI(UIType.TowerUpgradeUI);
     }
 }

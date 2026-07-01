@@ -44,7 +44,7 @@ public class TowerManager : MonoBehaviour
             return;
         }
 
-        if (IsPointerOverUI())
+        if (IsPointerOverBlockingUI())
         {
             return;
         }
@@ -60,6 +60,7 @@ public class TowerManager : MonoBehaviour
         }
         
         ClearSelectedTower();
+        CloseTowerUpgradeUI();
     }
 
     /// <summary>
@@ -296,7 +297,7 @@ public class TowerManager : MonoBehaviour
     /// <summary>
     /// UI를 클릭한거면 tower를 클릭하지 못하게 블락
     /// </summary>
-    private bool IsPointerOverUI()
+    private bool IsPointerOverBlockingUI()
     {
         if (EventSystem.current == null)
         {
@@ -315,10 +316,31 @@ public class TowerManager : MonoBehaviour
         {
             if (raycastResult.module is UnityEngine.UI.GraphicRaycaster)
             {
+                // 강화 UI의 투명 배경은 뒤쪽 타워 클릭을 통과시킵니다.
+                if (IsTowerUpgradeCloseBackground(raycastResult.gameObject))
+                {
+                    continue;
+                }
+
                 return true;
             }
         }
 
         return false;
+    }
+
+    private bool IsTowerUpgradeCloseBackground(GameObject uiObject)
+    {
+        return uiObject != null && uiObject.name == "Button_CloseBG";
+    }
+
+    private void CloseTowerUpgradeUI()
+    {
+        if (UIManager.Instance == null)
+        {
+            return;
+        }
+
+        UIManager.Instance.ClosePopupUI(UIType.TowerUpgradeUI);
     }
 }

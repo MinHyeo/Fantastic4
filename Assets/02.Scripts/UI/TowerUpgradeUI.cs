@@ -27,7 +27,6 @@ public class TowerUpgradeUI : UIBase
 
     private void OnEnable()
     {
-        Button_CloseBG.BindOnClickButtonEvent(OnClickCloseTowerUpgradeUI);
         Button_Close.BindOnClickButtonEvent(OnClickCloseTowerUpgradeUI);
         Button_Upgrade.BindOnClickButtonEvent(OnClickTowerUpgrade);
     }
