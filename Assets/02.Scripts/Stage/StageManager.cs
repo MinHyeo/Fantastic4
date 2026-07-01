@@ -190,11 +190,11 @@ public class StageManager : MonoBehaviour
     private void ClearStage()
     {
         GameManager.Instance.UnlockStage(_currentStage);
-        UIManager.Instance.OpenUI(UIRootType.PopupUI, UIType.ResultSuccessUI);
+        UIManager.Instance.OpenUI(UIRootType.ContentUI, UIType.ResultSuccessUI);
     }
 
     public void FaildStage()
     {
-        UIManager.Instance.OpenUI(UIRootType.PopupUI, UIType.ResultFailUI);
+        UIManager.Instance.OpenUI(UIRootType.ContentUI, UIType.ResultFailUI);
     }
 }
