@@ -29,7 +29,6 @@ public class Detector : MonoBehaviour
         Collider[] enemiesInRange = FindEnemiesInRange();
         GameObject leadEnemy = BattleManager.Instance.GetBeInTheLead(enemiesInRange);
 
-
         if (leadEnemy == null)
         {
             return null;
@@ -73,7 +72,9 @@ public class Detector : MonoBehaviour
         for (int i = _enemiesInRange.Count - 1; i >= 0; i--)
         {
             Collider enemy = _enemiesInRange[i];
-            if (enemy == null || enemy.gameObject.activeSelf == false)
+            EnemyBase enemyBase = enemy.GetComponent<EnemyBase>();
+
+            if (enemy == null || enemy.gameObject.activeSelf == false || enemyBase.IsDead == true)
             {
                 _enemiesInRange.RemoveAt(i);
             }

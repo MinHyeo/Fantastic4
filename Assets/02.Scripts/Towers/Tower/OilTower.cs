@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class OilTower : TowerBase
@@ -75,7 +76,7 @@ public class OilTower : TowerBase
 
     private void TryAttackTarget()
     {
-        Collider[] targetEnemies = _detector.FindEnemiesInRange();
+        var targetEnemies = _detector.FindEnemiesInRange();
 
         // 사거리 내에 공격할 대상이 없으면 공격 로직 중단
         if (targetEnemies.Length == 0)
