@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class HudMainUI : UIBase
@@ -77,5 +78,20 @@ public class HudMainUI : UIBase
             Destroy(slot.gameObject);
             _hudTowerLevelSlotList.Remove(instanceId);
         }
+    }
+
+    public void RemoveAllHudHpSlot()
+    {
+        foreach (var slot in _hudHpSlotList)
+        {
+            var slotKv = slot.Value;
+
+            if (slotKv != null)
+            {
+                Destroy(slotKv.gameObject);
+            }
+        }
+
+        _hudHpSlotList.Clear();
     }
 }
