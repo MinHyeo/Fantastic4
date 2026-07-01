@@ -26,6 +26,7 @@ public class ResultSuccessUI : UIBase
         GameManager.Instance.ResetGame();
 
         UIManager.Instance.OpenUI(UIRootType.MainUI, UIType.LobbyUI);
+        UIManager.Instance.OpenUI(UIRootType.BackgroundUI, UIType.LobbyBackgroundUI);
         UIManager.Instance.ClosePopupUI(UIType.ResultSuccessUI);
     }
 
