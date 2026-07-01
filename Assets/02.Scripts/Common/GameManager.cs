@@ -23,11 +23,8 @@ public class GameManager : MonoBehaviour
 
     public void UnlockStage(int stageNumber)
     {
-        if (stageNumber > _currentUnlockedStage)
-        {
-            _currentUnlockedStage = stageNumber + 1;
-            SaveGameData();
-        }
+        _currentUnlockedStage = stageNumber + 1;
+        SaveGameData();
     }
 
     public void ResetGame()
