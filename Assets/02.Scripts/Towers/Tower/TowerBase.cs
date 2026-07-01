@@ -96,7 +96,11 @@ public abstract partial class TowerBase : MonoBehaviour, IPointerClickHandler
         }
         
         StageManager.Instance.DecreaseGold(_data.UpgradePrice);
+        
+
+        bool isRangeVislible = _isToggleRangeVisualizer;
         Init(nextId);
+        SetRangeVisualizerVisible(isRangeVislible);
 
         Debug.LogWarning($"강화 후 데미지{_data.AttackDamage}, 사거리 {_data.AttackRange}, 공속 {_data.AttackSpeed}, 투사체 속도 {_data.ProjectileSpeed}");
     }
