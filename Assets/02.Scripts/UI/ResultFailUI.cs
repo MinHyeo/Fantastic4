@@ -32,7 +32,8 @@ public class ResultFailUI : UIBase
 
     private void Onclick_Retry()
     {
-        Debug.Log("재시도 버튼이 눌렸어요");
-
+        int currentStage = StageManager.Instance.CurrentStage;
+        string currentStageId = currentStage.ToString();
+        StageManager.Instance.LoadStage(currentStageId);
     }
 }

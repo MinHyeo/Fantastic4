@@ -20,6 +20,7 @@ public class StageManager : MonoBehaviour
     //private List<EnemyBase> _activeEnemyList = new List<EnemyBase>();
 
     public int CurrentStageGold => _currentStageGold;
+    public int CurrentStage => _currentStage;
 
     private void Awake()
     {
