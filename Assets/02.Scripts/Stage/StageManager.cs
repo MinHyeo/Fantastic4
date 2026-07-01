@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Splines;
@@ -15,6 +16,7 @@ public class StageManager : MonoBehaviour
     private EnemyRouteManager _enemyRouteManager;
     private int _activeEnemyCount = 0;
     private int _currentStageGold = 0;
+    private int _currentStage = 0;
     //private List<EnemyBase> _activeEnemyList = new List<EnemyBase>();
 
     public int CurrentStageGold => _currentStageGold;
@@ -32,6 +34,9 @@ public class StageManager : MonoBehaviour
         Vector3 spawnSpot = Vector3.zero;
         _activeEnemyCount = 0;
         GameObjectManager.Instance.CreateStageObject(stageId, spawnSpot).Forget();
+
+        string numberOnly = Regex.Replace(stageId, @"[^0-9]", "");
+        _currentStage = int.Parse(numberOnly);
     }
 
     public void StartStage(string stageId, GameObject stageObject)
@@ -184,7 +189,7 @@ public class StageManager : MonoBehaviour
 
     private void ClearStage()
     {
-        // UI 호출
+        GameManager.Instance.UnlockStage(_currentStage);
         UIManager.Instance.OpenUI(UIRootType.PopupUI, UIType.ResultSuccessUI);
     }
 

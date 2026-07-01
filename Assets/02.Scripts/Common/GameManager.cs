@@ -30,6 +30,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ResetGame()
+    {
+        UIManager.Instance.CloseUI(UIRootType.MainUI, UIType.MainUI);
+
+        UIManager.Instance.RemoverAllHudSlot();
+        StageManager.Instance.EndStage();
+        GameObjectManager.Instance.DestroyAllObjectPool();
+        TowerManager.Instance.DestroyAllTower();
+    }
+
     private void SaveGameData()
     {
         PlayerPrefs.SetInt(SAVE_KEY, _currentUnlockedStage);

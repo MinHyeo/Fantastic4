@@ -15,12 +15,16 @@ public class ResultFailUI : UIBase
 
     private void Onclick_Stage()
     {
+        GameManager.Instance.ResetGame();
+
         UIManager.Instance.OpenContentUI(UIType.StageUI);
         UIManager.Instance.ClosePopupUI(UIType.ResultFailUI);
     }
 
     private void Onclick_Main()
     {
+        GameManager.Instance.ResetGame();
+
         UIManager.Instance.OpenUI(UIRootType.MainUI, UIType.LobbyUI);
         UIManager.Instance.ClosePopupUI(UIType.ResultFailUI);
     }

@@ -27,17 +27,11 @@ public class PauseUI : UIBase
 
     private void OnClickGoToMenu()
     {
-        // TODO : 모든 창과 맵을 닫는 로직을 추가해야 함. 게임매니저에서 할 듯
         UIManager.Instance.CloseUI(UIRootType.PopupUI, UIType.PauseUI);
-        UIManager.Instance.CloseUI(UIRootType.MainUI, UIType.MainUI);
-
         UIManager.Instance.OpenUI(UIRootType.MainUI, UIType.LobbyUI);
         UIManager.Instance.OpenUI(UIRootType.BackgroundUI, UIType.LobbyBackgroundUI);
 
-        StageManager.Instance.EndStage();
-        GameObjectManager.Instance.DestroyAllObjectPool();
-        TowerManager.Instance.DestroyAllTower();
-        UIManager.Instance.RemoverAllHudSlot();
+        GameManager.Instance.ResetGame();
 
         Time.timeScale = 1.0f;
     }
