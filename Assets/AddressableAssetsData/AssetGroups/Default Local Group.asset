@@ -14,7 +14,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
   m_GroupName: Default Local Group
   m_GUID: 2a619742e7a30db46935034b2717f3df
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 040b36be28b6deb4181adb63cde280f0
+    m_Address: Sprite/Icon/Enemy_Crazy_Icon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 04c5694bb1165b148b42925e8863c8ff
+    m_Address: Sprite/Icon/Tower_Cheese_Icon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 133a9db1ca49c8e44972168dfd68d2d8
+    m_Address: Sprite/Icon/Enemy_Special_Icon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 314dd73859681e741ab67df1a7e0c0f0
+    m_Address: Sprite/Icon/Tower_Salt_Icon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 437072a4308c2b54187ddc668d230173
+    m_Address: Sprite/Icon/Tower_Ketchup_Icon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a189c1e0d55aed448724b2b3eeb46b1
+    m_Address: Sprite/Icon/Tower_Oil_Icon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 92aed0cc9cb7ba04592f335da2ffca13
+    m_Address: Sprite/Icon/Enemy_Cup_Icon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: adb26b8d3b07c0e4f8dbaac41777af93
+    m_Address: Sprite/Icon/Enemy_Noraml_Icon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf5c5235522116348960323d36fba2ba
+    m_Address: Sprite/Icon/Tower_Pepper_Icon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f7656c5ec30b7434ea9a804453f940a0
+    m_Address: Sprite/Icon/Enemy_Pharmacist_Icon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 94b85e6b53665a848b256af421902c70, type: 2}
   m_SchemaSet:
