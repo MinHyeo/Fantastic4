@@ -22,6 +22,7 @@ public class OilField : FieldBase
             yield return _tickRate;
 
             activeTime -= _tickTime;
+            Debug.Log(activeTime);
         }
 
         GameObjectManager.Instance.ReturnObjectPool(this.gameObject);

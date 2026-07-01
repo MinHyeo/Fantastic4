@@ -8,6 +8,7 @@ public class OilProjectile : Projectile
     [SerializeField] private float _arcHeight = 3f;
     [SerializeField] private float _impactDistance = 0.1f;
 
+    private AbilityBase _ability;
     private AbilityData _oilAbility;
     private string _abilityId;
     private Vector3 _startPosition;
@@ -31,6 +32,7 @@ public class OilProjectile : Projectile
         if (string.IsNullOrEmpty(abilityId) == false)
         {
             _abilityId = abilityId;
+            _ability = new OilAbility();
         }
     }
 
@@ -114,7 +116,8 @@ public class OilProjectile : Projectile
             fieldPosition.y = target.transform.position.y + 0.01f;
         }
 
-        GameObjectManager.Instance.CreateAbilityObject(_abilityId, fieldPosition).Forget();
+        //GameObjectManager.Instance.CreateAbilityObject(_abilityId, fieldPosition).Forget();
+        _ability.Employ(_abilityId, transform);
     }
 
     private void SpawnBurstEffect()
