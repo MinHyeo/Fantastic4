@@ -49,7 +49,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48d2db3dfb2872a4482d0ea838c56a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HudMainUI
-  Prefab_HudSlot: {fileID: 7321097219819602794, guid: 198b7fee4f5882b4886f4d9c4581b344, type: 3}
+  Prefab_HudHpSlot: {fileID: 7321097219819602794, guid: 198b7fee4f5882b4886f4d9c4581b344, type: 3}
+  Prefab_HudTowerLevelSlot: {fileID: 8609459569132019202, guid: d1391497ffef4ec4aa66632f16e60c71, type: 3}
   Transform_SlotRoot: {fileID: 8395259193454551585}
 --- !u!1 &5042941942592731658
 GameObject:
