@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     {
         if (stageNumber > _currentUnlockedStage)
         {
-            _currentUnlockedStage = stageNumber;
+            _currentUnlockedStage = stageNumber + 1;
             SaveGameData();
         }
     }
