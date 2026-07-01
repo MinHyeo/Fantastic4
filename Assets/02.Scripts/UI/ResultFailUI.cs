@@ -8,6 +8,8 @@ public class ResultFailUI : UIBase
 
     private void OnEnable()
     {
+        GameManager.Instance.ResetGame();
+
         Button_Retry.BindOnClickButtonEvent(Onclick_Retry);
         Button_Stage.BindOnClickButtonEvent(Onclick_Stage);
         Button_Main.BindOnClickButtonEvent(Onclick_Main);
@@ -35,5 +37,7 @@ public class ResultFailUI : UIBase
         int currentStage = StageManager.Instance.CurrentStage;
         string currentStageId = currentStage.ToString();
         StageManager.Instance.LoadStage(currentStageId);
+
+        UIManager.Instance.ClosePopupUI(UIType.ResultFailUI);
     }
 }
