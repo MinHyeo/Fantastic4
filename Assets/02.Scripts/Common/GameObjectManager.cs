@@ -166,6 +166,7 @@ public class GameObjectManager : MonoBehaviour
         if (fieldObject != null)
         {
             fieldObject.Init(abilityData);
+            fieldObject.ActiveField();
             _activeObjectList.Add(createdObject);
         }
         _activeObjectList.Add(createdObject);
