@@ -34,6 +34,11 @@ public class TowerUpgradeUI : UIBase
 
     private void OnClickCloseTowerUpgradeUI()
     {
+        if (TowerManager.Instance != null)
+        {
+            TowerManager.Instance.ClearSelectedTower();
+        }
+
         UIManager.Instance.ClosePopupUI(UIType.TowerUpgradeUI);
     }
 
