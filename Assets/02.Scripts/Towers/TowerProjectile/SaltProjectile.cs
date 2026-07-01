@@ -27,14 +27,22 @@ public class SaltProjectile : Projectile
         _debuffAbility = debuffAbility;
     }
 
-    protected override void Move()
+    protected override void Update()
     {
-        if (_targetTransform == null)
+        Move();
+
+        if (IsProjectileLifetimeExpired() == true)
         {
             Destroy(gameObject);
-            return;
         }
+        else
+        {
+            SetPrevPos();
+        }
+    }
 
+    protected override void Move()
+    {
         transform.position = Vector3.MoveTowards(transform.position, _targetTransform.position, (_projectileSpeed * Time.deltaTime));
         float distance = Vector3.Distance(_targetTransform.position, transform.position);
 
@@ -54,5 +62,15 @@ public class SaltProjectile : Projectile
 
             Destroy(gameObject);
         }
+    }
+
+    protected override bool IsProjectileLifetimeExpired()
+    {
+        bool result = base.IsProjectileLifetimeExpired();
+
+        result = Vector3.Distance(_prevPos, transform.position) < 0.001f || 
+                 _targetTransform == null;
+
+        return result;
     }
 }

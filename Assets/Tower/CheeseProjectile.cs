@@ -26,6 +26,15 @@ public class CheeseProjectile : Projectile
     protected override void Update()
     {
         Move();
+
+        if (IsProjectileLifetimeExpired() == true)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            SetPrevPos();
+        }
     }
 
     protected override void Move()
@@ -67,5 +76,15 @@ public class CheeseProjectile : Projectile
         }
 
         Instantiate(_burstEffect, transform.position, Quaternion.identity);
+    }
+
+    protected override bool IsProjectileLifetimeExpired()
+    {
+        bool result = base.IsProjectileLifetimeExpired();
+
+        result = Vector3.Distance(_prevPos, transform.position) < 0.001f ||
+                 _targetTransform == null;
+
+        return result;
     }
 }

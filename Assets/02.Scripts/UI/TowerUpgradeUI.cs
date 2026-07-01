@@ -55,7 +55,7 @@ public class TowerUpgradeUI : UIBase
     {
         _towerBase = towerbase;
 
-        // Button_Upgrade.gameObject.SetActive(true);
+        Button_Upgrade.gameObject.SetActive(true);
 
         var towerData = towerbase.Data;
         if (towerData == null)
