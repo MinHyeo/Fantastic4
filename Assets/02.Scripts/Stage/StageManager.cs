@@ -17,10 +17,11 @@ public class StageManager : MonoBehaviour
     private int _activeEnemyCount = 0;
     private int _currentStageGold = 0;
     private int _currentStage = 0;
+    private string _currentStageId;
     //private List<EnemyBase> _activeEnemyList = new List<EnemyBase>();
 
     public int CurrentStageGold => _currentStageGold;
-    public int CurrentStage => _currentStage;
+    public string CurrentStageId => _currentStageId;
 
     private void Awake()
     {
@@ -36,6 +37,7 @@ public class StageManager : MonoBehaviour
         _activeEnemyCount = 0;
         GameObjectManager.Instance.CreateStageObject(stageId, spawnSpot).Forget();
 
+        _currentStageId = stageId;
         string numberOnly = Regex.Replace(stageId, @"[^0-9]", "");
         _currentStage = int.Parse(numberOnly);
     }
