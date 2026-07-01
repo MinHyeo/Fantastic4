@@ -46,6 +46,7 @@ public abstract class EnemyBase : MonoBehaviour
         bool isCourseEnd = StageManager.Instance.CheckEndCourse(_courseIndex);
         if (isCourseEnd == true)
         {
+            GameObjectManager.Instance.ReturnObjectPool(this.gameObject);
             return;
         }
 
@@ -107,6 +108,8 @@ public abstract class EnemyBase : MonoBehaviour
         bool isCourseEnd = StageManager.Instance.CheckEndCourse(_courseIndex);
         if (isCourseEnd == true)
         {
+            StageManager.Instance.FaildStage();
+            GameObjectManager.Instance.ReturnObjectPool(gameObject);
             return;
         }
 
